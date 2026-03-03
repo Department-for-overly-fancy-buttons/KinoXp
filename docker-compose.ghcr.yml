@@ -1,0 +1,5 @@
+services:
+  app:
+    image: ghcr.io/department-for-overly-fancy-buttons/kinoxp:latest
+    ports:
+      - "8090:8080"
