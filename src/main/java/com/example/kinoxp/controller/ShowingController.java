@@ -3,5 +3,5 @@ package com.example.kinoxp.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class TicketRepository {
+public class ShowingController {
 }
