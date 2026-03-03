@@ -1,6 +1,8 @@
 FROM maven:3.9.12-eclipse-temurin-25 AS build
 WORKDIR /app
 COPY pom.xml .
+# This step is to cache dependencies
+RUN mvn dependency:resolve
 COPY src ./src
 RUN mvn clean package -DskipTests
 
