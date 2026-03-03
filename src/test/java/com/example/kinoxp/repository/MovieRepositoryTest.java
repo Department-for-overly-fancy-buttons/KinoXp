@@ -21,6 +21,6 @@ class MovieRepositoryTest {
 
     @Test
     void testGithubActionCI_imput_zero() {
-        assertTrue(repository.testGithubActionCI(0));
+        assertFalse(repository.testGithubActionCI(0));
     }
 }
