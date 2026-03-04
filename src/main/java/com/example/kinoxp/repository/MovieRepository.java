@@ -1,12 +1,10 @@
 package com.example.kinoxp.repository;
 
+import com.example.kinoxp.model.Movies;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovieRepository {
-
-    public boolean testGithubActionCI(int number){
-        return number != 0;
-    }
+public interface MovieRepository extends JpaRepository<Movies,Long> {
 
 }
