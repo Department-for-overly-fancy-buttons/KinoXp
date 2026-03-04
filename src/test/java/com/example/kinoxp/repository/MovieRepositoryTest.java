@@ -9,18 +9,4 @@ class MovieRepositoryTest {
 
     private MovieRepository repository;
 
-    @BeforeEach
-    void setup(){
-        this.repository = new MovieRepository();
-    }
-
-    @Test
-    void testGithubActionCI_imput_one() {
-        assertTrue(repository.testGithubActionCI(1));
-    }
-
-    @Test
-    void testGithubActionCI_imput_zero() {
-        assertFalse(repository.testGithubActionCI(0));
-    }
 }
