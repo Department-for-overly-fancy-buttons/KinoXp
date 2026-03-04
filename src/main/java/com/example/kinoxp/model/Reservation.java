@@ -1,16 +1,23 @@
 package com.example.kinoxp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Reservation {
-    private int theaterId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long theaterId;
     private int reservationId;
     private LocalDateTime reservationDate;
-    private List<Ticket> tickets;
+    //private List<Ticket> tickets;
     private String email;
     private String phoneNumber;
 
@@ -21,25 +28,25 @@ public class Reservation {
         this.theaterId = theaterId;
         this.reservationId = reservationId;
         this.reservationDate = LocalDateTime.now();
-        this.tickets = new ArrayList<>();;
+        //this.tickets = new ArrayList<>();;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
+//    public List<Ticket> getTickets() {
+//        return tickets;
+//    }
+//
+//    public void setTickets(List<Ticket> tickets) {
+//        this.tickets = tickets;
+//    }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
 
-
-    public int getTheaterId() {
+    public long getTheaterId() {
         return theaterId;
     }
 
-    public void setTheaterId(int theaterId) {
+    public void setTheaterId(long theaterId) {
         this.theaterId = theaterId;
     }
 
@@ -75,11 +82,11 @@ public class Reservation {
         this.phoneNumber = phoneNumber;
     }
     //method to add ticket
-    public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
-    }
-    public void removeTicket(Ticket ticket) {
-        tickets.remove(ticket);
-    }
+//    public void addTicket(Ticket ticket) {
+//        tickets.add(ticket);
+//    }
+//    public void removeTicket(Ticket ticket) {
+//        tickets.remove(ticket);
+//    }
 
 }
