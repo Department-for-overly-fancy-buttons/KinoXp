@@ -1,7 +1,17 @@
 package com.example.kinoxp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+
 public class Theater {
-    private int theaterId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long theaterId;
     private String theaterName;
     private int numberOfRows;
     private int seatsPerRow;
@@ -14,11 +24,11 @@ public class Theater {
     }
     public Theater() {}
 
-    public int getTheaterId() {
+    public long getTheaterId() {
         return theaterId;
     }
 
-    public void setTheaterId(int theaterId) {
+    public void setTheaterId(long theaterId) {
         this.theaterId = theaterId;
     }
 

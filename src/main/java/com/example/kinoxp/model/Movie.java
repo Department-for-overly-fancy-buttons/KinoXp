@@ -1,20 +1,32 @@
 package com.example.kinoxp.model;
 
-public class Movies {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+
+public class Movie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String titel;
     private String description;
     private int movieId;
     private boolean ageLimit;
     private double duration;
 
-    public Movies(String titel, String description, int movieId, boolean ageLimit, double duration) {
+    public Movie(String titel, String description, int movieId, boolean ageLimit, double duration) {
         this.titel = titel;
         this.description = description;
         this.movieId = movieId;
         this.ageLimit = ageLimit;
         this.duration = duration;
     }
-    public Movies() {}
+    public Movie() {}
 
     public String getTitel() {
         return titel;

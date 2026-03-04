@@ -11,8 +11,8 @@ public class Reservation {
     private int reservationId;
     private LocalDateTime reservationDate;
     private List<Ticket> tickets;
-    public String email;
-    public String phoneNumber;
+    private String email;
+    private String phoneNumber;
 
     public Reservation() {}
 

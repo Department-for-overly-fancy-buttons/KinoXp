@@ -1,11 +1,21 @@
 package com.example.kinoxp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
+@Entity
+
 public class Ticket {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int TicketId;
-    private Showing showing;
-    private Movies movies;
+    //private Showing showing;
+    //private Movie movie;
     private LocalDateTime Time;
     private int rowNumber;
     private int seatNumber;
@@ -13,11 +23,11 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(int ticketId, Showing showing, Movies movies, LocalDateTime time,
+    public Ticket(int ticketId, Showing showing, Movie movie, LocalDateTime time,
                   int rowNumber, int seatNumber, double price) {
         TicketId = ticketId;
-        this.showing = showing;
-        this.movies = movies;
+        //this.showing = showing;
+        //this.movie = movie;
         Time = time;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
@@ -37,21 +47,21 @@ public class Ticket {
         TicketId = ticketId;
     }
 
-    public Showing getShowing() {
-        return showing;
-    }
-
-    public void setShowing(Showing showing) {
-        this.showing = showing;
-    }
-
-    public Movies getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Movies movies) {
-        this.movies = movies;
-    }
+//    public Showing getShowing() {
+//        return showing;
+//    }
+//
+//    public void setShowing(Showing showing) {
+//        this.showing = showing;
+//    }
+//
+//    public Movie getMovies() {
+//        return movie;
+//    }
+//
+//    public void setMovies(Movie movie) {
+//        this.movie = movie;
+//    }
 
     public LocalDateTime getTime() {
         return Time;

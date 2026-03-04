@@ -1,23 +1,31 @@
 package com.example.kinoxp.model;
 
-public class User {
-    public int userId;
-    public String username;
-    public String password;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-    public User(int userId, String username, String password) {
-        this.userId = userId;
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String username;
+    private String passwords;
+
+    public User(String username, String passwords) {
         this.username = username;
-        this.password = password;
+        this.passwords = passwords;
     }
     public User() {}
 
-    public int getUserId() {
-        return userId;
+    public long getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -28,11 +36,11 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswords() {
+        return passwords;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswords(String passwords) {
+        this.passwords = passwords;
     }
 }
