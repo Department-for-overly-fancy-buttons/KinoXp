@@ -1,9 +1,6 @@
 package com.example.kinoxp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 
@@ -14,15 +11,14 @@ public class Movie {
     private long id;
 
     private String titel;
+    @Column(length = 5000)
     private String description;
-    private int movieId;
     private boolean ageLimit;
     private double duration;
 
-    public Movie(String titel, String description, int movieId, boolean ageLimit, double duration) {
+    public Movie(String titel, String description, boolean ageLimit, double duration) {
         this.titel = titel;
         this.description = description;
-        this.movieId = movieId;
         this.ageLimit = ageLimit;
         this.duration = duration;
     }
@@ -42,14 +38,6 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
     }
 
     public boolean isAgeLimit() {

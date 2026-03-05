@@ -18,9 +18,9 @@ public class MovieService {
 
     }
 
-    public ResponseEntity<List<Movie>> getAllMovies() {
+    public List<Movie> getAllMovies() {
 
-        return null;
+        return movieRepository.findAll();
 
     }
 }

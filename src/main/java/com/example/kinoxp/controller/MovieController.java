@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/api")
 
@@ -26,7 +27,8 @@ public class MovieController implements MovieControllerInterface {
 
     @GetMapping("/movies")
     public ResponseEntity<List<Movie>> getMovies(){
-        return movieService.getAllMovies();
+
+        return ResponseEntity.ok(movieService.getAllMovies());
     }
 
     public void addMovie(@RequestBody Movie movie){
