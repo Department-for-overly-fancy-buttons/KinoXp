@@ -59,8 +59,8 @@ public class DBInitData implements CommandLineRunner {
         Reservation reservation1 = new Reservation(1, "test@email.com", "+45 19203421", "Freja", "Johannessen");
         reservationRepository.save(reservation1);
 
-        Ticket ticket1 = new Ticket(reservation1, LocalDateTime.now(), 4, 16, 200);
-        Ticket ticket2 = new Ticket(reservation1, LocalDateTime.now().minusWeeks(1), 4, 15, 200);
+        Ticket ticket1 = new Ticket(reservation1, 4, 16, 200);
+        Ticket ticket2 = new Ticket(reservation1, 4, 15, 200);
 
 
         reservation1.addTicket(ticket1);

@@ -32,7 +32,7 @@ public class MovieController implements MovieControllerInterface {
     }
 
     public void addMovie(@RequestBody Movie movie){
-
+        movieService.createMovie(movie);
     }
 
 }

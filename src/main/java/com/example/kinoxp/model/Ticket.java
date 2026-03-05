@@ -3,36 +3,32 @@ package com.example.kinoxp.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @ManyToOne
     @JsonBackReference
     private Reservation reservation;
-    private LocalDateTime Time;
-    private int rowNumber;
+    private int rowNumberssss;
     private int seatNumber;
     private double price;
 
     public Ticket() {
     }
 
-    public Ticket(Reservation reservation, LocalDateTime time,
-                  int rowNumber, int seatNumber, double price) {
+    public Ticket(Reservation reservation,
+                  int rowNumberssss, int seatNumber, double price) {
         this.reservation = reservation;
-        Time = time;
-        this.rowNumber = rowNumber;
+        this.rowNumberssss = rowNumberssss;
         this.seatNumber = seatNumber;
         this.price = price;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -45,31 +41,21 @@ public class Ticket {
     }
 
     public String getSeatLabel() {
-        return "Row " + rowNumber + ", Seat " + seatNumber;
+        return "Row " + rowNumberssss + ", Seat " + seatNumber;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int ticketId) {
-        this.id = id;
+
+
+    public int getRowNumberssss() {
+        return rowNumberssss;
     }
 
-    public LocalDateTime getTime() {
-        return Time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        Time = time;
-    }
-
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public void setRowNumber(int rowNumber) {
-        this.rowNumber = rowNumber;
+    public void setRowNumberssss(int rowNumberssss) {
+        this.rowNumberssss = rowNumberssss;
     }
 
     public int getSeatNumber() {
@@ -87,5 +73,7 @@ public class Ticket {
     public void setPrice(double price) {
         this.price = price;
     }
+
+
 
 }

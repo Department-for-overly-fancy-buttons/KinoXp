@@ -2,7 +2,6 @@ package com.example.kinoxp.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,23 +13,21 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long theaterId;
-    private LocalDateTime reservationDate;
-
-    @OneToMany(mappedBy = "reservation")
-    @JsonManagedReference
-    private List<Ticket> tickets;
-
+    private LocalDateTime timeOfPurchase;
     private String email;
     private String phoneNumber;
     private String firstName;
     private String lastName;
+
+    @OneToMany(mappedBy = "reservation")
+    @JsonManagedReference
+    private List<Ticket> tickets;
 
     public Reservation() {
     }
 
     public Reservation(int theaterId, String email, String phoneNumber, String firstName, String lastName) {
         this.theaterId = theaterId;
-        this.reservationDate = LocalDateTime.now();
         this.tickets = new ArrayList<>();
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -63,12 +60,14 @@ public class Reservation {
         this.id = id;
     }
 
-    public LocalDateTime getReservationDate() {
-        return reservationDate;
+    public LocalDateTime getTimeOfPurchase() {
+        return timeOfPurchase;
     }
 
-    public void setReservationDate(LocalDateTime reservationDate) {
-        this.reservationDate = reservationDate;
+    public void setTimeOfPurchase(LocalDateTime timeOfPurchase) {
+        if(this.timeOfPurchase == null) {
+            this.timeOfPurchase = timeOfPurchase;
+        }
     }
 
     public String getEmail() {
