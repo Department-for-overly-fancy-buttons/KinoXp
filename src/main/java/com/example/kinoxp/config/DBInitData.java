@@ -3,6 +3,7 @@ package com.example.kinoxp.config;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Ticket;
+import com.example.kinoxp.model.User;
 import com.example.kinoxp.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -33,7 +34,10 @@ public class DBInitData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        User user = new User("Olivertest", "123", List.of(User.Roles.Admin));
+        User user1 = new User("Olivertest", "123", List.of(User.Roles.Employee));
+        userRepository.save(user);
+        userRepository.save(user1);
 
         Movie movie1 = new Movie("Iron Lung", "In a post-apocalyptic future after \"The Quiet Rapture\" event, a convict explores a blood ocean on a desolate moon using a submarine called the \"Iron Lung\" to search for missing stars/planets.", true, 127,List.of(Movie.Category.Horror) );
         Movie movie2 = new Movie("The Bride!", "Filmen ’The Bride!’ er en nyfortolkning af gyserklassikeren The Bride of Frankenstein med en transformeret Christian Bale i rollen som Frankensteins monster og Jessie Buckley som hans genoplivede brud.\n" +
@@ -62,6 +66,8 @@ public class DBInitData implements CommandLineRunner {
         reservationRepository.save(reservation1);
 
         System.out.println("Initial data created: " + movieRepository.count() + " movies and " + reservationRepository.count() + " orders");
+
+
 
     }
 
