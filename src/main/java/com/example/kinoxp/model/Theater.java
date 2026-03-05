@@ -11,25 +11,26 @@ public class Theater {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long theaterId;
+    private long id;
     private String theaterName;
     private int numberOfRows;
     private int seatsPerRow;
 
-    public Theater(int theaterId, String theaterName, int numberOfRows, int seatsPerRow) {
-        this.theaterId = theaterId;
+    public Theater(int id, String theaterName, int numberOfRows, int seatsPerRow) {
+        this.id = id;
         this.theaterName = theaterName;
         this.numberOfRows = numberOfRows;
         this.seatsPerRow = seatsPerRow;
     }
+
     public Theater() {}
 
-    public long getTheaterId() {
-        return theaterId;
+    public long getId() {
+        return id;
     }
 
-    public void setTheaterId(long theaterId) {
-        this.theaterId = theaterId;
+    public void setTheaterId(long id) {
+        this.id = id;
     }
 
     public String getTheaterName() {

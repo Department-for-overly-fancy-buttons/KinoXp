@@ -13,7 +13,7 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int TicketId;
+    private Long id;
     //private Showing showing;
     //private Movie movie;
     private LocalDateTime Time;
@@ -23,9 +23,9 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(int ticketId, Showing showing, Movie movie, LocalDateTime time,
+    public Ticket(Long id, Showing showing, Movie movie, LocalDateTime time,
                   int rowNumber, int seatNumber, double price) {
-        TicketId = ticketId;
+        this.id = id;
         //this.showing = showing;
         //this.movie = movie;
         Time = time;
@@ -39,12 +39,12 @@ public class Ticket {
         return "Row " + rowNumber + ", Seat " + seatNumber;
     }
 
-    public int getTicketId() {
-        return TicketId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTicketId(int ticketId) {
-        TicketId = ticketId;
+    public void setId(int ticketId) {
+        this.id = id;
     }
 
 //    public Showing getShowing() {
