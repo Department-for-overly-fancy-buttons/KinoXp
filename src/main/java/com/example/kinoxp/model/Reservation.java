@@ -25,27 +25,26 @@ public class Reservation {
     private String firstName;
     private String lastName;
 
-    public Reservation() {}
+    public Reservation() {
+    }
 
-    public Reservation(int theaterId, LocalDateTime reservationDate, List<Ticket> tickets,
-             String email, String phoneNumber, String firstName, String lastName) {
+    public Reservation(int theaterId, String email, String phoneNumber, String firstName, String lastName) {
         this.theaterId = theaterId;
-        this.id = id;
         this.reservationDate = LocalDateTime.now();
-        //this.tickets = new ArrayList<>();;
+        this.tickets = new ArrayList<>();
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-//    public List<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(List<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
 
     public long getTheaterId() {
@@ -87,13 +86,15 @@ public class Reservation {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    //method to add ticket
-//    public void addTicket(Ticket ticket) {
-//        tickets.add(ticket);
-//    }
-//    public void removeTicket(Ticket ticket) {
-//        tickets.remove(ticket);
-//    }
+
+    //    method to add ticket
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        tickets.remove(ticket);
+    }
 
 
     public String getFirstName() {

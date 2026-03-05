@@ -35,7 +35,7 @@ public class DBInitData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-        Movie movie1 = new Movie("Iron Lung", "In a post-apocalyptic future after \"The Quiet Rapture\" event, a convict explores a blood ocean on a desolate moon using a submarine called the \"Iron Lung\" to search for missing stars/planets.", true, 127,List.of(Movie.Category.Horror) );
+        Movie movie1 = new Movie("Iron Lung", "In a post-apocalyptic future after \"The Quiet Rapture\" event, a convict explores a blood ocean on a desolate moon using a submarine called the \"Iron Lung\" to search for missing stars/planets.", true, 127, List.of(Movie.Category.Horror));
         Movie movie2 = new Movie("The Bride!", "Filmen ’The Bride!’ er en nyfortolkning af gyserklassikeren The Bride of Frankenstein med en transformeret Christian Bale i rollen som Frankensteins monster og Jessie Buckley som hans genoplivede brud.\n" +
                 "\n" +
                 "Frankenstein rejser til 1930’ernes Chicago for at søge hjælp hos den fremsynede læge og forsker, Dr. Euphronius, i håbet om at skabe en ledsager til sig selv. \n" +
@@ -51,17 +51,21 @@ public class DBInitData implements CommandLineRunner {
         movieRepository.save(movie1);
         movieRepository.save(movie2);
 
-        Ticket ticket1 = new Ticket(null, LocalDateTime.now(), 4, 16, 200);
-        Ticket ticket2 = new Ticket(null, LocalDateTime.now().minusWeeks(1), 4, 15, 200);
 
+        Reservation reservation1 = new Reservation(1, "test@email.com", "+45 19203421", "Freja", "Johannessen");
+        reservationRepository.save(reservation1);
+
+        Ticket ticket1 = new Ticket(reservation1, LocalDateTime.now(), 4, 16, 200);
+        Ticket ticket2 = new Ticket(reservation1, LocalDateTime.now().minusWeeks(1), 4, 15, 200);
+
+
+        reservation1.addTicket(ticket1);
+        reservation1.addTicket(ticket2);
         ticketRepository.save(ticket1);
         ticketRepository.save(ticket2);
 
-        Reservation reservation1 = new Reservation(1, LocalDateTime.now(), List.of(ticket1, ticket2), "test@email.com", "+45 19203421", "Freja", "Johannessen");
 
-        reservationRepository.save(reservation1);
-
-        System.out.println("Initial data created: " + movieRepository.count() + " movies and " + reservationRepository.count() + " orders");
+        System.out.println("Initial data created: " + movieRepository.count() + " movies and " + reservationRepository.count() + " orders " + ticketRepository.count() + " tickets");
 
     }
 

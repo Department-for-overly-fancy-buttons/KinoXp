@@ -15,24 +15,34 @@ public class Ticket {
     @ManyToOne
     @JsonBackReference
     private Reservation reservation;
-    //private Showing showing;
     private LocalDateTime Time;
     private int rowNumber;
     private int seatNumber;
     private double price;
 
-    public Ticket() {}
+    public Ticket() {
+    }
 
-    public Ticket(Showing showing, LocalDateTime time,
+    public Ticket(Reservation reservation, LocalDateTime time,
                   int rowNumber, int seatNumber, double price) {
-        this.id = id;
-        //this.showing = showing;
+        this.reservation = reservation;
         Time = time;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
         this.price = price;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
 
     public String getSeatLabel() {
         return "Row " + rowNumber + ", Seat " + seatNumber;
@@ -45,14 +55,6 @@ public class Ticket {
     public void setId(int ticketId) {
         this.id = id;
     }
-
-//    public Showing getShowing() {
-//        return showing;
-//    }
-//
-//    public void setShowing(Showing showing) {
-//        this.showing = showing;
-//    }
 
     public LocalDateTime getTime() {
         return Time;
@@ -85,4 +87,5 @@ public class Ticket {
     public void setPrice(double price) {
         this.price = price;
     }
+
 }
