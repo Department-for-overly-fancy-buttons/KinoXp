@@ -1,9 +1,7 @@
 package com.example.kinoxp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
@@ -14,23 +12,31 @@ import java.util.List;
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private long theaterId;
-    private int reservationId;
     private LocalDateTime reservationDate;
-    //private List<Ticket> tickets;
+
+    @OneToMany(mappedBy = "reservation")
+    @JsonManagedReference
+    private List<Ticket> tickets;
+
     private String email;
     private String phoneNumber;
+    private String firstName;
+    private String lastName;
 
     public Reservation() {}
 
-    public Reservation(int theaterId, int reservationId, LocalDateTime reservationDate, List<Ticket> tickets,
-             String email, String phoneNumber) {
+    public Reservation(int theaterId, LocalDateTime reservationDate, List<Ticket> tickets,
+             String email, String phoneNumber, String firstName, String lastName) {
         this.theaterId = theaterId;
-        this.reservationId = reservationId;
+        this.id = id;
         this.reservationDate = LocalDateTime.now();
         //this.tickets = new ArrayList<>();;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
 //    public List<Ticket> getTickets() {
@@ -50,12 +56,12 @@ public class Reservation {
         this.theaterId = theaterId;
     }
 
-    public int getReservationId() {
-        return reservationId;
+    public long getReservationId() {
+        return id;
     }
 
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
+    public void setReservationId(long id) {
+        this.id = id;
     }
 
     public LocalDateTime getReservationDate() {
@@ -89,4 +95,20 @@ public class Reservation {
 //        tickets.remove(ticket);
 //    }
 
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

@@ -1,10 +1,14 @@
 package com.example.kinoxp.config;
 
 import com.example.kinoxp.model.Movie;
+import com.example.kinoxp.model.Reservation;
+import com.example.kinoxp.model.Ticket;
 import com.example.kinoxp.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +50,16 @@ public class DBInitData implements CommandLineRunner {
 
         movieRepository.save(movie1);
         movieRepository.save(movie2);
+
+        Ticket ticket1 = new Ticket(null, LocalDateTime.now(), 4, 16, 200);
+        Ticket ticket2 = new Ticket(null, LocalDateTime.now().minusWeeks(1), 4, 15, 200);
+
+        ticketRepository.save(ticket1);
+        ticketRepository.save(ticket2);
+
+        Reservation reservation1 = new Reservation(1, LocalDateTime.now(), List.of(ticket1, ticket2), "test@email.com", "+45 19203421", "Freja", "Johannessen");
+
+        reservationRepository.save(reservation1);
 
         System.out.println("Initial data created: " + movieRepository.count() + " movies and " + reservationRepository.count() + " orders");
 

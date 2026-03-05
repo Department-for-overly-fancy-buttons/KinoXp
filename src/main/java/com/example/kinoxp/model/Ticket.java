@@ -1,9 +1,7 @@
 package com.example.kinoxp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -14,8 +12,10 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JsonBackReference
+    private Reservation reservation;
     //private Showing showing;
-    //private Movie movie;
     private LocalDateTime Time;
     private int rowNumber;
     private int seatNumber;
@@ -23,11 +23,10 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(Long id, Showing showing, Movie movie, LocalDateTime time,
+    public Ticket(Showing showing, LocalDateTime time,
                   int rowNumber, int seatNumber, double price) {
         this.id = id;
         //this.showing = showing;
-        //this.movie = movie;
         Time = time;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
@@ -53,14 +52,6 @@ public class Ticket {
 //
 //    public void setShowing(Showing showing) {
 //        this.showing = showing;
-//    }
-//
-//    public Movie getMovies() {
-//        return movie;
-//    }
-//
-//    public void setMovies(Movie movie) {
-//        this.movie = movie;
 //    }
 
     public LocalDateTime getTime() {
