@@ -2,6 +2,7 @@ package com.example.kinoxp.model;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,11 @@ public class Movie {
     private boolean ageLimit;
     private double duration;
     private Category category;
+
+    @ElementCollection(targetClass = Category.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name="movie_categories")
+    @Column(name="Category")
     private List<Category> categories;
 
     public enum Category{Horror, Scifi, Comedy, Action, Romance}
