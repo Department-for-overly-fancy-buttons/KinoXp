@@ -1,9 +1,6 @@
 package com.example.kinoxp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 
@@ -12,12 +9,12 @@ public class Theater {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String theaterName;
     private int numberOfRows;
     private int seatsPerRow;
 
-    public Theater(int id, String theaterName, int numberOfRows, int seatsPerRow) {
-        this.id = id;
+    public Theater( String theaterName, int numberOfRows, int seatsPerRow) {
         this.theaterName = theaterName;
         this.numberOfRows = numberOfRows;
         this.seatsPerRow = seatsPerRow;

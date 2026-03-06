@@ -1,6 +1,7 @@
 package com.example.kinoxp.service;
 
 import com.example.kinoxp.model.Movie;
+import com.example.kinoxp.repository.CategoryRepository;
 import com.example.kinoxp.repository.MovieRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,12 @@ import java.util.List;
 public class MovieService {
 
     private MovieRepository movieRepository;
+    private CategoryRepository categoryRepository;
 
-    public MovieService(MovieRepository movieRepository){
+    public MovieService(MovieRepository movieRepository, CategoryRepository categoryRepository){
 
         this.movieRepository = movieRepository;
+        this.categoryRepository = categoryRepository;
 
     }
 

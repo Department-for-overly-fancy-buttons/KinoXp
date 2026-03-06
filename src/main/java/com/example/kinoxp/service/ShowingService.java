@@ -1,7 +1,7 @@
 package com.example.kinoxp.service;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class ShowingService {
 }

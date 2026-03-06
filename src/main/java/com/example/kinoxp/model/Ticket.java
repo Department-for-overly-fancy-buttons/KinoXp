@@ -13,7 +13,8 @@ public class Ticket {
     @ManyToOne
     @JsonBackReference
     private Reservation reservation;
-    private int rowNumberssss;
+    @Column(name = "\"row_number\"")
+    private int rowNumber;
     private int seatNumber;
     private double price;
 
@@ -21,9 +22,9 @@ public class Ticket {
     }
 
     public Ticket(Reservation reservation,
-                  int rowNumberssss, int seatNumber, double price) {
+                  int rowNumber, int seatNumber, double price) {
         this.reservation = reservation;
-        this.rowNumberssss = rowNumberssss;
+        this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
         this.price = price;
     }
@@ -41,7 +42,7 @@ public class Ticket {
     }
 
     public String getSeatLabel() {
-        return "Row " + rowNumberssss + ", Seat " + seatNumber;
+        return "Row " + rowNumber + ", Seat " + seatNumber;
     }
 
     public long getId() {
@@ -50,12 +51,12 @@ public class Ticket {
 
 
 
-    public int getRowNumberssss() {
-        return rowNumberssss;
+    public int getRowNumber() {
+        return rowNumber;
     }
 
-    public void setRowNumberssss(int rowNumberssss) {
-        this.rowNumberssss = rowNumberssss;
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
     }
 
     public int getSeatNumber() {

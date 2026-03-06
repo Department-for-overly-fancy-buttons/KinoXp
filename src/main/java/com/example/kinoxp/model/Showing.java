@@ -1,9 +1,6 @@
 package com.example.kinoxp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -13,34 +10,47 @@ public class Showing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long showingId;
-    //private Movie movie;
+    private long id;
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+    @ManyToOne
+    @JoinColumn(name = "theater_id")
+    private Theater theater;
     private LocalDateTime startTime;
-    private boolean isExtra;
+    private boolean is3d;
 
-    public Showing(int showingId, Movie movie, LocalDateTime startTime, boolean isExtra) {
-        this.showingId = showingId;
-        //this.movie = movie;
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Showing(Movie movie, Theater theater, LocalDateTime startTime, boolean is3d) {
+        this.movie = movie;
+        this.theater = theater;
         this.startTime = startTime;
-        this.isExtra = isExtra;
+        this.is3d = is3d;
     }
     public Showing() {}
 
-    public long getShowingId() {
-        return showingId;
+    public long getId() {
+        return id;
     }
 
-    public void setShowingId(long showingId) {
-        this.showingId = showingId;
+    public void setId(long showingId) {
+        this.id = showingId;
     }
 
-//    public Movie getMovies() {
-//        return movie;
-//    }
-//
-//    public void setMovies(Movie movie) {
-//        this.movie = movie;
-//    }
+    public Movie getMovies() {
+        return movie;
+    }
+
+    public void setMovies(Movie movie) {
+        this.movie = movie;
+    }
 
     public LocalDateTime getStartTime() {
         return startTime;
@@ -50,11 +60,19 @@ public class Showing {
         this.startTime = startTime;
     }
 
-    public boolean isExtra() {
-        return isExtra;
+    public boolean is3d() {
+        return is3d;
     }
 
-    public void setExtra(boolean extra) {
-        isExtra = extra;
+    public void set3d(boolean is3d) {
+        this.is3d = is3d;
+    }
+
+    public Theater getTheater() {
+        return theater;
+    }
+
+    public void setTheater(Theater theater) {
+        this.theater = theater;
     }
 }

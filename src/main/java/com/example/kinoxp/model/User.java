@@ -11,22 +11,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String username;
+    @Column(nullable = false)
     private String passwords;
-    private Roles roles;
-
-    @ElementCollection(targetClass = Roles.class)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name="users_roles")
-    @Column(name="Roles")
-    private List<Roles> rolesList;
+    @Column(name="iofr")
+    private Role role;
 
-    public enum Roles {Employee, Admin}
 
-    public User(String username, String passwords, List<Roles> rolesList) {
+
+    public User(String username, String passwords, Role role) {
         this.username = username;
         this.passwords = passwords;
-        this.rolesList = rolesList;
+        this.role = role;
     }
 
     public User() {}
@@ -55,11 +53,11 @@ public class User {
         this.passwords = passwords;
     }
 
-    public List<Roles> getRolesList() {
-        return rolesList;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRolesList(List<Roles> rolesList) {
-        this.rolesList = rolesList;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

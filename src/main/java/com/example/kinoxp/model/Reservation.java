@@ -12,9 +12,12 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long theaterId;
+    @ManyToOne
+    @JoinColumn(name = "showing_id")
+    private Showing showing;
     private LocalDateTime timeOfPurchase;
     private String email;
+    @Column(nullable = false)
     private String phoneNumber;
     private String firstName;
     private String lastName;
@@ -26,8 +29,8 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int theaterId, String email, String phoneNumber, String firstName, String lastName) {
-        this.theaterId = theaterId;
+    public Reservation(Showing showing, String email, String phoneNumber, String firstName, String lastName) {
+        this.showing = showing;
         this.tickets = new ArrayList<>();
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -44,12 +47,12 @@ public class Reservation {
     }
 
 
-    public long getTheaterId() {
-        return theaterId;
+    public Showing getShowing() {
+        return showing;
     }
 
-    public void setTheaterId(long theaterId) {
-        this.theaterId = theaterId;
+    public void setTheaterId(Showing showing) {
+        this.showing = showing;
     }
 
     public long getReservationId() {
