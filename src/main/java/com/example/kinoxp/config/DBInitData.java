@@ -66,11 +66,11 @@ public class DBInitData implements CommandLineRunner {
         theaterRepository.save(theater2);
 
         Showing showing1OfMovie1 = new Showing(movie1, theater1, LocalDateTime.now(), true);
-        Showing showing2OfMovie1 = new Showing(movie1,theater2, LocalDateTime.now().plusWeeks(1), true);
+        Showing showing2OfMovie1 = new Showing(movie2,theater2, LocalDateTime.now().plusWeeks(1), true);
         Showing showing3OfMovie1 = new Showing(movie1, theater2, LocalDateTime.now().plusWeeks(1), false);
 
         Showing showing1OfMovie2 = new Showing(movie1, theater1, LocalDateTime.now().minusMinutes(40), false);
-        Showing showing2OfMovie2 = new Showing(movie1, theater1, LocalDateTime.now().plusWeeks(3), true);
+        Showing showing2OfMovie2 = new Showing(movie2, theater1, LocalDateTime.now().plusWeeks(3), true);
 
         showingRepository.save(showing1OfMovie1);
         showingRepository.save(showing2OfMovie1);

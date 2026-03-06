@@ -13,7 +13,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false)
-    private String titel;
+    private String title;
     @Column(length = 5000)
     private String description;
     private int pgRating;
@@ -27,22 +27,24 @@ public class Movie {
     private List<Category> categories = new ArrayList<>();
 
 
-    public Movie(String titel, String description, int pgRating, double duration, List<Category> categories) {
-        this.titel = titel;
+    public Movie(String title, String description, int pgRating, double duration, List<Category> categories) {
+        this.title = title;
         this.description = description;
         this.pgRating = pgRating;
         this.duration = duration;
         this.categories = categories;
 
     }
-    public Movie() {}
 
-    public String getTitel() {
-        return titel;
+    public Movie() {
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -78,11 +80,11 @@ public class Movie {
     }
 
     //Methods below may be Changed
-    public void addCategory(Category category){
+    public void addCategory(Category category) {
         this.categories.add(category);
     }
 
-    public void removeCategory(Category category){
+    public void removeCategory(Category category) {
         this.categories.remove(category);
     }
 

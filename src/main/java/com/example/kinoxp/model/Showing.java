@@ -1,9 +1,11 @@
 package com.example.kinoxp.model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+@JsonPropertyOrder({"id", "movie", "theater", "startTime", "isThreeDimensional"})
 @Entity
 
 public class Showing {
@@ -18,7 +20,7 @@ public class Showing {
     @JoinColumn(name = "theater_id")
     private Theater theater;
     private LocalDateTime startTime;
-    private boolean is3d;
+    private boolean isThreeDimensional;
 
     public Movie getMovie() {
         return movie;
@@ -28,11 +30,11 @@ public class Showing {
         this.movie = movie;
     }
 
-    public Showing(Movie movie, Theater theater, LocalDateTime startTime, boolean is3d) {
+    public Showing(Movie movie, Theater theater, LocalDateTime startTime, boolean isThreeDimensional) {
         this.movie = movie;
         this.theater = theater;
         this.startTime = startTime;
-        this.is3d = is3d;
+        this.isThreeDimensional = isThreeDimensional;
     }
     public Showing() {}
 
@@ -44,14 +46,6 @@ public class Showing {
         this.id = showingId;
     }
 
-    public Movie getMovies() {
-        return movie;
-    }
-
-    public void setMovies(Movie movie) {
-        this.movie = movie;
-    }
-
     public LocalDateTime getStartTime() {
         return startTime;
     }
@@ -60,12 +54,12 @@ public class Showing {
         this.startTime = startTime;
     }
 
-    public boolean is3d() {
-        return is3d;
+    public boolean isThreeDimensional() {
+        return isThreeDimensional;
     }
 
-    public void set3d(boolean is3d) {
-        this.is3d = is3d;
+    public void setThreeDimensional(boolean threeDimensional) {
+        isThreeDimensional = threeDimensional;
     }
 
     public Theater getTheater() {
