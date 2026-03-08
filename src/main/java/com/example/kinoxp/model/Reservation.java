@@ -38,6 +38,14 @@ public class Reservation {
         this.lastName = lastName;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public List<Ticket> getTickets() {
         return tickets;
     }
