@@ -2,8 +2,6 @@ package com.example.kinoxp.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -16,9 +14,8 @@ public class User {
     @Column(nullable = false)
     private String passwords;
     @Enumerated(EnumType.STRING)
-    @Column(name="iofr")
+    @Column(name = "\"UserRole\"")
     private Role role;
-
 
 
     public User(String username, String passwords, Role role) {
@@ -27,7 +24,8 @@ public class User {
         this.role = role;
     }
 
-    public User() {}
+    public User() {
+    }
 
     public long getId() {
         return id;

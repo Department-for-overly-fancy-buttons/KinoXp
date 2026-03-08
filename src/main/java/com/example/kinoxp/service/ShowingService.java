@@ -1,8 +1,8 @@
 package com.example.kinoxp.service;
 
+import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.Showing;
 import com.example.kinoxp.repository.ShowingRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +12,29 @@ public class ShowingService {
 
     private final ShowingRepository showingRepository;
 
-    public ShowingService(ShowingRepository showingRepository){
+    public ShowingService(ShowingRepository showingRepository) {
         this.showingRepository = showingRepository;
     }
 
-    public List<Showing> getShowings() {
-
-        return showingRepository.findAll();
-
+    public Showing createShowing(Showing showing) {
+        return showingRepository.save(showing);
     }
+
+    public List<Showing> getShowings() {
+        return showingRepository.findAll();
+    }
+
+    public Showing getShowingById(Long id) {
+        return showingRepository.findById(id).orElseThrow(() -> new NotFoundException("Showing not found with id: " + id));
+    }
+
+    public List<Showing> getShowingsForTheater(Long theaterId) {
+        return showingRepository.findByTheater_Id(theaterId);
+    }
+
+    public void deleteShowingById(Long id){
+        showingRepository.deleteById(id);
+    }
+
+
 }

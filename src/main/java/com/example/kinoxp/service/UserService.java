@@ -1,6 +1,6 @@
 package com.example.kinoxp.service;
 
-import com.example.kinoxp.model.Role;
+import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.User;
 import com.example.kinoxp.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,31 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public List<User> getAllUsersByRole(Role role) {
-        return null;
+    //Ved ikke om det virker med enum
+//    public List<User> getAllUsersByRole(Role role) {
+    //      return userRepository.findByUserRole(role.toString());
+    //}
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found with id: " + id));
+    }
+
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public User updateUserRole(Long id, User user) {
+        User newUser = getUserById(id);
+        newUser.setRole(user.getRole());
+        return userRepository.save(newUser);
     }
 
 }

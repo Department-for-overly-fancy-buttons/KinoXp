@@ -3,7 +3,7 @@ package com.example.kinoxp.model;
 
 
 public enum Role {
-    COStUMER(0),
+    COSTUMER(0),
     EMPLOYEE(1),
     ADMIN(2);
 
