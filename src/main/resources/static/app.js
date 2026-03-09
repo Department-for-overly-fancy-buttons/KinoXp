@@ -9,6 +9,7 @@ async function initApp() {
     showingsData = await fetchShowings();
     console.log(showingsData);
     displayShowings(showingsData);
+    movieContainerEl.addEventListener("click", handleGetTickets);
 }
 
 async function fetchShowings() {
@@ -25,6 +26,18 @@ async function fetchShowings() {
         console.log("An error occurred:   " + error)
     }
 
+}
+
+function handleGetTickets(event){
+    event.preventDefault();
+    const movieBox = event.target.closest("div");
+    const movieId = movieBox.getAttribute("data-movieId");
+    if(movieBox.id != "#movie-container"){
+        console.log("movie clicked");
+
+    }else{
+        console.log("box clicked");
+    }
 }
 
 function displayShowings(showings){
@@ -65,6 +78,11 @@ function displayShowings(showings){
         let descriptionElement = document.createElement("p");
         descriptionElement.textContent = `${showing.movie.description}`;
         movieBoxEl.appendChild(descriptionElement);
+
+        let getTicketButton = document.createElement("button");
+        getTicketButton.textContent = "Get tickets!";
+
+        movieBoxEl.appendChild(getTicketButton);
 
         movieContainerEl.appendChild(movieBoxEl);
     }
