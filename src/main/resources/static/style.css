@@ -1,11 +1,11 @@
 
 #movie-container {
-    background-color: aquamarine;
+    background-color: darkslateblue;
     display: flex;
 }
 
 .movie-box {
-    background-color: darkslateblue;
+    background-color: aquamarine;
     padding: 5px;
     margin: 10px;
 }
