@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', initApp);
 
 const BASE_URL = "http://localhost:8080/api/reservations";
 let selectedSeats = [];
+const params = new URLSearchParams(window.location.search);
+const movieId = params.get("movieId");
 
 async function initApp() {
-
+  console.log(movieId);
 }
 
 

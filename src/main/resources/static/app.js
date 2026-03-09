@@ -35,7 +35,7 @@ async function handleGetTickets(event){
     const movieId = movieBox.getAttribute("data-movieId");
     if(movieId !== null){
         console.log("clicked movie with id = " + movieId);
-        window.location.href = `Reservation.html/${movieId}`;
+        window.location.href = `Reservations/Reservation.html?movieId=${movieId}`;
     }else{
         console.log("box clicked");
     }
