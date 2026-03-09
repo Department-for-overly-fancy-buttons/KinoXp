@@ -34,7 +34,7 @@ public class DBInitData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         User user = new User("Olivertest", "123", Role.ADMIN);
-        User user1 = new User("Olivertest", "123",Role.EMPLOYEE);
+        User user1 = new User("Olivertest", "123", Role.EMPLOYEE);
         userRepository.save(user);
         userRepository.save(user1);
 
@@ -66,7 +66,7 @@ public class DBInitData implements CommandLineRunner {
         theaterRepository.save(theater2);
 
         Showing showing1OfMovie1 = new Showing(movie1, theater1, LocalDateTime.now(), true);
-        Showing showing2OfMovie1 = new Showing(movie2,theater2, LocalDateTime.now().plusWeeks(1), true);
+        Showing showing2OfMovie1 = new Showing(movie2, theater2, LocalDateTime.now().plusWeeks(1), true);
         Showing showing3OfMovie1 = new Showing(movie1, theater2, LocalDateTime.now().plusWeeks(1), false);
 
         Showing showing1OfMovie2 = new Showing(movie1, theater1, LocalDateTime.now().minusMinutes(40), false);
@@ -82,22 +82,27 @@ public class DBInitData implements CommandLineRunner {
         Reservation reservation1 = new Reservation(showing2OfMovie1, "test@email.com", "+45 19203421", "Freja", "Johannessen");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
 
+        Reservation reservation2 = new Reservation(showing2OfMovie1, "test@emailo.com", "+45 19293421", "Frejar", "Johannessenr");
+        reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
 
         Ticket ticket1 = new Ticket(reservation1, 4, 16, 200);
         Ticket ticket2 = new Ticket(reservation1, 4, 15, 200);
+        Ticket ticket3 = new Ticket(reservation2, 5, 15, 200);
 
 
         reservation1.addTicket(ticket1);
         reservation1.addTicket(ticket2);
+        reservation2.addTicket(ticket3);
 
         reservationRepository.save(reservation1);
+        reservationRepository.save(reservation2);
 
         ticketRepository.save(ticket1);
         ticketRepository.save(ticket2);
+        ticketRepository.save(ticket3);
 
 
         System.out.println("Initial data created: " + movieRepository.count() + " movies being played in " + showingRepository.count() + " showings with" + reservationRepository.count() + " Reservations, reserving a total of " + ticketRepository.count() + " tickets for seats, also " + userRepository.count() + " users are created");
-
 
 
     }
