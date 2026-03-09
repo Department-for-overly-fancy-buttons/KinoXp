@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ShowingRepository extends JpaRepository<Showing,Long> {
+public interface ShowingRepository extends JpaRepository<Showing, Long> {
     List<Showing> findByTheater_Id(long theaterId);
+
+    List<Showing> findByMovie_Id(long movieId);
 }

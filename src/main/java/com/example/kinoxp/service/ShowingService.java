@@ -32,6 +32,10 @@ public class ShowingService {
         return showingRepository.findByTheater_Id(theaterId);
     }
 
+    public List<Showing> getShowingsForMovie(Long movieId){
+        return showingRepository.findByMovie_Id(movieId);
+    }
+
     public void deleteShowingById(Long id){
         showingRepository.deleteById(id);
     }

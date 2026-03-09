@@ -2,7 +2,6 @@ package com.example.kinoxp.controller;
 
 import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Ticket;
-import com.example.kinoxp.model.User;
 import com.example.kinoxp.service.ReservationService;
 import com.example.kinoxp.service.TicketService;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +30,17 @@ public class ReservationController implements ReservationControllerInterface {
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Reservation> getReservationById(@PathVariable Long id) {
+        return ResponseEntity.ok(reservationService.getReservationById(id));
+    }
+
     @PostMapping
-    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation){
+    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
         return ResponseEntity.ok(reservationService.createReservation(reservation));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/tickets/{id}")
     public ResponseEntity<List<Ticket>> getTicketsForReservation(@PathVariable Long id) {
         return ResponseEntity.ok(ticketService.getAllTicketsForReservation(reservationService.getReservationById(id)));
     }

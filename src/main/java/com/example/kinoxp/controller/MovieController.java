@@ -3,31 +3,34 @@ package com.example.kinoxp.controller;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.service.MovieService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
-public class MovieController{
+public class MovieController {
 
     private final MovieService movieService;
 
-    public MovieController(MovieService movieService){
+    public MovieController(MovieService movieService) {
 
         this.movieService = movieService;
 
     }
 
     @GetMapping
-    public ResponseEntity<List<Movie>> getMovies(){
+    public ResponseEntity<List<Movie>> getMovies() {
         return ResponseEntity.ok(movieService.getAllMovies());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
+        return ResponseEntity.ok(movieService.getMovieById(id));
+    }
+
     @PostMapping
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         return ResponseEntity.ok(movieService.createMovie(movie));
     }
 

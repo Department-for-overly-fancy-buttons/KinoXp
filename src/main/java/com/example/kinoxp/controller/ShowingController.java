@@ -1,9 +1,9 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Showing;
-import com.example.kinoxp.model.Ticket;
+import com.example.kinoxp.service.ReservationService;
 import com.example.kinoxp.service.ShowingService;
-import com.example.kinoxp.service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +15,21 @@ import java.util.List;
 public class ShowingController {
 
     private ShowingService showingService;
-    private TicketService ticketService;
+    private ReservationService reservationService;
 
-    public ShowingController(ShowingService showingService, TicketService ticketService) {
+    public ShowingController(ShowingService showingService, ReservationService reservationService) {
         this.showingService = showingService;
-        this.ticketService = ticketService;
+        this.reservationService = reservationService;
     }
 
     @GetMapping()
     public ResponseEntity<List<Showing>> getShowings() {
         return ResponseEntity.ok(showingService.getShowings());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Showing> getShowingById(@PathVariable Long id) {
+        return ResponseEntity.ok(showingService.getShowingById(id));
     }
 
     @PostMapping
@@ -39,8 +44,12 @@ public class ShowingController {
     }
 
     @GetMapping("/tickets/{id}")
-    public ResponseEntity<List<Ticket>> getAllTicketsForShowing(@PathVariable Long id) {
-        return ResponseEntity.ok(ticketService.getAllTicketsForShowing(showingService.getShowingById(id)));
+    public ResponseEntity<List<Reservation>> getAllReservationsForShowing(@PathVariable Long id) {
+        return ResponseEntity.ok(reservationService.getAllReservationsForShowing(id));
     }
 
+    @GetMapping("/movies/{id}")
+    public ResponseEntity<List<Showing>> getAllShowingsForMovie(@PathVariable Long id) {
+        return ResponseEntity.ok(showingService.getShowingsForMovie(id));
+    }
 }

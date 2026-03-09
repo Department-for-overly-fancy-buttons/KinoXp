@@ -27,6 +27,11 @@ public class TheaterController {
         return ResponseEntity.ok(theaterService.getAllTheaters());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Theater> getTheaterById(@PathVariable Long id) {
+        return ResponseEntity.ok(theaterService.getTheaterById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Theater> createTheater(@RequestBody Theater theater) {
         return ResponseEntity.ok(theaterService.createTheater(theater));
