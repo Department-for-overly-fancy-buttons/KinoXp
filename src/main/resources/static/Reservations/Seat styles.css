@@ -1,0 +1,27 @@
+
+.seat-row {
+    display: flex;
+    margin-bottom: 5px;
+}
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    user-select: none;
+}
+.seat.available {
+    background-color: #ccc; /* grå */
+}
+.seat.reserved {
+    background-color: red;
+    cursor: not-allowed;
+}
+.seat.selected {
+    background-color: green;
+    color: white;
+}

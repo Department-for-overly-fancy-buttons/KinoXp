@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation & Seat Selection</title>
+    <style>
+        .seat-row {
+            margin-bottom: 10px;
+        }
+        .seat {
+            width: 40px;
+            height: 40px;
+            margin: 3px;
+            cursor: pointer;
+        }
+        .seat.selected {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Reservation</h1>
+<form id="ReservationForm">
+    <input type="hidden" id="reservationId" name="id">
+    <input type="text" name="firstName" placeholder="First Name" required>
+    <input type="text" name="lastName" placeholder="Last Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phoneNumber" placeholder="Phone Number" required>
+    <button type="submit">Create Reservation</button>
+</form>
+
+<h2>Select Seats</h2>
+<div id="seatsContainer"></div>
+<button id="submitSeats">Submit Seats</button>
+
+<script src="ReservationLogic.js"></script>
+</body>
+</html>
