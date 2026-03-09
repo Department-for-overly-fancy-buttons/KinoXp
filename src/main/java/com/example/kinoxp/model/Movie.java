@@ -18,7 +18,7 @@ public class Movie {
     private String description;
     private int pgRating;
     private double duration;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "movie_category",
             joinColumns = @JoinColumn(name = "movieId"),

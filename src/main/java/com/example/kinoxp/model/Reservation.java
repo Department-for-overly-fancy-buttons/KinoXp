@@ -22,7 +22,7 @@ public class Reservation {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JsonManagedReference
     private List<Ticket> tickets;
 

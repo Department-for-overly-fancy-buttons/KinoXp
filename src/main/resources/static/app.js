@@ -28,13 +28,14 @@ async function fetchShowings() {
 
 }
 
-function handleGetTickets(event){
+async function handleGetTickets(event){
     event.preventDefault();
+
     const movieBox = event.target.closest("div");
     const movieId = movieBox.getAttribute("data-movieId");
-    if(movieBox.id != "#movie-container"){
-        console.log("movie clicked");
-
+    if(movieId !== null){
+        console.log("clicked movie with id = " + movieId);
+        window.location.href = `Reservation.html/${movieId}`;
     }else{
         console.log("box clicked");
     }
@@ -42,9 +43,11 @@ function handleGetTickets(event){
 
 function displayShowings(showings){
     movieContainerEl.innerHTML = "";
-    let movieBoxEl = document.createElement("div");
-    movieBoxEl.classList.add("movie-box");
     for(let showing of showings){
+        let movieBoxEl = document.createElement("div");
+        movieBoxEl.classList.add("movie-box");
+        //movieBoxEl.dataset.movieId = `${showing.movie.id}`;
+        movieBoxEl.setAttribute("data-movieID",showing.movie.id);
 
         let titleElement = document.createElement("h2");
         titleElement.textContent = `${showing.movie.title}`;
@@ -81,8 +84,12 @@ function displayShowings(showings){
 
         let getTicketButton = document.createElement("button");
         getTicketButton.textContent = "Get tickets!";
-
         movieBoxEl.appendChild(getTicketButton);
+
+        let linkUrlThing = document.createElement("a");
+        linkUrlThing.textContent = "test";
+        linkUrlThing.href = `http://localhost:8080/1`;
+        movieBoxEl.appendChild(linkUrlThing);
 
         movieContainerEl.appendChild(movieBoxEl);
     }
