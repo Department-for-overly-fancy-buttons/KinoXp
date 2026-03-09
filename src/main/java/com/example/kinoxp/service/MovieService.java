@@ -4,7 +4,6 @@ import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.repository.CategoryRepository;
 import com.example.kinoxp.repository.MovieRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class MovieService {
     private MovieRepository movieRepository;
     private CategoryRepository categoryRepository;
 
-    public MovieService(MovieRepository movieRepository, CategoryRepository categoryRepository){
+    public MovieService(MovieRepository movieRepository, CategoryRepository categoryRepository) {
 
         this.movieRepository = movieRepository;
         this.categoryRepository = categoryRepository;
@@ -28,11 +27,16 @@ public class MovieService {
 
     }
 
-    public Movie getMovieById(Long id){
+    public Movie getMovieById(Long id) {
         return movieRepository.findById(id).orElseThrow(() -> new NotFoundException("Movie not found with id: " + id));
     }
 
-    public void createMovie(Movie movie) {
-        movieRepository.save(movie);
+    public Movie createMovie(Movie movie) {
+        return movieRepository.save(movie);
     }
+
+    public void deleteMovie(Long id) {
+        movieRepository.deleteById(id);
+    }
+
 }

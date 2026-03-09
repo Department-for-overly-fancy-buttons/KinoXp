@@ -1,7 +1,49 @@
 package com.example.kinoxp.controller;
 
-import org.springframework.stereotype.Controller;
+import com.example.kinoxp.model.Role;
+import com.example.kinoxp.model.User;
+import com.example.kinoxp.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RequestMapping("/api/users")
+@RestController
 public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody User user){
+        return ResponseEntity.ok(userService.createUser(user));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers(){
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    //Skal nok laves om
+    @GetMapping("/role/{role}")
+    public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role){
+        return ResponseEntity.ok(userService.getAllUsersByRole(role));
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

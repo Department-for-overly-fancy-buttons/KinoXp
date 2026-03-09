@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    //List<User> findByUserRole(String role);
+    List<User> findByRole(String role);
 
 }

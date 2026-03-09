@@ -4,18 +4,14 @@ import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("/api")
-
 @RestController
-public class MovieController implements MovieControllerInterface {
+@RequestMapping("/api/movies")
+public class MovieController{
 
     private final MovieService movieService;
 
@@ -25,14 +21,20 @@ public class MovieController implements MovieControllerInterface {
 
     }
 
-    @GetMapping("/movies")
+    @GetMapping
     public ResponseEntity<List<Movie>> getMovies(){
-
         return ResponseEntity.ok(movieService.getAllMovies());
     }
 
-    public void addMovie(@RequestBody Movie movie){
-        movieService.createMovie(movie);
+    @PostMapping
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
+        return ResponseEntity.ok(movieService.createMovie(movie));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
+        movieService.deleteMovie(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
