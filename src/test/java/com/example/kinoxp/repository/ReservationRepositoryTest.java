@@ -100,4 +100,48 @@ public class ReservationRepositoryTest {
         assertNull(foundReservation);
     }
 
+    //findByShowing_Id(long showingId);
+//    @Test
+//    public void GivenShowingID_WhenSaved_ThenCanFindRelevantReservations(){
+//
+//        //Saving additional data
+//        Reservation additionalTestReservationOne = new Reservation(testShowing, "KajHajMedDig@icloud.com", "+45 44817504", "Kaj", "Sjøisted");
+//        Reservation additionalTestReservationTwo = new Reservation(testShowing, "Coffe-addict-2009189@gmail.com", "+45 74872314", "Julie", "Sandre");
+//        reservationRepository.save(additionalTestReservationOne);
+//        reservationRepository.save(additionalTestReservationTwo);
+//
+//        List<Reservation> foundReservations = reservationRepository.findByShowing_Id(testShowing.getId());
+//
+//        assertNotNull(foundReservations);
+//
+//        for (Reservation foundReservation : foundReservations) {
+//            assertNotNull(foundReservation);
+//
+//            Showing foundShowing = foundReservation.getShowing();
+//            Movie foundMovie = foundShowing.getMovie();
+//            Theater foundTheater = foundShowing.getTheater();
+//
+//            assertNotNull(foundMovie);
+//            assertTrue(foundMovie.getTitle().equalsIgnoreCase(testMovie.getTitle()));
+//            assertTrue(foundMovie.getDescription().equalsIgnoreCase(testMovie.getDescription()));
+//            assertEquals(testMovie.getPgRating(), foundMovie.getPgRating());
+//            assertEquals(testMovie.getDuration(), foundMovie.getDuration());
+//            assertTrue(foundMovie.getCategories().containsAll(testMovie.getCategories()));
+//
+//            assertNotNull(foundTheater);
+//            assertTrue(foundTheater.getTheaterName().equalsIgnoreCase(testTheater.getTheaterName()));
+//            assertEquals(testTheater.getNumberOfRows(), foundTheater.getNumberOfRows());
+//            assertEquals(testTheater.getSeatsPerRow(), foundTheater.getSeatsPerRow());
+//
+//            assertNotNull(foundShowing);
+//            assertTrue(foundShowing.getStartTime().isEqual(LocalDateTime.of(2026, 3, 8, 18, 15)));
+//            assertEquals(testShowing.isThreeDimensional(), foundShowing.isThreeDimensional());
+//
+//            assertTrue(foundReservation.getEmail().equalsIgnoreCase(testReservation.getEmail()));
+//            assertEquals(testReservation.getPhoneNumber(), foundReservation.getPhoneNumber());
+//            assertTrue(foundReservation.getFirstName().equalsIgnoreCase(testReservation.getFirstName()));
+//            assertTrue(foundReservation.getLastName().equalsIgnoreCase(testReservation.getLastName()));
+//        }
+//        }
+
 }
