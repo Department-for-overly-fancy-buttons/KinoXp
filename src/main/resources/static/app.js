@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", initApp);
 
-export const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:8080/api";
 let movieContainerEl = document.querySelector("#movie-container");
 let showingsData = [];
 
@@ -28,7 +28,7 @@ async function fetchShowings() {
 
 }
 
-export async function handleGetTickets(event){
+async function handleGetTickets(event){
     event.preventDefault();
 
     const movieBox = event.target.closest("div");
@@ -41,7 +41,7 @@ export async function handleGetTickets(event){
     }
 }
 
-export function displayShowings(showings){
+function displayShowings(showings){
     movieContainerEl.innerHTML = "";
     for(let showing of showings){
         let movieBoxEl = document.createElement("div");
