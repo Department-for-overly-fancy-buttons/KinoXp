@@ -57,10 +57,11 @@ export function displayShowings(showings){
         //svgCoverImageElement.width = 100;
 
 
-        //let coverImageElement = document.createElement("img");
-        //coverImageElement.alt = "Missing cover image";
-        //coverImageElement.src = "/images/Missing_Cover_Image.png";
-        //movieBoxEl.appendChild(coverImageElement);
+        let coverImageElement = document.createElement("img");
+        coverImageElement.alt = "Missing cover image";
+        coverImageElement.src = "/images/Missing_Cover_Image.png";
+        coverImageElement.classList.add("cover-image");
+        movieBoxEl.appendChild(coverImageElement);
 
         let infoBarElement = document.createElement("h4");
         infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}`;
@@ -84,11 +85,6 @@ export function displayShowings(showings){
         let getTicketButton = document.createElement("button");
         getTicketButton.textContent = "Get tickets!";
         movieBoxEl.appendChild(getTicketButton);
-
-        let linkUrlThing = document.createElement("a");
-        linkUrlThing.textContent = "test";
-        linkUrlThing.href = `http://localhost:8080/1`;
-        movieBoxEl.appendChild(linkUrlThing);
 
         movieContainerEl.appendChild(movieBoxEl);
     }

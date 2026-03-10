@@ -26,7 +26,7 @@ public class Theater {
         return id;
     }
 
-    public void setTheaterId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

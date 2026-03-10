@@ -79,10 +79,10 @@ public class DBInitData implements CommandLineRunner {
         showingRepository.save(showing1OfMovie2);
         showingRepository.save(showing2OfMovie2);
 
-        Reservation reservation1 = new Reservation(showing2OfMovie1, "test@email.com", "+45 19203421", "Freja", "Johannessen");
+        Reservation reservation1 = new Reservation(showing2OfMovie1, "JanTeMan@email.com", "+45 11111111", "Jan", "Janice");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
 
-        Reservation reservation2 = new Reservation(showing2OfMovie1, "test@emailo.com", "+45 19293421", "Frejar", "Johannessenr");
+        Reservation reservation2 = new Reservation(showing2OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
         reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
 
         Ticket ticket1 = new Ticket(reservation1, 4, 16, 200);

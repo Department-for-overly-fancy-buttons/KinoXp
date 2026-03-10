@@ -1,5 +1,6 @@
 package com.example.kinoxp.model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 
@@ -42,8 +43,16 @@ public class Showing {
         return id;
     }
 
-    public void setId(long showingId) {
-        this.id = showingId;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Theater getTheater() {
+        return theater;
+    }
+
+    public void setTheater(Theater theater) {
+        this.theater = theater;
     }
 
     public LocalDateTime getStartTime() {
@@ -60,13 +69,5 @@ public class Showing {
 
     public void setThreeDimensional(boolean threeDimensional) {
         isThreeDimensional = threeDimensional;
-    }
-
-    public Theater getTheater() {
-        return theater;
-    }
-
-    public void setTheater(Theater theater) {
-        this.theater = theater;
     }
 }

@@ -6,6 +6,13 @@
 
 .movie-box {
     background-color: aquamarine;
+    width: 9%;
     padding: 5px;
     margin: 10px;
+}
+
+.cover-image {
+    width: 75%;
+    height: auto;
+    margin: auto;
 }
