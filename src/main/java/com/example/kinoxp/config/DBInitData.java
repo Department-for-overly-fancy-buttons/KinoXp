@@ -88,7 +88,7 @@ public class DBInitData implements CommandLineRunner {
         Reservation reservation1 = new Reservation(showing2OfMovie1, "JanTeMan@email.com", "+45 11111111", "Jan", "Janice");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
 
-        Reservation reservation2 = new Reservation(showing2OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
+        Reservation reservation2 = new Reservation(showing3OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
         reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
         
         TicketType basicTicketType = new TicketType("Basic", 100.0);

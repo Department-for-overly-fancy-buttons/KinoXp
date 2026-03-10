@@ -53,8 +53,6 @@ public class Ticket {
         return id;
     }
 
-
-
     public int getRowNumber() {
         return rowNumber;
     }

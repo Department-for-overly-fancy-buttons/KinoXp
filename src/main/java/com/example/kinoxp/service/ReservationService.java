@@ -47,7 +47,7 @@ public class ReservationService {
     }
 
 
-    private double priceCalulationTotal(TicketType ticketType, Ticket ticket, Reservation reservation) {
+    public double priceCalculationTotal(Reservation reservation) {
         double total = 0;
 
         for (Ticket ticket1 : reservation.getTickets()) {
@@ -75,7 +75,7 @@ public class ReservationService {
 
 
     }
-   private double groupDiscount(Reservation reservation, TicketType ticketType) {
+   private double groupDiscount(Reservation reservation) {
        if (reservation.getTickets() == null) {
            return 0;
        }
