@@ -49,12 +49,14 @@ public class ReservationService {
     private double priceCalulationTotal(TicketType ticketType, Ticket ticket, Reservation reservation) {
         double total = 0;
         Optional<TicketType> ticketType1 = ticketTypeRepository.findById(ticketType.getTicketType());
-        for (Ticket ticket1: reservation.getTickets()) {
-            total += ticketType1.get().getPrice();
+        for (Ticket ticket1 : reservation.getTickets()) {
+            total += ticket1.getTicketType().getPrice();
         }
 
-        total += feeHandler(reservation);
-        return total;
+        double fee = feeHandler(reservation);
+        double discount = groupDiscount(reservation, ticketType);
+
+        return total + fee - discount;
 
     }
     private double feeHandler(Reservation reservation) {

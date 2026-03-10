@@ -1,5 +1,6 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.mapper.ReservationMapper;
 import com.example.kinoxp.model.*;
 import com.example.kinoxp.service.*;
 import jakarta.transaction.Transactional;
@@ -55,14 +56,7 @@ public class ReservationController implements ReservationControllerInterface {
     //@Transactional
     public ResponseEntity<Reservation> addReservation(@RequestBody CreateReservationRequest reservationRequest) {
         Showing foundShowing = showingService.getShowingById(reservationRequest.showingId());
-        System.out.println("ticket: " + reservationRequest.tickets() + ", ticket 1 row: " + reservationRequest.tickets().getFirst().getSeatLabel());
-        Reservation reservation = new Reservation(foundShowing, reservationRequest.email(), reservationRequest.phoneNumber(), reservationRequest.firstName(), reservationRequest.lastName());
-        reservationRequest.tickets().getFirst().setReservation(reservation);
-        reservation.setTickets(reservationRequest.tickets());
-
-
-        reservation.setTimeOfPurchase(LocalDateTime.now());
-
+        Reservation reservation = ReservationMapper.toReservation(reservationRequest, foundShowing);
         Reservation reservation1 = reservationService.createReservation(reservation);
         return ResponseEntity.status(HttpStatus.CREATED).body(reservation1);
     }
