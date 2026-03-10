@@ -1,26 +1,23 @@
 document.addEventListener("DOMContentLoaded", initApp);
 
 const BASE_URL = "http://localhost:8080/api";
-const params = new URLSearchParams(window.location.search);
-const theaterId = params.get("theaterId");
-let movieContainerEl = document.querySelector("#movie-container");
-let showingsData = [];
+let theaterContainerEl = document.querySelector("#theater-container");
+let theaterData = [];
 
 async function initApp() {
-    showingsData = await fetchShowings();
-    console.log(showingsData);
-    displayShowings(showingsData);
-    movieContainerEl.addEventListener("click", handleGetTickets);
+    theaterData = await fetchTheaters();
+    console.log(theaterData);
+    displayTheaters(theaterData);
+    theaterContainerEl.addEventListener("click",handleGetTheater);
 }
 
-async function fetchShowings() {
+async function fetchTheaters() {
     try {
-        const response = await fetch(`${BASE_URL}/theaters/showings/${theaterId}`);
+        const response = await fetch(`${BASE_URL}/theaters`);
         if (!response.ok) {
             throw new Error("HTTP error!");
         }
-        const showings = await response.json();
-        return showings;
+        return await response.json();
 
     } catch (error) {
         console.log("An error occurred:   " + error)
@@ -28,64 +25,44 @@ async function fetchShowings() {
 
 }
 
-async function handleGetTickets(event) {
+async function handleGetTheater(event) {
     event.preventDefault();
 
-    const movieBox = event.target.closest("div");
-    const showingId = movieBox.getAttribute("data-showingId");
-    if (showingId !== null) {
-        console.log("clicked showing with id = " + showingId);
-        window.location.href = `../Reservations/Reservation.html?showingId=${showingId}`;
+    const theaterBox = event.target.closest("div");
+    const theaterId = theaterBox.getAttribute("data-theaterId");
+    if (theaterId !== null) {
+        console.log("clicked theater with id = " + theaterId);
+        window.location.href = `/theaters/showings_for_theater.html?theaterId=${theaterId}`;
     } else {
         console.log("box clicked");
     }
 }
 
-function displayShowings(showings) {
-    movieContainerEl.innerHTML = "";
-    for (let showing of showings) {
-        let movieBoxEl = document.createElement("div");
-        movieBoxEl.classList.add("movie-box");
-        movieBoxEl.setAttribute("data-showingID", showing.id);
+function displayTheaters(theaters) {
+    theaterContainerEl.innerHTML = "";
+    for(let theater of theaters){
+        let theaterBoxEl = document.createElement("div");
+        theaterBoxEl.classList.add("theater-box");
+        theaterBoxEl.setAttribute("data-theaterID",theater.id);
 
         let titleElement = document.createElement("h2");
-        titleElement.textContent = `${showing.movie.title}`;
-        movieBoxEl.appendChild(titleElement);
-
-        //let svgCoverImageElement = document.createElement("svg");
-        //let backgroundRectElement = document.createElement("rect");
-        //svgCoverImageElement.width = 100;
-
+        titleElement.textContent = `${theater.theaterName}`;
+        theaterBoxEl.appendChild(titleElement);
 
         let coverImageElement = document.createElement("img");
         coverImageElement.alt = "Missing cover image";
         coverImageElement.src = "/images/Missing_Cover_Image.png";
         coverImageElement.classList.add("cover-image");
-        movieBoxEl.appendChild(coverImageElement);
+        theaterBoxEl.appendChild(coverImageElement);
 
-        let infoBarElement = document.createElement("h4");
-        infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}`;
-        movieBoxEl.appendChild(infoBarElement);
+        let descriptionElement = document.createElement("h4");
+        descriptionElement.textContent = `THEATER information about stuff,location or something`;
+        theaterBoxEl.appendChild(descriptionElement);
 
-        let categoryElement = document.createElement("h3");
-        let categorySentencce = ``;
-        let categories = showing.movie.categories;
-        console.log(categories)
-        for (category of categories) {
-            categorySentencce += `|${category.genre}|`;
-            console.log(categorySentencce)
-        }
-        categoryElement.textContent = categorySentencce;
-        movieBoxEl.appendChild(categoryElement);
+        let getTheaterButton = document.createElement("button");
+        getTheaterButton.textContent = "View showings!";
+        theaterBoxEl.appendChild(getTheaterButton);
 
-        let descriptionElement = document.createElement("p");
-        descriptionElement.textContent = `${showing.movie.description}`;
-        movieBoxEl.appendChild(descriptionElement);
-
-        let getTicketButton = document.createElement("button");
-        getTicketButton.textContent = "Get tickets!";
-        movieBoxEl.appendChild(getTicketButton);
-
-        movieContainerEl.appendChild(movieBoxEl);
+        theaterContainerEl.appendChild(theaterBoxEl);
     }
 }
