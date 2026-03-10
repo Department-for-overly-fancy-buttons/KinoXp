@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ShowingRepository extends JpaRepository<Showing, Long> {
-    List<Showing> findByTheater_IdOrderByStart_Time(long theaterId);
+    List<Showing> findByTheater_IdOrderByStartTimeDesc(long theaterId);
 
     List<Showing> findByMovie_Id(long movieId);
 }
