@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080/api/showing")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api/reservations")
 public class ReservationController implements ReservationControllerInterface {
