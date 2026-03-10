@@ -29,6 +29,7 @@ public class TicketService {
         return null;
     }
 
+
     public List<Ticket> getAllTicketsForReservation(Reservation reservation) {
         return ticketRepository.findByReservationId(reservation.getReservationId());
     }
@@ -40,5 +41,6 @@ public class TicketService {
     public void deleteTicketById(Long id) {
         ticketRepository.deleteById(id);
     }
+
 
 }

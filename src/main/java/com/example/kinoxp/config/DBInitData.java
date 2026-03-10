@@ -20,8 +20,9 @@ public class DBInitData implements CommandLineRunner {
     private final TicketRepository ticketRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final TicketTypeRepository ticketTypeRepository;
 
-    public DBInitData(MovieRepository movieRepository, ReservationRepository reservationRepository, ShowingRepository showingRepository, TheaterRepository theaterRepository, TicketRepository ticketRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
+    public DBInitData(MovieRepository movieRepository, ReservationRepository reservationRepository, ShowingRepository showingRepository, TheaterRepository theaterRepository, TicketRepository ticketRepository, UserRepository userRepository, CategoryRepository categoryRepository, TicketTypeRepository ticketTypeRepository) {
         this.movieRepository = movieRepository;
         this.reservationRepository = reservationRepository;
         this.showingRepository = showingRepository;
@@ -29,6 +30,7 @@ public class DBInitData implements CommandLineRunner {
         this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
+        this.ticketTypeRepository = ticketTypeRepository;
     }
 
     @Override
@@ -84,10 +86,15 @@ public class DBInitData implements CommandLineRunner {
 
         Reservation reservation2 = new Reservation(showing2OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
         reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
-
-        Ticket ticket1 = new Ticket(reservation1, 4, 16, 200);
-        Ticket ticket2 = new Ticket(reservation1, 4, 15, 200);
-        Ticket ticket3 = new Ticket(reservation2, 5, 15, 200);
+        
+        TicketType basicTicketType = new TicketType("Basic", 100.0);
+        TicketType luxuryTickertType = new TicketType("Lux", 200);
+        ticketTypeRepository.save(basicTicketType);
+        ticketTypeRepository.save(luxuryTickertType);
+        
+        Ticket ticket1 = new Ticket(reservation1, 4, 16, 200, basicTicketType);
+        Ticket ticket2 = new Ticket(reservation1, 4, 15, 200, basicTicketType);
+        Ticket ticket3 = new Ticket(reservation2, 5, 15, 200, luxuryTickertType);
 
 
         reservation1.addTicket(ticket1);

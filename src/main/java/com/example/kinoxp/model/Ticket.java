@@ -3,6 +3,9 @@ package com.example.kinoxp.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 
 public class Ticket {
@@ -17,16 +20,19 @@ public class Ticket {
     private int rowNumber;
     private int seatNumber;
     private double price;
+    @ManyToOne
+    private TicketType ticketType;
 
     public Ticket() {
     }
 
     public Ticket(Reservation reservation,
-                  int rowNumber, int seatNumber, double price) {
+                  int rowNumber, int seatNumber, double price, TicketType ticketTypes) {
         this.reservation = reservation;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
         this.price = price;
+        this.ticketType=ticketTypes;
     }
 
     public void setId(long id) {

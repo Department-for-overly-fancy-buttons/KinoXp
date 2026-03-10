@@ -15,7 +15,8 @@ document.getElementById("submitSeats").addEventListener("click", async (event) =
     //const reservationId = document.getElementById("reservationId").value;
     //if (!reservationId) return alert("Please create a reservation first!");
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formEl = event.target.closest("form");
+    const formData = new FormData(formEl);
     const reservation = {
         firstName: formData.get("firstName"),
         lastName: formData.get("lastName"),
@@ -24,7 +25,7 @@ document.getElementById("submitSeats").addEventListener("click", async (event) =
         tickets: selectedSeats
     };
 
-    const response = await fetch(`${BASE_URL}/${reservationId}/seats`, {
+    const response = await fetch(`${BASE_URL}/reservations`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(reservation)
@@ -105,8 +106,9 @@ function displayTheater() {
                 event.preventDefault();
                 const index = selectedSeats.findIndex(ticket => ticket.row === row && ticket.seatNumber === seat);
                 if (index === -1) {
-                    selectedSeats.push({row, seatNumber: seat});
+                    selectedSeats.push({rowNumber: row, seatNumber: seat});
                     seatBtn.classList.add("selected");
+                    console.log(selectedSeats);
                 } else {
                     selectedSeats.splice(index, 1);
                     seatBtn.classList.remove("selected");

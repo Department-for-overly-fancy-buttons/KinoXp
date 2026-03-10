@@ -3,6 +3,7 @@ package com.example.kinoxp.service;
 
 import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.Reservation;
+import com.example.kinoxp.model.Ticket;
 import com.example.kinoxp.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,14 @@ public class ReservationService {
         return reservationRepository.findByShowing_Id(showingId);
     }
 
+    private double priceCalulationTotal(Ticket ticket) {
+        double price = 0.0;
+        return 0.0;
+
+    }
+    private double feeHandler() {
+        double reservationfee = 50;
+        return 0.0;
+    }
 
 }
