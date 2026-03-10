@@ -13,7 +13,7 @@ public class Showing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
