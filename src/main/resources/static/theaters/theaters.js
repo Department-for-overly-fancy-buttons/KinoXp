@@ -8,7 +8,7 @@ async function initApp() {
     theaterData = await fetchTheaters();
     console.log(theaterData);
     displayTheaters(theaterData);
-    theaterContainerEl.addEventListener("click",handleGetTheater);
+    theaterContainerEl.addEventListener("click", handleGetTheater);
 }
 
 async function fetchTheaters() {
@@ -40,10 +40,10 @@ async function handleGetTheater(event) {
 
 function displayTheaters(theaters) {
     theaterContainerEl.innerHTML = "";
-    for(let theater of theaters){
+    for (let theater of theaters) {
         let theaterBoxEl = document.createElement("div");
         theaterBoxEl.classList.add("theater-box");
-        theaterBoxEl.setAttribute("data-theaterID",theater.id);
+        theaterBoxEl.setAttribute("data-theaterID", theater.id);
 
         let titleElement = document.createElement("h2");
         titleElement.textContent = `${theater.theaterName}`;
@@ -56,7 +56,7 @@ function displayTheaters(theaters) {
         theaterBoxEl.appendChild(coverImageElement);
 
         let descriptionElement = document.createElement("h4");
-        descriptionElement.textContent = `THEATER information about stuff,location or something`;
+        descriptionElement.textContent = `${theater.location}`;
         theaterBoxEl.appendChild(descriptionElement);
 
         let getTheaterButton = document.createElement("button");

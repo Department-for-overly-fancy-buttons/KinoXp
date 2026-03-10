@@ -59,8 +59,8 @@ public class DBInitData implements CommandLineRunner {
         movieRepository.save(movie1);
         movieRepository.save(movie2);
 
-        Theater theater1 = new Theater("Hall_Alpha", 20, 12);
-        Theater theater2 = new Theater("Hall_Beta", 25, 16);
+        Theater theater1 = new Theater("Hall_Alpha", 20, 12,"Danmark");
+        Theater theater2 = new Theater("Hall_Beta", 25, 16,"Jylland");
 
         theaterRepository.save(theater1);
         theaterRepository.save(theater2);

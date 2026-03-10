@@ -11,23 +11,33 @@ public class Theater {
     private Long id;
     @Column(nullable = false)
     private String theaterName;
+    private String location;
     private int numberOfRows;
     private int seatsPerRow;
 
-    public Theater( String theaterName, int numberOfRows, int seatsPerRow) {
+    public Theater( String theaterName, int numberOfRows, int seatsPerRow, String location) {
         this.theaterName = theaterName;
         this.numberOfRows = numberOfRows;
         this.seatsPerRow = seatsPerRow;
+        this.location = location;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public Theater() {}
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTheaterName() {
