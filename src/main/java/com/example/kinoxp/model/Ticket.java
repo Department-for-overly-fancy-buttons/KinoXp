@@ -71,4 +71,11 @@ public class Ticket {
         this.seatNumber = seatNumber;
     }
 
+    public void setTicketType(TicketType ticketType) {
+        this.ticketType = ticketType;
+    }
+
+    public TicketType getTicketType() {
+        return ticketType;
+    }
 }
