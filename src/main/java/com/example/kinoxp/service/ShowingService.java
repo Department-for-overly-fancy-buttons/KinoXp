@@ -29,7 +29,7 @@ public class ShowingService {
     }
 
     public List<Showing> getShowingsForTheater(Long theaterId) {
-        return showingRepository.findByTheater_IdOrderByStartTimeDesc(theaterId);
+        return showingRepository.findByTheater_IdOrderByStartTimeAsc(theaterId);
     }
 
     public List<Showing> getShowingsForMovie(Long movieId){
