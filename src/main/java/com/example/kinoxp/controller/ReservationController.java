@@ -1,16 +1,13 @@
 package com.example.kinoxp.controller;
 
-import com.example.kinoxp.model.Reservation;
-import com.example.kinoxp.model.Theater;
-import com.example.kinoxp.service.MovieService;
-import com.example.kinoxp.model.Ticket;
-import com.example.kinoxp.service.ReservationService;
-import com.example.kinoxp.service.TheaterService;
+import com.example.kinoxp.model.*;
+import com.example.kinoxp.service.*;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
-import com.example.kinoxp.service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -21,12 +18,14 @@ public class ReservationController implements ReservationControllerInterface {
     private final ReservationService reservationService;
     private final TheaterService theaterService;
     private final TicketService ticketService;
+    private final ShowingService showingService;
 
 
-    public ReservationController(ReservationService reservationService, TheaterService theaterService, TicketService ticketService){
+    public ReservationController(ReservationService reservationService, TheaterService theaterService, TicketService ticketService, ShowingService showingService){
         this.reservationService = reservationService;
         this.theaterService = theaterService;
         this.ticketService = ticketService;
+        this.showingService = showingService;
 
     }
 
@@ -41,11 +40,6 @@ public class ReservationController implements ReservationControllerInterface {
         return ResponseEntity.ok(reservationService.getReservationById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
-        return ResponseEntity.ok(reservationService.createReservation(reservation));
-    }
-
     @GetMapping("/tickets/{id}")
     public ResponseEntity<List<Ticket>> getTicketsForReservation(@PathVariable Long id) {
         return ResponseEntity.ok(ticketService.getAllTicketsForReservation(reservationService.getReservationById(id)));
@@ -57,8 +51,18 @@ public class ReservationController implements ReservationControllerInterface {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/reservations")
-    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) {
+    @PostMapping
+    //@Transactional
+    public ResponseEntity<Reservation> addReservation(@RequestBody CreateReservationRequest reservationRequest) {
+        Showing foundShowing = showingService.getShowingById(reservationRequest.showingId());
+        System.out.println("ticket: " + reservationRequest.tickets() + ", ticket 1 row: " + reservationRequest.tickets().getFirst().getSeatLabel());
+        Reservation reservation = new Reservation(foundShowing, reservationRequest.email(), reservationRequest.phoneNumber(), reservationRequest.firstName(), reservationRequest.lastName());
+        reservationRequest.tickets().getFirst().setReservation(reservation);
+        reservation.setTickets(reservationRequest.tickets());
+
+
+        reservation.setTimeOfPurchase(LocalDateTime.now());
+
         Reservation reservation1 = reservationService.createReservation(reservation);
         return ResponseEntity.status(HttpStatus.CREATED).body(reservation1);
     }

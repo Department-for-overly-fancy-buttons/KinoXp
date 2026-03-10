@@ -31,7 +31,7 @@ async function handleSubmit (event){
         email: formData.get("email"),
         phoneNumber: formData.get("phoneNumber"),
         tickets: selectedSeats,
-        showing: showingData
+        showingId: showingId
     };
 
     const response = await fetch(`${BASE_URL}/reservations`, {
