@@ -15,7 +15,7 @@ async function initApp() {
 async function fetchShowings() {
     try {
         const response = await fetch(`${BASE_URL}/showings`);
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error("HTTP error!");
         }
         const showings = await response.json();
@@ -28,25 +28,25 @@ async function fetchShowings() {
 
 }
 
-async function handleGetTickets(event){
+async function handleGetTickets(event) {
     event.preventDefault();
 
     const movieBox = event.target.closest("div");
     const showingId = movieBox.getAttribute("data-showingId");
-    if(showingId !== null){
+    if (showingId !== null) {
         console.log("clicked showing with id = " + showingId);
         window.location.href = `Reservations/Reservation.html?showingId=${showingId}`;
-    }else{
+    } else {
         console.log("box clicked");
     }
 }
 
-function displayShowings(showings){
+function displayShowings(showings) {
     movieContainerEl.innerHTML = "";
-    for(let showing of showings){
+    for (let showing of showings) {
         let movieBoxEl = document.createElement("div");
         movieBoxEl.classList.add("movie-box");
-        movieBoxEl.setAttribute("data-showingID",showing.id);
+        movieBoxEl.setAttribute("data-showingID", showing.id);
 
         let titleElement = document.createElement("h2");
         titleElement.textContent = `${showing.movie.title}`;
@@ -64,14 +64,14 @@ function displayShowings(showings){
         movieBoxEl.appendChild(coverImageElement);
 
         let infoBarElement = document.createElement("h4");
-        infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}`;
+        infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}, Start Time: ${showing.startTime}`;
         movieBoxEl.appendChild(infoBarElement);
 
         let categoryElement = document.createElement("h3");
         let categorySentencce = ``;
         let categories = showing.movie.categories;
         console.log(categories)
-        for(category of categories){
+        for (category of categories) {
             categorySentencce += `|${category.genre}|`;
             console.log(categorySentencce)
         }

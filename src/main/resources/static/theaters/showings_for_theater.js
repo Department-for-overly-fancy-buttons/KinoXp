@@ -64,7 +64,7 @@ function displayShowings(showings) {
         movieBoxEl.appendChild(coverImageElement);
 
         let infoBarElement = document.createElement("h4");
-        infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}`;
+        infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}, Start Time: ${showing.startTime}`;
         movieBoxEl.appendChild(infoBarElement);
 
         let categoryElement = document.createElement("h3");
@@ -85,6 +85,7 @@ function displayShowings(showings) {
         let getTicketButton = document.createElement("button");
         getTicketButton.textContent = "Get tickets!";
         movieBoxEl.appendChild(getTicketButton);
+
 
         movieContainerEl.appendChild(movieBoxEl);
     }

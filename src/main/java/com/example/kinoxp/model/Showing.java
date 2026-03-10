@@ -1,6 +1,7 @@
 package com.example.kinoxp.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 
@@ -20,6 +21,7 @@ public class Showing {
     @ManyToOne
     @JoinColumn(name = "theater_id")
     private Theater theater;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm")
     private LocalDateTime startTime;
     private boolean isThreeDimensional;
 
@@ -37,7 +39,9 @@ public class Showing {
         this.startTime = startTime;
         this.isThreeDimensional = isThreeDimensional;
     }
-    public Showing() {}
+
+    public Showing() {
+    }
 
     public long getId() {
         return id;
