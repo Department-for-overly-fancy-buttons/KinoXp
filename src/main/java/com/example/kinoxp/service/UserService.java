@@ -50,5 +50,8 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    public User logIn(String username,String password){
+        return userRepository.findByUsernameAndPasswords(username, password);
+    }
 
 }

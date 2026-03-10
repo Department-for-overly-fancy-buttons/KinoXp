@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+export const BASE_URL = "http://localhost:8080/api";
 let movieContainerEl = document.querySelector("#movie-container");
 let showingsData = [];
 
@@ -28,26 +28,25 @@ async function fetchShowings() {
 
 }
 
-async function handleGetTickets(event){
+export async function handleGetTickets(event){
     event.preventDefault();
 
     const movieBox = event.target.closest("div");
-    const movieId = movieBox.getAttribute("data-movieId");
-    if(movieId !== null){
-        console.log("clicked movie with id = " + movieId);
-        window.location.href = `Reservations/Reservation.html?movieId=${movieId}`;
+    const showingId = movieBox.getAttribute("data-showingId");
+    if(showingId !== null){
+        console.log("clicked showing with id = " + showingId);
+        window.location.href = `Reservations/Reservation.html?showingId=${showingId}`;
     }else{
         console.log("box clicked");
     }
 }
 
-function displayShowings(showings){
+export function displayShowings(showings){
     movieContainerEl.innerHTML = "";
     for(let showing of showings){
         let movieBoxEl = document.createElement("div");
         movieBoxEl.classList.add("movie-box");
-        //movieBoxEl.dataset.movieId = `${showing.movie.id}`;
-        movieBoxEl.setAttribute("data-movieID",showing.movie.id);
+        movieBoxEl.setAttribute("data-showingID",showing.id);
 
         let titleElement = document.createElement("h2");
         titleElement.textContent = `${showing.movie.title}`;

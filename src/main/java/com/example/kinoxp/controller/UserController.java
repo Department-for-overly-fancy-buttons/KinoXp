@@ -25,18 +25,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user){
+    public ResponseEntity<User> addUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.createUser(user));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
     //Skal nok laves om
     @GetMapping("/role/{role}")
-    public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role){
+    public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role) {
         return ResponseEntity.ok(userService.getAllUsersByRole(role));
     }
 
@@ -45,6 +45,11 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUserById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/log_in")
+    public ResponseEntity<User> logIn(@RequestBody User user) {
+        return ResponseEntity.ok(userService.logIn(user.getUsername(), user.getPasswords()));
     }
 
 }
