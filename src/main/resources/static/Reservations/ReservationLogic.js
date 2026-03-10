@@ -119,17 +119,3 @@ function displayTheater() {
     }
 }
 
-document.getElementById("submitSeats").addEventListener("click", async () => {
-    const reservationId = document.getElementById("reservationId").value;
-    if (!reservationId) return alert("Please create a reservation first!");
-
-    const response = await fetch(`${BASE_URL}/${reservationId}/seats`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(selectedSeats)
-    });
-
-    const result = await response.json();
-    console.log("Seats added:", result);
-    alert("Seats successfully added!");
-});
