@@ -2,6 +2,7 @@ package com.example.kinoxp.config;
 
 import com.example.kinoxp.model.*;
 import com.example.kinoxp.repository.*;
+import com.example.kinoxp.service.ReservationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,9 @@ public class DBInitData implements CommandLineRunner {
     private final CategoryRepository categoryRepository;
     private final TicketTypeRepository ticketTypeRepository;
 
-    public DBInitData(MovieRepository movieRepository, ReservationRepository reservationRepository, ShowingRepository showingRepository, TheaterRepository theaterRepository, TicketRepository ticketRepository, UserRepository userRepository, CategoryRepository categoryRepository, TicketTypeRepository ticketTypeRepository) {
+    private final ReservationService reservationService;
+
+    public DBInitData(MovieRepository movieRepository, ReservationRepository reservationRepository, ShowingRepository showingRepository, TheaterRepository theaterRepository, TicketRepository ticketRepository, UserRepository userRepository, CategoryRepository categoryRepository, TicketTypeRepository ticketTypeRepository, ReservationService reservationService) {
         this.movieRepository = movieRepository;
         this.reservationRepository = reservationRepository;
         this.showingRepository = showingRepository;
@@ -31,6 +34,7 @@ public class DBInitData implements CommandLineRunner {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.ticketTypeRepository = ticketTypeRepository;
+        this.reservationService = reservationService;
     }
 
     @Override
@@ -101,13 +105,8 @@ public class DBInitData implements CommandLineRunner {
         reservation1.addTicket(ticket2);
         reservation2.addTicket(ticket3);
 
-        reservationRepository.save(reservation1);
-        reservationRepository.save(reservation2);
-
-        ticketRepository.save(ticket1);
-        ticketRepository.save(ticket2);
-        ticketRepository.save(ticket3);
-
+        reservationService.createReservation(reservation1);
+        reservationService.createReservation(reservation2);
 
         System.out.println("Initial data created: " + movieRepository.count() + " movies being played in " + showingRepository.count() + " showings with" + reservationRepository.count() + " Reservations, reserving a total of " + ticketRepository.count() + " tickets for seats, also " + userRepository.count() + " users are created");
 

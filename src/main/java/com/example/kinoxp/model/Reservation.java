@@ -21,6 +21,7 @@ public class Reservation {
     private String phoneNumber;
     private String firstName;
     private String lastName;
+    private double totalPrice;
 
     @OneToMany(mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JsonManagedReference
@@ -125,5 +126,13 @@ public class Reservation {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

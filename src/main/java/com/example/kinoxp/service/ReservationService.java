@@ -26,6 +26,7 @@ public class ReservationService {
     }
 
     public Reservation createReservation(Reservation reservation) {
+        reservation.setTotalPrice(priceCalculationTotal(reservation));
         return reservationRepository.save(reservation);
     }
 
@@ -48,13 +49,19 @@ public class ReservationService {
 
     private double priceCalulationTotal(TicketType ticketType, Ticket ticket, Reservation reservation) {
         double total = 0;
-        Optional<TicketType> ticketType1 = ticketTypeRepository.findById(ticketType.getTicketType());
+
         for (Ticket ticket1 : reservation.getTickets()) {
             total += ticket1.getTicketType().getPrice();
         }
 
         double fee = feeHandler(reservation);
-        double discount = groupDiscount(reservation, ticketType);
+        double discount = groupDiscount(reservation);
+        if (reservation.getShowing().getMovie().getDuration() > 170) {
+            total += 30;
+        }
+        if (reservation.getShowing().isThreeDimensional()) {
+            total += 20;
+        }
 
         return total + fee - discount;
 
@@ -77,7 +84,7 @@ public class ReservationService {
            double totalTicketPrice = 0;
 
            for (Ticket ticket : reservation.getTickets()) {
-               totalTicketPrice += ticketType.getPrice();
+               totalTicketPrice += ticket.getTicketType().getPrice();
            }
            return totalTicketPrice * 0.07;
        }
