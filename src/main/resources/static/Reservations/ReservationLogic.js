@@ -11,7 +11,15 @@ let numberOfRows;
 let seatsPerRow;
 let container;
 
-document.getElementById("submitSeats").addEventListener("click", async (event) => {
+async function initApp() {
+    showingData = await fetchShowing();
+    console.log(showingData);
+    displayTheater();
+    document.getElementById("submitSeats").addEventListener("click", handleSubmit);
+
+}
+
+async function handleSubmit (event){
     //const reservationId = document.getElementById("reservationId").value;
     //if (!reservationId) return alert("Please create a reservation first!");
     event.preventDefault();
@@ -22,7 +30,8 @@ document.getElementById("submitSeats").addEventListener("click", async (event) =
         lastName: formData.get("lastName"),
         email: formData.get("email"),
         phoneNumber: formData.get("phoneNumber"),
-        tickets: selectedSeats
+        tickets: selectedSeats,
+        showing: showingData
     };
 
     const response = await fetch(`${BASE_URL}/reservations`, {
@@ -34,12 +43,6 @@ document.getElementById("submitSeats").addEventListener("click", async (event) =
     const result = await response.json();
     console.log("Seats added:", result);
     alert("Seats successfully added! and sent to your Email or Number");
-});
-
-async function initApp() {
-    showingData = await fetchShowing();
-
-    displayTheater();
 }
 
 async function fetchShowing() {

@@ -19,7 +19,6 @@ public class Ticket {
     @Column(name = "\"row_number\"")
     private int rowNumber;
     private int seatNumber;
-    private double price;
     @ManyToOne
     private TicketType ticketType;
 
@@ -27,11 +26,10 @@ public class Ticket {
     }
 
     public Ticket(Reservation reservation,
-                  int rowNumber, int seatNumber, double price, TicketType ticketTypes) {
+                  int rowNumber, int seatNumber, TicketType ticketTypes) {
         this.reservation = reservation;
         this.rowNumber = rowNumber;
         this.seatNumber = seatNumber;
-        this.price = price;
         this.ticketType=ticketTypes;
     }
 
@@ -72,15 +70,5 @@ public class Ticket {
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
     }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-
 
 }

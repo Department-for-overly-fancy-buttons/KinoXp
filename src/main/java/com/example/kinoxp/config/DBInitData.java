@@ -92,9 +92,9 @@ public class DBInitData implements CommandLineRunner {
         ticketTypeRepository.save(basicTicketType);
         ticketTypeRepository.save(luxuryTickertType);
         
-        Ticket ticket1 = new Ticket(reservation1, 4, 16, 200, basicTicketType);
-        Ticket ticket2 = new Ticket(reservation1, 4, 15, 200, basicTicketType);
-        Ticket ticket3 = new Ticket(reservation2, 5, 15, 200, luxuryTickertType);
+        Ticket ticket1 = new Ticket(reservation1, 4, 16, basicTicketType);
+        Ticket ticket2 = new Ticket(reservation1, 4, 15, basicTicketType);
+        Ticket ticket3 = new Ticket(reservation2, 5, 15, luxuryTickertType);
 
 
         reservation1.addTicket(ticket1);

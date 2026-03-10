@@ -21,7 +21,6 @@ public class Showing {
     @ManyToOne
     @JoinColumn(name = "theater_id")
     private Theater theater;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm")
     private LocalDateTime startTime;
     private boolean isThreeDimensional;
 

@@ -46,6 +46,10 @@ public class Reservation {
         this.id = id;
     }
 
+    public void setShowing(Showing showing) {
+        this.showing = showing;
+    }
+
     public List<Ticket> getTickets() {
         return tickets;
     }
