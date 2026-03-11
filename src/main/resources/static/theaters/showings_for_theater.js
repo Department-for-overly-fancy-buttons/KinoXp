@@ -43,6 +43,9 @@ async function handleGetTickets(event) {
 
 function displayShowings(showings) {
     movieContainerEl.innerHTML = "";
+    if(showings.length < 1){
+        movieContainerEl.innerHTML = "no movies :(";
+    }
     for (let showing of showings) {
         let movieBoxEl = document.createElement("div");
         movieBoxEl.classList.add("movie-box");
