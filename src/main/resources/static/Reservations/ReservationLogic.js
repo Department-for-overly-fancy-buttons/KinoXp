@@ -95,11 +95,15 @@ function displayTheater() {
     numberOfRows = showingData.theater.numberOfRows;
     seatsPerRow = showingData.theater.seatsPerRow;
     container = document.getElementById("seatsContainer");
+    const theaterRowTypes = showingData.theater.theaterRows;
+    console.log(theaterRowTypes)
 
 
     for (let row = 1; row <= numberOfRows; row++) {
         const rowDiv = document.createElement("div");
         rowDiv.classList.add("seat-row");
+        let ticketType = theaterRowTypes[row - 1].ticketType;
+        console.log(ticketType)
 
         for (let seat = 1; seat <= seatsPerRow; seat++) {
             const seatBtn = document.createElement("button");
@@ -122,7 +126,7 @@ function displayTheater() {
                 );
 
                 if (index === -1) {
-                    selectedSeats.push({rowNumber: row, seatNumber: seat});
+                    selectedSeats.push({rowNumber: row, seatNumber: seat, ticketType: ticketType});
                     seatBtn.classList.add("selected");
                 } else {
                     selectedSeats.splice(index, 1);
