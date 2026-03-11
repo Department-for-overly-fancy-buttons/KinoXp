@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const formEl = event.target.closest("form");
         const formData = new FormData(formEl);
         const loginData = {
-            username: formData.get("Username"),
-            password: formData.get("Password"),
+            username: formData.get("username"),
+            passwords: formData.get("password"),
 
         };
         try {
@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 localStorage.setItem("user", JSON.stringify(user));
 
-                alert(`Welcome, ${loginData.Username}!`);
+                alert(`Welcome, ${loginData.username}!`);
 
 
-                window.location.href = "index.html";
+                window.location.href = "../index.html";
 
             } else {
                 alert("Wrong username or password");
