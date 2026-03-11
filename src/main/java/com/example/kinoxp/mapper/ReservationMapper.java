@@ -1,6 +1,6 @@
 package com.example.kinoxp.mapper;
 
-import com.example.kinoxp.model.CreateReservationRequest;
+import com.example.kinoxp.dto.CreateReservationRequest;
 import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Showing;
 import com.example.kinoxp.model.Ticket;

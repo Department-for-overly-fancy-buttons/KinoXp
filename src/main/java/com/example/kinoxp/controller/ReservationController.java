@@ -1,14 +1,13 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.dto.CreateReservationRequest;
 import com.example.kinoxp.mapper.ReservationMapper;
 import com.example.kinoxp.model.*;
 import com.example.kinoxp.service.*;
-import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")

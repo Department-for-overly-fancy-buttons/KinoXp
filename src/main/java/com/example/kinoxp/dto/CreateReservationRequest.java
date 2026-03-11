@@ -1,4 +1,6 @@
-package com.example.kinoxp.model;
+package com.example.kinoxp.dto;
+
+import com.example.kinoxp.model.Ticket;
 
 import java.util.List;
 
