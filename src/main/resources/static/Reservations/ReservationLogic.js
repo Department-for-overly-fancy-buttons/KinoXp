@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', initApp);
 
 const BASE_URL = "http://localhost:8080/api";
-
+let reservedSeats = [];
 let selectedSeats = [];
 const params = new URLSearchParams(window.location.search);
 const showingId = params.get("showingId");
@@ -13,6 +13,7 @@ let container;
 
 async function initApp() {
     showingData = await fetchShowing();
+    reservedSeats = showingData.reservedSeats || [];
     console.log(showingData);
     displayTheater();
     document.getElementById("submitSeats").addEventListener("click", handleSubmit);
@@ -104,18 +105,31 @@ function displayTheater() {
             const seatBtn = document.createElement("button");
             seatBtn.textContent = seat;
             seatBtn.classList.add("seat");
+            const isReserved = reservedSeats.some(
+                s => s.rowNumber === row && s.seatNumber === seat
+            );
+
+            if (isReserved) {
+                seatBtn.classList.add("reserved");
+                seatBtn.disabled = true;
+            }
 
             seatBtn.addEventListener("click", (event) => {
                 event.preventDefault();
-                const index = selectedSeats.findIndex(ticket => ticket.row === row && ticket.seatNumber === seat);
+
+                const index = selectedSeats.findIndex(
+                    ticket => ticket.rowNumber === row && ticket.seatNumber === seat
+                );
+
                 if (index === -1) {
                     selectedSeats.push({rowNumber: row, seatNumber: seat});
                     seatBtn.classList.add("selected");
-                    console.log(selectedSeats);
                 } else {
                     selectedSeats.splice(index, 1);
                     seatBtn.classList.remove("selected");
                 }
+
+                console.log(selectedSeats);
             });
 
             rowDiv.appendChild(seatBtn);

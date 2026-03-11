@@ -1,8 +1,8 @@
-
 .seat-row {
     display: flex;
     margin-bottom: 5px;
 }
+
 .seat {
     width: 30px;
     height: 30px;
@@ -14,13 +14,16 @@
     font-size: 12px;
     user-select: none;
 }
+
 .seat.available {
     background-color: #ccc; /* grå */
 }
+
 .seat.reserved {
     background-color: red;
     cursor: not-allowed;
 }
+
 .seat.selected {
     background-color: green;
     color: white;
