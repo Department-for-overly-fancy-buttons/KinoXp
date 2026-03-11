@@ -67,11 +67,11 @@ public class ReservationController implements ReservationControllerInterface {
         return ResponseEntity.ok(theater);
     }
 
-    @GetMapping("/showings/{showingId}/reserved-seats")
-    public ResponseEntity<List<Reservation>> getReservedSeats(@PathVariable Long showingId) {
-        List<Reservation> reservedSeats = reservationService.getAllReservationsForShowing(showingId);
-        return ResponseEntity.ok(reservedSeats);
-    }
+//    @GetMapping("/showings/{showingId}/reserved-seats")
+//    public ResponseEntity<List<Reservation>> getReservedSeats(@PathVariable Long showingId) {
+//        List<Reservation> reservedSeats = reservationService.getAllTicketsForShowing(showingId);
+//        return ResponseEntity.ok(reservedSeats);
+//    }
 
 
 }

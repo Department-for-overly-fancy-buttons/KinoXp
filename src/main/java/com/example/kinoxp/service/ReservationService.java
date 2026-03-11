@@ -4,12 +4,10 @@ package com.example.kinoxp.service;
 import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Ticket;
-import com.example.kinoxp.model.TicketType;
 import com.example.kinoxp.repository.ReservationRepository;
 import com.example.kinoxp.repository.TicketTypeRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -42,8 +40,11 @@ public class ReservationService {
         reservationRepository.deleteById(id);
     }
 
-    public List<Reservation> getAllReservationsForShowing(Long showingId) {
-        return reservationRepository.findByShowing_Id(showingId);
+    public List<Ticket> getAllTicketsForShowing(Long showingId) {
+        List<Reservation> reservations = reservationRepository.findAllByShowing_Id(showingId);
+        List<Ticket> tickets = new ArrayList<>();
+        reservations.forEach(reservation -> tickets.addAll(reservation.getTickets()));
+        return tickets;
     }
 
 

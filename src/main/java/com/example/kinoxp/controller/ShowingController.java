@@ -1,7 +1,7 @@
 package com.example.kinoxp.controller;
 
-import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Showing;
+import com.example.kinoxp.model.Ticket;
 import com.example.kinoxp.service.ReservationService;
 import com.example.kinoxp.service.ShowingService;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +44,8 @@ public class ShowingController {
     }
 
     @GetMapping("/tickets/{id}")
-    public ResponseEntity<List<Reservation>> getAllReservationsForShowing(@PathVariable Long id) {
-        return ResponseEntity.ok(reservationService.getAllReservationsForShowing(id));
+    public ResponseEntity<List<Ticket>> getAllTicketsForShowing(@PathVariable Long id) {
+        return ResponseEntity.ok(reservationService.getAllTicketsForShowing(id));
     }
 
     @GetMapping("/movies/{id}")

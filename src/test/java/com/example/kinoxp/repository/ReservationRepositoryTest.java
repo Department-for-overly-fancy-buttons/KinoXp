@@ -100,7 +100,7 @@ public class ReservationRepositoryTest {
         assertNull(foundReservation);
     }
 
-    //findByShowing_Id(long showingId);
+    //findAllByShowing_Id(long showingId);
 //    @Test
 //    public void GivenShowingID_WhenSaved_ThenCanFindRelevantReservations(){
 //
@@ -110,7 +110,7 @@ public class ReservationRepositoryTest {
 //        reservationRepository.save(additionalTestReservationOne);
 //        reservationRepository.save(additionalTestReservationTwo);
 //
-//        List<Reservation> foundReservations = reservationRepository.findByShowing_Id(testShowing.getId());
+//        List<Reservation> foundReservations = reservationRepository.findAllByShowing_Id(testShowing.getId());
 //
 //        assertNotNull(foundReservations);
 //

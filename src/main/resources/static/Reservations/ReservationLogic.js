@@ -6,7 +6,6 @@ let selectedSeats = [];
 const params = new URLSearchParams(window.location.search);
 const showingId = params.get("showingId");
 let showingData;
-let reservationData;
 
 let numberOfRows;
 let seatsPerRow;
@@ -14,9 +13,9 @@ let container;
 
 async function initApp() {
     showingData = await fetchShowing();
-    reservationData = await fetchReservationsForShowing();
-    console.log("reservations:");
-    console.log(reservationData);
+    reservedSeats = await fetchReservationsForShowing();
+    console.log("reserved seats:");
+    console.log(reservedSeats);
     console.log("showings:");
     console.log(showingData);
     displayTheater();
@@ -66,7 +65,7 @@ async function fetchShowing() {
 
 async function fetchReservationsForShowing(){
     try{
-        const response = await fetch(`${BASE_URL}/tickets/${showingId}`);
+        const response = await fetch(`${BASE_URL}/showings/tickets/${showingId}`);
         if (!response.ok) {
             throw new Error("HTTP error!");
         }

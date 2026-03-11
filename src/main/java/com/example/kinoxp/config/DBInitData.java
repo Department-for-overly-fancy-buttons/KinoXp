@@ -118,9 +118,9 @@ public class DBInitData implements CommandLineRunner {
 
         Reservation reservation1 = new Reservation(showing2OfMovie1, "JanTeMan@email.com", "+45 11111111", "Jan", "Janice");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
-        Reservation reservation3 = new Reservation(showing1OfMovie1, "JanTeMan@email.com", "+45 11111111", "Jan", "Janice");
+        Reservation reservation3 = new Reservation(showing1OfMovie1, "Janicesonnnnn@email.com", "+45 33333333", "Janice", "Jansan");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
-        Reservation reservation4 = new Reservation(showing1OfMovie2, "JanTeMan@email.com", "+45 11111111", "Jan", "Janice");
+        Reservation reservation4 = new Reservation(showing1OfMovie2, "James.Jamieson@email.com", "+45 444444", "James", "Jamieson");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
         Reservation reservation5 = new Reservation(showing2OfMovie2, "JanTeMan@email.com", "+45 11111111", "Jan", "Janice");
         reservation1.setTimeOfPurchase(LocalDateTime.now().plusHours(3));
@@ -128,25 +128,30 @@ public class DBInitData implements CommandLineRunner {
         Reservation reservation2 = new Reservation(showing3OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
         reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
 
-        Ticket ticket1 = new Ticket(reservation1, 4, 16, basicTicketType);
-        Ticket ticket2 = new Ticket(reservation1, 4, 15, basicTicketType);
-        Ticket ticket3 = new Ticket(reservation2, 5, 15, luxuryTicketType);
-        Ticket ticket4 = new Ticket(reservation3, 4, 16, basicTicketType);
-        Ticket ticket5 = new Ticket(reservation5, 4, 16, basicTicketType);
+        Ticket ticket1 = new Ticket(reservation1, 4, 16, basicTicketType); //første film
+        Ticket ticket2 = new Ticket(reservation1, 4, 15, basicTicketType); // anden film
+        Ticket ticket3 = new Ticket(reservation2, 25, 15, luxuryTicketType); // tredje film
+        Ticket ticket4 = new Ticket(reservation3, 4, 2, basicTicketType); // fjerde film
+        Ticket ticket5 = new Ticket(reservation5, 6, 6, basicTicketType); // femte film
+        Ticket ticket6 = new Ticket(reservation4, 4, 1, basicTicketType); // ingen
 
-
-
+        reservation1.addTicket(ticket1);
         reservation1.addTicket(ticket2);
         reservation2.addTicket(ticket3);
         reservation5.addTicket(ticket5);
         reservation3.addTicket(ticket4);
-        reservation4.addTicket(ticket1);
+        reservation4.addTicket(ticket6);
 
         reservationService.createReservation(reservation1);
         reservationService.createReservation(reservation2);
         reservationService.createReservation(reservation3);
         reservationService.createReservation(reservation4);
         reservationService.createReservation(reservation5);
+
+        System.out.println("Reservation: " + reservation1.getId());
+        System.out.println("Tickets: " + reservation1.getTickets().size());
+        System.out.println("Ticket reservation id" + reservation1.getTickets().get(0).getReservation().getId());
+        System.out.println("Ticket reservation id" + reservation1.getTickets().get(1).getReservation().getId());
 
         System.out.println("Initial data created: " + movieRepository.count() + " movies being played in " + showingRepository.count() + " showings with" + reservationRepository.count() + " Reservations, reserving a total of " + ticketRepository.count() + " tickets for seats, also " + userRepository.count() + " users are created");
 
