@@ -10,15 +10,14 @@ import com.example.kinoxp.repository.TicketTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final TicketTypeRepository ticketTypeRepository;
+    private Map<String, Double> listOfCalculations = new HashMap<>();
 
     public ReservationService(ReservationRepository reservationRepository, TicketTypeRepository ticketTypeRepository) {
         this.reservationRepository = reservationRepository;
@@ -26,6 +25,7 @@ public class ReservationService {
     }
 
     public Reservation createReservation(Reservation reservation) {
+
         reservation.setTotalPrice(priceCalculationTotal(reservation));
         return reservationRepository.save(reservation);
     }
@@ -50,19 +50,26 @@ public class ReservationService {
     public double priceCalculationTotal(Reservation reservation) {
         double total = 0;
 
-        for (Ticket ticket1 : reservation.getTickets()) {
-            total += ticket1.getTicketType().getPrice();
+        for (Ticket ticket : reservation.getTickets()) {
+            total += ticket.getTicketType().getPrice();
+            System.out.println("Ticket - " + ticket.getSeatLabel() + " - __________ " + ticket.getTicketType().getPrice() + "kr.");
         }
+        System.out.println("Subtotal __________ " + total + "kr.");
 
         double fee = feeHandler(reservation);
         double discount = groupDiscount(reservation);
         if (reservation.getShowing().getMovie().getDuration() > 170) {
             total += 30;
+            System.out.println("HelAftens film gebyr: __________ 30kr. \nSubtotal __________ " + total + "kr.");
         }
         if (reservation.getShowing().isThreeDimensional()) {
             total += 20;
+            System.out.println("3D gebyr: __________ 20kr. \nSubtotal __________ " + total + "kr.");
         }
 
+        System.out.println("Reservation gebyr:  __________ " + fee + "kr. \nSubtotal __________ " + total + "kr.");
+        System.out.println("Rabat:  __________ -" + discount + "kr. \nSubtotal __________ " + total + "kr.");
+        System.out.println("Total __________ " + total + "kr.");
         return total + fee - discount;
 
     }

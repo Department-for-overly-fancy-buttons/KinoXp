@@ -65,8 +65,26 @@ public class DBInitData implements CommandLineRunner {
         movieRepository.save(movie1);
         movieRepository.save(movie2);
 
+        TicketType cowboyTicketType = new TicketType("Cow", 50.0);
+        TicketType basicTicketType = new TicketType("Basic", 100.0);
+        TicketType luxuryTicketType = new TicketType("Lux", 200);
+        ticketTypeRepository.save(cowboyTicketType);
+        ticketTypeRepository.save(basicTicketType);
+        ticketTypeRepository.save(luxuryTicketType);
+
         Theater theater1 = new Theater("Hall_Alpha", 20, 12,"Danmark");
         Theater theater2 = new Theater("Hall_Beta", 25, 16,"Jylland");
+
+        for(int i = 1; i <= theater1.getNumberOfRows();i++){
+            if(i<=2){
+                theater1.addTheaterRow(new TheaterRow(i,theater1,cowboyTicketType));
+            } else if (i>theater1.getNumberOfRows()-2) {
+                theater1.addTheaterRow(new TheaterRow(i,theater1,luxuryTicketType));
+            }
+            else{
+                theater1.addTheaterRow(new TheaterRow(i,theater1,basicTicketType));
+            }
+        }
 
         theaterRepository.save(theater1);
         theaterRepository.save(theater2);
@@ -98,15 +116,10 @@ public class DBInitData implements CommandLineRunner {
 
         Reservation reservation2 = new Reservation(showing3OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
         reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
-        
-        TicketType basicTicketType = new TicketType("Basic", 100.0);
-        TicketType luxuryTickertType = new TicketType("Lux", 200);
-        ticketTypeRepository.save(basicTicketType);
-        ticketTypeRepository.save(luxuryTickertType);
-        
+
         Ticket ticket1 = new Ticket(reservation1, 4, 16, basicTicketType);
         Ticket ticket2 = new Ticket(reservation1, 4, 15, basicTicketType);
-        Ticket ticket3 = new Ticket(reservation2, 5, 15, luxuryTickertType);
+        Ticket ticket3 = new Ticket(reservation2, 5, 15, luxuryTicketType);
         Ticket ticket4 = new Ticket(reservation3, 4, 16, basicTicketType);
         Ticket ticket5 = new Ticket(reservation5, 4, 16, basicTicketType);
 
