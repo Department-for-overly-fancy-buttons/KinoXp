@@ -4,7 +4,9 @@ import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.Reservation;
 import com.example.kinoxp.model.Showing;
 import com.example.kinoxp.model.Ticket;
+import com.example.kinoxp.model.TicketType;
 import com.example.kinoxp.repository.TicketRepository;
+import com.example.kinoxp.repository.TicketTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +14,11 @@ import java.util.List;
 @Service
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final TicketTypeRepository ticketTypeRepository;
 
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository) {
         this.ticketRepository = ticketRepository;
+        this.ticketTypeRepository = ticketTypeRepository;
     }
 
     public Ticket createTicket(Ticket ticket) {
@@ -42,5 +46,8 @@ public class TicketService {
         ticketRepository.deleteById(id);
     }
 
+    public List<TicketType> getAllTicketTypes() {
+        return ticketTypeRepository.findAll();
+    }
 
 }

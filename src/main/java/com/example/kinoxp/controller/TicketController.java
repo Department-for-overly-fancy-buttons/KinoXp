@@ -1,6 +1,7 @@
 package com.example.kinoxp.controller;
 
 import com.example.kinoxp.model.Ticket;
+import com.example.kinoxp.model.TicketType;
 import com.example.kinoxp.service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class TicketController {
     public ResponseEntity<List<Ticket>> getTicket() {
 
         return ResponseEntity.ok(ticketService.getAllTickets());
+    }
+
+    @GetMapping("/types")
+    public ResponseEntity<List<TicketType>> getTicketTypes() {
+        return ResponseEntity.ok(ticketService.getAllTicketTypes());
     }
 
     @GetMapping("/{id}")

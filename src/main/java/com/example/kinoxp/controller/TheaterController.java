@@ -1,5 +1,6 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.dto.CreateTheaterRequest;
 import com.example.kinoxp.model.Showing;
 import com.example.kinoxp.model.Theater;
 import com.example.kinoxp.service.ShowingService;
@@ -34,8 +35,8 @@ public class TheaterController {
     }
 
     @PostMapping
-    public ResponseEntity<Theater> createTheater(@RequestBody Theater theater) {
-        return ResponseEntity.ok(theaterService.createTheater(theater));
+    public ResponseEntity<Theater> createTheater(@RequestBody CreateTheaterRequest theaterRequest) {
+        return ResponseEntity.ok(theaterService.createTheater(theaterRequest));
     }
 
     @DeleteMapping("/{id}")

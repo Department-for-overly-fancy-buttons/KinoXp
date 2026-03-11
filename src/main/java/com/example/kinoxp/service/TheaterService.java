@@ -1,6 +1,9 @@
 package com.example.kinoxp.service;
 
+import com.example.kinoxp.dto.CreateTheaterRequest;
 import com.example.kinoxp.exceptions.NotFoundException;
+import com.example.kinoxp.mapper.ReservationMapper;
+import com.example.kinoxp.mapper.TheaterMapper;
 import com.example.kinoxp.model.Theater;
 import com.example.kinoxp.repository.TheaterRepository;
 import org.springframework.stereotype.Service;
@@ -16,8 +19,8 @@ public class TheaterService {
         this.theaterRepository = theaterRepository;
     }
 
-    public Theater createTheater(Theater theater){
-        return theaterRepository.save(theater);
+    public Theater createTheater(CreateTheaterRequest theaterRequest) {
+        return theaterRepository.save(TheaterMapper.toTheater(theaterRequest));
     }
 
     public List<Theater> getAllTheaters() {
