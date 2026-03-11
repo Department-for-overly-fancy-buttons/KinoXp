@@ -6,6 +6,7 @@ let selectedSeats = [];
 const params = new URLSearchParams(window.location.search);
 const showingId = params.get("showingId");
 let showingData;
+let reservationData;
 
 let numberOfRows;
 let seatsPerRow;
@@ -13,7 +14,10 @@ let container;
 
 async function initApp() {
     showingData = await fetchShowing();
-    reservedSeats = showingData.reservedSeats || [];
+    reservationData = await fetchReservationsForShowing();
+    console.log("reservations:");
+    console.log(reservationData);
+    console.log("showings:");
     console.log(showingData);
     displayTheater();
     document.getElementById("submitSeats").addEventListener("click", handleSubmit);
@@ -52,8 +56,7 @@ async function fetchShowing() {
         if (!response.ok) {
             throw new Error("HTTP error!");
         }
-        const showing = await response.json();
-        return showing;
+        return await response.json();
 
     } catch (error) {
         console.log("An error occurred:   " + error)
@@ -61,6 +64,18 @@ async function fetchShowing() {
 
 }
 
+async function fetchReservationsForShowing(){
+    try{
+        const response = await fetch(`${BASE_URL}/tickets/${showingId}`);
+        if (!response.ok) {
+            throw new Error("HTTP error!");
+        }
+        return await response.json();
+
+    } catch (error) {
+        console.log("An error occurred:   " + error)
+    }
+}
 
 document.getElementById("ReservationForm").addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -103,20 +118,21 @@ function displayTheater() {
         const rowDiv = document.createElement("div");
         rowDiv.classList.add("seat-row");
         let ticketType = theaterRowTypes[row - 1].ticketType;
+        console.log(`ticketType for row ${row}:`);
         console.log(ticketType)
 
         for (let seat = 1; seat <= seatsPerRow; seat++) {
             const seatBtn = document.createElement("button");
             seatBtn.textContent = seat;
             seatBtn.classList.add("seat");
-            const isReserved = reservedSeats.some(
-                s => s.rowNumber === row && s.seatNumber === seat
-            );
+            //const isReserved = reservedSeats(
+            //    currentSeat => currentSeat.rowNumber === row && currentSeat.seatNumber === seat
+            //);
 
-            if (isReserved) {
-                seatBtn.classList.add("reserved");
-                seatBtn.disabled = true;
-            }
+            //if (isReserved) {
+            //    seatBtn.classList.add("reserved");
+            //    seatBtn.disabled = true;
+            //}
 
             seatBtn.addEventListener("click", (event) => {
                 event.preventDefault();

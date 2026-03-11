@@ -86,6 +86,17 @@ public class DBInitData implements CommandLineRunner {
             }
         }
 
+        for(int i = 1; i <= theater2.getNumberOfRows();i++){
+            if(i<=2){
+                theater2.addTheaterRow(new TheaterRow(i,theater2,cowboyTicketType));
+            } else if (i>theater2.getNumberOfRows()-2) {
+                theater2.addTheaterRow(new TheaterRow(i,theater2,luxuryTicketType));
+            }
+            else{
+                theater2.addTheaterRow(new TheaterRow(i,theater2,basicTicketType));
+            }
+        }
+
         theaterRepository.save(theater1);
         theaterRepository.save(theater2);
 
