@@ -1,32 +1,48 @@
 package com.example.kinoxp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
 public class TheaterRow {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "\"row_number\"")
+    private int rowNumber;
+
     @ManyToOne
-    @JoinColumn(name = "theater_id")
+    @JsonBackReference
     private Theater theater;
-    private int row;
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "ticket_type")
     private TicketType ticketType;
 
-    public TheaterRow(){
+    public TheaterRow() {
+    }
 
+    public TheaterRow(int rowNumber, Theater theater, TicketType ticketType) {
+        this.rowNumber = rowNumber;
+        this.theater = theater;
+        this.ticketType = ticketType;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getRowNumber() {
+        return rowNumber;
+    }
+
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
     }
 
     public Theater getTheater() {
@@ -37,14 +53,6 @@ public class TheaterRow {
         this.theater = theater;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     public TicketType getTicketType() {
         return ticketType;
     }
@@ -52,4 +60,6 @@ public class TheaterRow {
     public void setTicketType(TicketType ticketType) {
         this.ticketType = ticketType;
     }
+
+
 }
