@@ -41,8 +41,10 @@ public class DBInitData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         User user = new User("Olivertest", "123", Role.ADMIN);
         User user1 = new User("Olivertest", "123", Role.EMPLOYEE);
+        User user2 = new User("Oliver", "123", Role.EMPLOYEE);
         userRepository.save(user);
         userRepository.save(user1);
+        userRepository.save(user2);
 
         List<Category> fullCategoryList = List.of(new Category("Horror"), new Category("Comedy"), new Category("Scifi"));
         categoryRepository.saveAll(fullCategoryList);

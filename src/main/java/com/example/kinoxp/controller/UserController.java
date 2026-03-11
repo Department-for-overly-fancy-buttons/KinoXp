@@ -3,6 +3,7 @@ package com.example.kinoxp.controller;
 import com.example.kinoxp.model.Role;
 import com.example.kinoxp.model.User;
 import com.example.kinoxp.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,9 +48,13 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/log_in")
+    @PostMapping("/log_in")
     public ResponseEntity<User> logIn(@RequestBody User user) {
-        return ResponseEntity.ok(userService.logIn(user.getUsername(), user.getPasswords()));
+        User loggedInUser = userService.logIn(user.getUsername(), user.getPasswords());
+        if (loggedInUser != null) {
+            return ResponseEntity.ok(loggedInUser);
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 }
