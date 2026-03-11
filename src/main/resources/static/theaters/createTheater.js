@@ -51,6 +51,7 @@ async function handleSubmit(event) {
 
     const result = await response.json();
     console.log("Theater added:", result);
+    window.location.href = `theaters.html`;
 }
 
 function getSelectedTicketTypes() {
