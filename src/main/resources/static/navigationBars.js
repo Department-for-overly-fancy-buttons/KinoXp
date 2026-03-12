@@ -5,19 +5,19 @@ export function display(){
 
     const navEl = document.querySelector("nav");
 
-    const listEl = createHtmlElement({tagName: "ul", ids: "navigationList"});
+    const listEl = createHtmlElement({tagName: "ul",htmlAttributes: {id: "navigationList"}});
 
     let listItemTitleEl = createHtmlElement({tagName: "li"});
 
-    let homeLinkEl = createHtmlElement({tagName: "a", classes: "navigationLink", ids: "logoTitle",htmlAttributes: {href: "/", textContent: "KinoXP", title: "Home"}});
+    let homeLinkEl = createHtmlElement({tagName: "a", htmlClass: "navigationLink", htmlAttributes: {id: "logoTitle", href: "/", textContent: "KinoXP", title: "Home"}});
 
     listItemTitleEl.appendChild(homeLinkEl);
 
     listEl.appendChild(listItemTitleEl);
 
-    let listItemTheatersEl = createHtmlElement({tagName: "li", classes: "navigationListItem",ids: "navigationListStart"});
+    let listItemTheatersEl = createHtmlElement({tagName: "li", htmlClass: "navigationListItem",htmlAttributes: {id: "navigationListStart"}});
 
-    let theaterLinkEl = createHtmlElement({tagName: "a",classes: "navigationLink", htmlAttributes: {href: "/theaters/theaters.html", title: "Theaters", textContent: "Theaters"}});
+    let theaterLinkEl = createHtmlElement({tagName: "a",htmlClass: "navigationLink", htmlAttributes: {href: "/theaters/theaters.html", title: "Theaters", textContent: "Theaters"}});
     listItemTheatersEl.appendChild(theaterLinkEl);
 
     listEl.appendChild(listItemTheatersEl);
@@ -38,8 +38,8 @@ export function display(){
 
 }
 
-function createHtmlElementTemp(tagName, classes, ids){
-    console.log(`tag: ${tagName}, classes: ${classes}, ids: ${ids}`)
+function createHtmlElementTemp(tagName, htmlClass, ids){
+    console.log(`tag: ${tagName}, htmlClass: ${htmlClass}, ids: ${ids}`)
     let element;
 
     if(typeof tagName === "string"){
@@ -51,17 +51,17 @@ function createHtmlElementTemp(tagName, classes, ids){
         return null;
     }
 
-    let classesString = null;
-    if(Array.isArray(classes)){
-        classesString = classes.reduce((previousClass, currentClass) => previousClass += " " + currentClass);
-        console.log(`classes has multiple classes ${classesString}`);
-    }else if(typeof classes === "string"){
-        classesString = classes;
-        console.log(`classes has one string ${classesString}`);
+    let htmlClassString = null;
+    if(Array.isArray(htmlClass)){
+        htmlClassString = htmlClass.reduce((previousClass, currentClass) => previousClass += " " + currentClass);
+        console.log(`htmlClass has multiple htmlClass ${htmlClassString}`);
+    }else if(typeof htmlClass === "string"){
+        htmlClassString = htmlClass;
+        console.log(`htmlClass has one string ${htmlClassString}`);
     }
-    if(classesString !== null){
-        element.classList.add(classesString);
-        console.log(`classesString is not null (${classesString}) element:`);
+    if(htmlClassString !== null){
+        element.classList.add(htmlClassString);
+        console.log(`htmlClassString is not null (${htmlClassString}) element:`);
         console.log(element);
     }
 
