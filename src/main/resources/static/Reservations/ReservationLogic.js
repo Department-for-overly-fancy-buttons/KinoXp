@@ -124,14 +124,14 @@ function displayTheater() {
             const seatBtn = document.createElement("button");
             seatBtn.textContent = seat;
             seatBtn.classList.add("seat");
-            //const isReserved = reservedSeats(
-            //    currentSeat => currentSeat.rowNumber === row && currentSeat.seatNumber === seat
-            //);
+            const isReserved = reservedSeats.some(currentSeat => currentSeat.rowNumber === row && currentSeat.seatNumber === seat);
 
-            //if (isReserved) {
-            //    seatBtn.classList.add("reserved");
-            //    seatBtn.disabled = true;
-            //}
+            console.log(isReserved);
+
+            if (isReserved) {
+                seatBtn.classList.add("reserved");
+                seatBtn.disabled = true;
+            }
 
             seatBtn.addEventListener("click", (event) => {
                 event.preventDefault();

@@ -1,3 +1,57 @@
+:root{
+    --headerContainerColor: #0D0C0C;
+    --headerTextColor: #F4796B;
+    --headerFontSize: 1.50rem;
+    /*https://coolors.co/0d0c0c-751c1c-dd2c2c-f44e3f-f46455-f4796b-f4998d-f5a297-f6aaa0-f7b2a9*/
+
+}
+nav {
+    background-color: var(--headerContainerColor);
+    min-height: var(--headerFontSize);
+    color: var(--headerTextColor)
+}
+
+#navigationList {
+    height: inherit;
+    list-style-type: none;
+    margin: 0 0 0 auto;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    color: inherit;
+}
+
+.navigationListItem {
+    background-color: inherit;
+    border-left: 3px solid var(--headerTextColor);
+    color: inherit;
+}
+
+.navigationLink {
+    font-weight: bold;
+    font-size: var(--headerFontSize);
+    float: left;
+    color: var(--headerTextColor);
+}
+
+.navigationListItem .navigationLink {
+    display: block;
+    color: inherit;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    height: -webkit-fill-available;
+}
+
+#navigationListStart {
+    margin-left: auto;
+}
+
+#logoTitle {
+    color: #F7B2A9;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
 
 #movie-container, #theater-container {
     background-color: darkslateblue;
