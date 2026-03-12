@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<form id="showing-form">
+    <label>
+        <input type="datetime-local" name="date" required>Date
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" name="is3d" placeholder="location" required>This showing is in 3d
+    </label>
+    <br>
+    <h2>Select movie</h2>
+    <div id="movieContainer"></div>
+    <h2>Select theater</h2>
+    <div id="theaterContainer"></div>
+    <button type="submit" id="submitMovie">Add showing</button>
+</form>
+<script src="createShowing.js"></script>
+</body>
+</html>

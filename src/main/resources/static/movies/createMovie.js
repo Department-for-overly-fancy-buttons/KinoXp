@@ -48,6 +48,7 @@ async function handleSubmit(event) {
 
     const result = await response.json();
     console.log("Movie added:", result);
+    window.location.href = `movies.html`;
 }
 
 function getCheckedCategories() {
