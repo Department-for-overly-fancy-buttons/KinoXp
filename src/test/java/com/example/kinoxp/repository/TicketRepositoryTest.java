@@ -7,7 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -19,15 +21,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest(properties = {
         "spring.datasource.url=jdbc:h2:mem:testdb",
         "spring.jpa.hibernate.ddl-auto=create-drop"
-},
-        includeFilters = @ComponentScan.Filter(
-                type = FilterType.ASSIGNABLE_TYPE,
-                classes = TicketRepository.class),
-        excludeFilters = @ComponentScan.Filter(
-                type = FilterType.ASSIGNABLE_TYPE,
-                classes = {ShowingRepository.class, CategoryRepository.class, ReservationRepository.class, TheaterRepository.class, ReservationRepository.class, UserRepository.class}))
-@ContextConfiguration(classes = KinoXpApplication.class)
+}
+        )
+//@ContextConfiguration(classes = KinoXpApplication.class)
 public class TicketRepositoryTest {
+
+    @Autowired
+    ApplicationContext context;
 
     @Autowired
     private TicketRepository ticketRepository;
@@ -36,15 +36,25 @@ public class TicketRepositoryTest {
     private Theater testTheater;
     private Showing testShowing;
     private Reservation testReservation;
+    private TicketType testTicketType;
     private Ticket testTicket;
+
+    @Test
+    public void testBeans(){
+        var beans = context.getBeanDefinitionNames();
+        for(String bean : beans){
+            System.out.println(bean);
+        }
+    }
 
     @BeforeEach
     public void setup(){
         testMovie = new Movie("Predator: Killer of Killers", "Three of the fiercest warriors in human history become prey to the ultimate killer of killers.", 17, 85.0, List.of(new Category("Sci-fi"), new Category("Action")));
-        testTheater = new Theater("Sal 1", 10, 20);
+        testTheater = new Theater("Sal 1", 10, 20, "Kjønehavn");
         testShowing = new Showing(testMovie, testTheater, LocalDateTime.of(2026, 3, 8, 18, 15), false);
         testReservation = new Reservation(testShowing, "Emilie.K.Meyer@gmail.com", "+45 90348172", "Emilie Kalmer", "Meyer");
-        testTicket = new Ticket(testReservation, 3, 2, 299.99);
+        testTicketType = new TicketType("Royal", 400);
+        testTicket = new Ticket(testReservation, 3, 2, testTicketType);
         ticketRepository.save(testTicket);
     }
 
@@ -60,6 +70,7 @@ public class TicketRepositoryTest {
 
         assertNotNull(foundTicket);
 
+        TicketType foundTicketType = foundTicket.getTicketType();
         Reservation foundReservation = foundTicket.getReservation();
         Showing foundShowing = foundReservation.getShowing();
         Movie foundMovie = foundShowing.getMovie();
@@ -89,7 +100,11 @@ public class TicketRepositoryTest {
 
         assertEquals(testTicket.getRowNumber(), foundTicket.getRowNumber());
         assertEquals(testTicket.getSeatNumber(), foundTicket.getSeatNumber());
-        assertEquals(testTicket.getPrice(), foundTicket.getPrice());
+
+        assertNotNull(foundTicketType);
+        assertEquals(testTicket.getTicketType(), foundTicketType);
+        assertEquals(testTicketType.getTicketType(), foundTicketType.getTicketType());
+        assertEquals(testTicketType.getPrice(), foundTicketType.getPrice());
     }
 
     @Test
@@ -107,5 +122,7 @@ public class TicketRepositoryTest {
         Ticket foundTicket = ticketRepository.findById(testTicket.getId()).orElse(null);
         assertNull(foundTicket);
     }
+
+
 
 }
