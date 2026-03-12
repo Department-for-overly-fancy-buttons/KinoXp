@@ -1,6 +1,6 @@
 import {createHtmlElement} from "./htmlTagFactory.js";
 
-export function display(){
+export function displayNavigationBar(){
     console.log("displaying");
 
     const navEl = document.querySelector("nav");

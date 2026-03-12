@@ -1,5 +1,7 @@
 export function createHtmlElement(elementInfo){
 
+    console.log(elementInfo.tagName)
+
     if(typeof elementInfo !== "object" || !("tagName" in elementInfo)){
         return null;
     }
