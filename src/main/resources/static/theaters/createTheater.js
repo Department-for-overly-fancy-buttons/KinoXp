@@ -7,6 +7,9 @@ let seatsPerRow;
 let ticketTypeData = [];
 
 async function initApp() {
+    requireLogIn()
+    requireAdmin()
+    displayUser()
     ticketTypeData = await fetchTicketTypes();
     console.log(ticketTypeData);
     document.getElementById("submitTheater").addEventListener("click", handleSubmit);
@@ -31,6 +34,7 @@ async function fetchTicketTypes() {
 
 async function handleSubmit(event) {
     event.preventDefault();
+
     const formEl = event.target.closest("form");
     const formData = new FormData(formEl);
     const ticketTypesForRows = getSelectedTicketTypes();
