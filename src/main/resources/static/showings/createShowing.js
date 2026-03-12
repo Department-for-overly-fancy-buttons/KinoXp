@@ -6,6 +6,9 @@ let moviesData = [];
 let theatersData = [];
 
 async function initApp() {
+    requireLogIn()
+    displayUser()
+
     moviesData = await fetchMovies();
     theatersData = await fetchTheaters();
     console.log(moviesData);

@@ -16,7 +16,7 @@ function isLoggedIn() {
 
 function requireLogIn() {
     if(!isLoggedIn()) {
-        return location.href = "Login/LoginForm.html";
+        return location.href = "../Login/LoginForm.html";
     }
 }
 function login() {
@@ -46,4 +46,10 @@ function requireAdmin() {
         alert("You must be an admin to access this page!");
         location.href = "index.html";
     }
+}
+function requireEmployee() {
+    const user = getLoggedInUser();
+    if (!user || user.role !== "Employee" || user.role !== "ADMIN");
+    alert("You must be an admin and or employee to access this page!");
+    location.href = "index.html";
 }
