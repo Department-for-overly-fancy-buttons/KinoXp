@@ -118,16 +118,26 @@ function display(){
 
     listEl.appendChild(listItemTheatersEl);
 
-    let listItemLoginEl = createHtmlElement("li", "navigationListItem", null);
 
-    let loginLinkEl = createHtmlElement("a", "navigationLink", null);
-    loginLinkEl.href = "/Login/LoginForm.html";
-    loginLinkEl.title = "Login";
-    loginLinkEl.textContent = "Login";
-    listItemLoginEl.appendChild(loginLinkEl);
+    let listItemLoginEl = createHtmlElement("li", "navigationListItem", null);
+    if (!isLoggedIn()) {
+        let loginLinkEl = createHtmlElement("button", "navigationLink", null);
+        loginLinkEl.type = "button";
+        loginLinkEl.title = "Login";
+        loginLinkEl.textContent = "Login";
+        loginLinkEl.addEventListener("click", login);
+
+        listItemLoginEl.appendChild(loginLinkEl);
+    } else {
+        let logoutLinkEl = createHtmlElement("button", "navigationLink", null);
+        logoutLinkEl.type = "button";
+        logoutLinkEl.title = "Logout";
+        logoutLinkEl.textContent = "Logout";
+        logoutLinkEl.addEventListener("click", logout);
+        listItemLoginEl.appendChild(logoutLinkEl);
+    }
 
     listEl.appendChild(listItemLoginEl);
-
 
 
     navEl.appendChild(listEl);

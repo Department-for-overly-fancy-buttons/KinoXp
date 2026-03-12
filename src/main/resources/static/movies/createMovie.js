@@ -6,6 +6,8 @@ let categoryData = [];
 
 async function initApp() {
     categoryData = await fetchCategories();
+    requireLogIn()
+    displayUser()
     console.log(categoryData);
     document.getElementById("submitMovie").addEventListener("click", handleSubmit);
     display();
