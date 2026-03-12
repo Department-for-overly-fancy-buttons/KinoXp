@@ -35,4 +35,9 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.getTicketById(id));
     }
 
+    @PostMapping("/new/type")
+    public ResponseEntity<TicketType> addTicketType(@RequestBody TicketType ticketType) {
+        return ResponseEntity.ok(ticketService.createTicketType(ticketType));
+    }
+
 }
