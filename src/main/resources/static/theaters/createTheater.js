@@ -8,7 +8,6 @@ let ticketTypeData = [];
 
 async function initApp() {
     requireLogIn()
-    requireAdmin()
     displayUser()
     ticketTypeData = await fetchTicketTypes();
     console.log(ticketTypeData);

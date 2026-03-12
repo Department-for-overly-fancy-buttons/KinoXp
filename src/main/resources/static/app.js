@@ -1,17 +1,17 @@
-import {display} from "./navigationBars.js";
+import {displayNavigationBar} from "./navigationBars.js";
+import {displayAllShowingReel} from "./showingReel.js";
 document.addEventListener("DOMContentLoaded", initApp);
 
 const BASE_URL = "http://localhost:8080/api";
-let movieContainerEl = document.querySelector("#movie-container");
 let showingsData = [];
 
 
 async function initApp() {
-    display();
+    displayNavigationBar();
     showingsData = await fetchShowings();
     console.log(showingsData);
-    displayShowings(showingsData);
-    movieContainerEl.addEventListener("click", handleGetTickets);
+    displayAllShowingReel(showingsData);
+
 }
 
 async function fetchShowings() {
@@ -30,67 +30,3 @@ async function fetchShowings() {
 
 }
 
-async function handleGetTickets(event) {
-    event.preventDefault();
-
-    const movieBox = event.target.closest("div");
-    const showingId = movieBox.getAttribute("data-showingId");
-    if (showingId !== null) {
-        console.log("clicked showing with id = " + showingId);
-        window.location.href = `Reservations/Reservation.html?showingId=${showingId}`;
-    } else {
-        console.log("box clicked");
-    }
-}
-
-function displayShowings(showings) {
-    movieContainerEl.innerHTML = "";
-    for (let showing of showings) {
-        let movieBoxEl = document.createElement("div");
-        movieBoxEl.classList.add("movie-box");
-        movieBoxEl.setAttribute("data-showingID", showing.id);
-
-        let titleElement = document.createElement("h2");
-        titleElement.textContent = `${showing.movie.title}`;
-        movieBoxEl.appendChild(titleElement);
-
-        //let svgCoverImageElement = document.createElement("svg");
-        //let backgroundRectElement = document.createElement("rect");
-        //svgCoverImageElement.width = 100;
-
-
-        let coverImageElement = document.createElement("img");
-        coverImageElement.alt = "Missing cover image";
-        coverImageElement.src = "/images/Missing_Cover_Image.png";
-        coverImageElement.classList.add("cover-image");
-        movieBoxEl.appendChild(coverImageElement);
-
-        let infoBarElement = document.createElement("h4");
-        infoBarElement.textContent = `${showing.movie.duration} min, PG: ${showing.movie.pgRating}, Start Time: ${showing.startTime}`;
-        movieBoxEl.appendChild(infoBarElement);
-
-        let categoryElement = document.createElement("h3");
-        let categorySentencce = ``;
-        let categories = showing.movie.categories;
-        console.log(categories)
-        for (let category of categories) {
-            categorySentencce += `|${category.genre}|`;
-            console.log(categorySentencce)
-        }
-        categoryElement.textContent = categorySentencce;
-        movieBoxEl.appendChild(categoryElement);
-
-        let descriptionElement = document.createElement("p");
-        descriptionElement.textContent = `${showing.movie.description}`;
-        movieBoxEl.appendChild(descriptionElement);
-
-        let getTicketButton = document.createElement("button");
-        getTicketButton.textContent = "Get tickets!";
-        movieBoxEl.appendChild(getTicketButton);
-
-        movieContainerEl.appendChild(movieBoxEl);
-    }
-
-
-
-}
