@@ -24,7 +24,7 @@ function login() {
 }
 
 function logout() {
-    localStorage.removeItem(user)
+    localStorage.removeItem("user")
     return location.href = "index.html"
 }
 
@@ -38,5 +38,12 @@ function displayUser() {
         if (welcomeEl) {
             welcomeEl.textContent = `Welcome ${user.username}`;
         }
+    }
+}
+function requireAdmin() {
+    const user = getLoggedInUser();
+    if (!user || user.role !== "ADMIN") {
+        alert("You must be an admin to access this page!");
+        window.location.href = "index.html";
     }
 }
