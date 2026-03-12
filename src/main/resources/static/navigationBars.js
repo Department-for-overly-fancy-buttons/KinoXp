@@ -22,20 +22,15 @@ export function display(){
 
     listEl.appendChild(listItemTheatersEl);
 
-    let listItemLoginEl = createHtmlElement("li", "navigationListItem", null);
+    let listItemLoginEl = createHtmlElement({tagName: "li", htmlClass:  "navigationListItem"});
+
     if (!isLoggedIn()) {
-        let loginLinkEl = createHtmlElement("button", "navigationLink", null);
-        loginLinkEl.type = "button";
-        loginLinkEl.title = "Login";
-        loginLinkEl.textContent = "Login";
+        let loginLinkEl = createHtmlElement({tagName: "button", htmlClass: "navigationLink", htmlAttributes: {type: "button", title: "Login", textContent: "Login"}});
         loginLinkEl.addEventListener("click", login);
 
         listItemLoginEl.appendChild(loginLinkEl);
     } else {
-        let logoutLinkEl = createHtmlElement("button", "navigationLink", null);
-        logoutLinkEl.type = "button";
-        logoutLinkEl.title = "Logout";
-        logoutLinkEl.textContent = "Logout";
+        let logoutLinkEl = createHtmlElement({tagName: "button", htmlClass: "navigationLink", htmlAttributes: {type: "button", title: "logout", textContent: "logout"}});
         logoutLinkEl.addEventListener("click", logout);
         listItemLoginEl.appendChild(logoutLinkEl);
     }
@@ -45,53 +40,6 @@ export function display(){
 
     navEl.appendChild(listEl);
 
-
-}
-
-function createHtmlElementTemp(tagName, htmlClass, ids){
-    console.log(`tag: ${tagName}, htmlClass: ${htmlClass}, ids: ${ids}`)
-    let element;
-
-    if(typeof tagName === "string"){
-        element = document.createElement(tagName);
-        console.log("tag is valid string. Attempted to create element:");
-        console.log(element);
-    }else{
-        console.log("tag is clearly an invalid string. returning element: null");
-        return null;
-    }
-
-    let htmlClassString = null;
-    if(Array.isArray(htmlClass)){
-        htmlClassString = htmlClass.reduce((previousClass, currentClass) => previousClass += " " + currentClass);
-        console.log(`htmlClass has multiple htmlClass ${htmlClassString}`);
-    }else if(typeof htmlClass === "string"){
-        htmlClassString = htmlClass;
-        console.log(`htmlClass has one string ${htmlClassString}`);
-    }
-    if(htmlClassString !== null){
-        element.classList.add(htmlClassString);
-        console.log(`htmlClassString is not null (${htmlClassString}) element:`);
-        console.log(element);
-    }
-
-    let idString = null;
-    if(Array.isArray(ids)){
-        idString = ids.reduce((previousClass, currentClass) => previousClass += " " + currentClass);
-        console.log(`ids has multiple ids ${idString}`);
-    }else if(typeof ids === "string"){
-        idString = ids;
-        console.log(`ids has one string ${idString}`);
-    }
-    if(idString !== null){
-        element.id = idString;
-        console.log(`idString is not null (${idString}) element:`);
-        console.log(element);
-    }
-    console.log("returning");
-    console.log(element);
-
-    return element;
 
 }
 
