@@ -5,6 +5,7 @@ import com.example.kinoxp.model.Category;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.repository.CategoryRepository;
 import com.example.kinoxp.repository.MovieRepository;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,4 +46,7 @@ public class MovieService {
     }
 
 
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
+    }
 }
