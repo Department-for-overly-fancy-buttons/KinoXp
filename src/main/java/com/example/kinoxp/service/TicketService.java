@@ -7,6 +7,7 @@ import com.example.kinoxp.model.Ticket;
 import com.example.kinoxp.model.TicketType;
 import com.example.kinoxp.repository.TicketRepository;
 import com.example.kinoxp.repository.TicketTypeRepository;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,4 +51,7 @@ public class TicketService {
         return ticketTypeRepository.findAll();
     }
 
+    public TicketType createTicketType(TicketType ticketType) {
+        return ticketTypeRepository.save(ticketType);
+    }
 }
