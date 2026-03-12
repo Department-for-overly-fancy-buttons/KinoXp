@@ -1,6 +1,7 @@
 package com.example.kinoxp.service;
 
 import com.example.kinoxp.exceptions.NotFoundException;
+import com.example.kinoxp.model.Category;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.repository.CategoryRepository;
 import com.example.kinoxp.repository.MovieRepository;
@@ -39,6 +40,9 @@ public class MovieService {
         movieRepository.deleteById(id);
     }
 
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
 
 
 }

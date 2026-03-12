@@ -1,5 +1,6 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.model.Category;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.service.MovieService;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,11 @@ public class MovieController {
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List<Category>> getCategories() {
+        return ResponseEntity.ok(movieService.getAllCategories());
     }
 
 }

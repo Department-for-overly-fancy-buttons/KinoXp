@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<form id="movie-form">
+    <label>
+        <input type="text" name="title" placeholder="name" required>Title
+    </label>
+    <br>
+    <label>
+        <input type="text" name="description" placeholder="location" required>Description
+    </label>
+    <br>
+    <label>
+        <input type="number" name="pgRating" placeholder="17" required>PG-rating
+    </label>
+    <br>
+    <label>
+        <input type="number" name="duration" placeholder="160" required>Duration
+    </label>
+
+    <h2>Select categories for movie</h2>
+    <div id="categoryContainer"></div>
+    <button type="submit" id="submitMovie">Add movie</button>
+</form>
+<script src="createMovie.js"></script>
+</body>
+</html>
