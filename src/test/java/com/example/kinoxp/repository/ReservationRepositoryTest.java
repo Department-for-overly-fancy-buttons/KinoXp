@@ -32,6 +32,9 @@ public class ReservationRepositoryTest {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    private ShowingRepository showingRepository;
+
     private Movie testMovie;
     private Theater testTheater;
     private Showing testShowing;
@@ -40,7 +43,7 @@ public class ReservationRepositoryTest {
     @BeforeEach
     public void setup(){
         testMovie = new Movie("Predator: Killer of Killers", "Three of the fiercest warriors in human history become prey to the ultimate killer of killers.", 17, 85.0, List.of(new Category("Sci-fi"), new Category("Action")));
-        testTheater = new Theater("Sal 1", 10, 20);
+        testTheater = new Theater("Sal 1", 10, 20, "Kjønehavn");
         testShowing = new Showing(testMovie, testTheater, LocalDateTime.of(2026, 3, 8, 18, 15), false);
         testReservation = new Reservation(testShowing, "Emilie.K.Meyer@gmail.com", "+45 90348172", "Emilie Kalmer", "Meyer");
         reservationRepository.save(testReservation);
@@ -101,18 +104,19 @@ public class ReservationRepositoryTest {
     }
 
     //findAllByShowing_Id(long showingId);
-//    @Test
-//    public void GivenShowingID_WhenSaved_ThenCanFindRelevantReservations(){
-//
-//        //Saving additional data
-//        Reservation additionalTestReservationOne = new Reservation(testShowing, "KajHajMedDig@icloud.com", "+45 44817504", "Kaj", "Sjøisted");
-//        Reservation additionalTestReservationTwo = new Reservation(testShowing, "Coffe-addict-2009189@gmail.com", "+45 74872314", "Julie", "Sandre");
-//        reservationRepository.save(additionalTestReservationOne);
-//        reservationRepository.save(additionalTestReservationTwo);
-//
-//        List<Reservation> foundReservations = reservationRepository.findAllByShowing_Id(testShowing.getId());
-//
-//        assertNotNull(foundReservations);
+    @Test
+    public void GivenShowingID_WhenSaved_ThenCanFindRelevantReservations(){
+
+
+        //Saving additional data
+        Reservation additionalTestReservationOne = new Reservation(testShowing, "KajHajMedDig@icloud.com", "+45 44817504", "Kaj", "Sjøisted");
+        Reservation additionalTestReservationTwo = new Reservation(testShowing, "Coffe-addict-2009189@gmail.com", "+45 74872314", "Julie", "Sandre");
+        reservationRepository.save(additionalTestReservationOne);
+        reservationRepository.save(additionalTestReservationTwo);
+
+        List<Reservation> foundReservations = reservationRepository.findAllByShowing_Id(testShowing.getId());
+
+        assertNotNull(foundReservations);
 //
 //        for (Reservation foundReservation : foundReservations) {
 //            assertNotNull(foundReservation);
@@ -142,6 +146,6 @@ public class ReservationRepositoryTest {
 //            assertTrue(foundReservation.getFirstName().equalsIgnoreCase(testReservation.getFirstName()));
 //            assertTrue(foundReservation.getLastName().equalsIgnoreCase(testReservation.getLastName()));
 //        }
-//        }
+        }
 
 }

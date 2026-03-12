@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KinoXpApplication {
      static void main(String[] args) {
-        SpringApplication.run(KinoXpApplication.class, args);
-        System.out.println(Role.ADMIN.toString());
+         SpringApplication.run(KinoXpApplication.class, args);
 
     }
 }

@@ -47,4 +47,9 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getAllCategories());
     }
 
+    @PostMapping("/category")
+    public ResponseEntity<Category> addCategory(@RequestBody Category category){
+        return ResponseEntity.ok(movieService.createCategory(category));
+    }
+
 }
