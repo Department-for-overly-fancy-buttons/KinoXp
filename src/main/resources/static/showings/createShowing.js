@@ -66,7 +66,7 @@ async function handleSubmit(event) {
     });
 
     const result = await response.json();
-    console.log("Movie added:", result);
+    console.log("Showing added:", result);
     window.location.href = `../index.html`;
 }
 
@@ -82,11 +82,8 @@ function getTheaterId() {
 
 function display() {
     let movieContainer = document.getElementById("movieContainer");
-    let theaterContainer = document.getElementById("theaterContainer");
     let movieSelect = document.createElement("select");
     movieSelect.setAttribute("id", "movieSelect");
-    let theaterSelect = document.createElement("select");
-    theaterSelect.setAttribute("id", "theaterSelect");
 
     for (let i = 0; i < moviesData.length; i++) {
         const option = document.createElement("option")
@@ -96,6 +93,9 @@ function display() {
     }
     movieContainer.appendChild(movieSelect);
 
+    let theaterContainer = document.getElementById("theaterContainer");
+    let theaterSelect = document.createElement("select");
+    theaterSelect.setAttribute("id", "theaterSelect");
     for (let i = 0; i < theatersData.length; i++) {
         const option = document.createElement("option")
         option.setAttribute("label", `${theatersData[i].theaterName}`);
