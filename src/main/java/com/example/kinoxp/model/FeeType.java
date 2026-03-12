@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class FeeTypes {
+public class FeeType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String type;
