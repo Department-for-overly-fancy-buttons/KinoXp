@@ -44,6 +44,6 @@ function requireAdmin() {
     const user = getLoggedInUser();
     if (!user || user.role !== "ADMIN") {
         alert("You must be an admin to access this page!");
-        window.location.href = "index.html";
+        location.href = "index.html";
     }
 }
