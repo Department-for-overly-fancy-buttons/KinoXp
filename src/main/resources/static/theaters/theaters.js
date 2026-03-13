@@ -1,3 +1,4 @@
+import {displayNavigationBar} from "../navigationBars.js";
 document.addEventListener("DOMContentLoaded", initApp);
 
 const BASE_URL = "http://localhost:8080/api";
@@ -5,6 +6,7 @@ let theaterContainerEl = document.querySelector("#theater-container");
 let theaterData = [];
 
 async function initApp() {
+    displayNavigationBar();
     theaterData = await fetchTheaters();
     console.log(theaterData);
     displayTheaters(theaterData);

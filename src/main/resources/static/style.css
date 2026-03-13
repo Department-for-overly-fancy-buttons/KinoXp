@@ -1,14 +1,21 @@
 :root{
-    --headerContainerColor: #0D0C0C;
-    --headerTextColor: #F4796B;
+    --black: #0D0C0C;
+    --textColor: #F4796B;
     --headerFontSize: 1.50rem;
+    --bgColor: #F7B2A9;
+    --red: #751c1c;
     /*https://coolors.co/0d0c0c-751c1c-dd2c2c-f44e3f-f46455-f4796b-f4998d-f5a297-f6aaa0-f7b2a9*/
 
 }
+
+body {
+    background-color: var(--bgColor);
+}
+
 nav {
-    background-color: var(--headerContainerColor);
+    background-color: var(--black);
     min-height: var(--headerFontSize);
-    color: var(--headerTextColor)
+    color: var(--textColor)
 }
 
 #navigationList {
@@ -23,7 +30,7 @@ nav {
 
 .navigationListItem {
     background-color: inherit;
-    border-left: 3px solid var(--headerTextColor);
+    border-left: 3px solid var(--textColor);
     color: inherit;
 }
 
@@ -31,7 +38,7 @@ nav {
     font-weight: bold;
     font-size: var(--headerFontSize);
     float: left;
-    color: var(--headerTextColor);
+    color: var(--textColor);
 }
 
 .navigationListItem .navigationLink {
@@ -53,20 +60,38 @@ nav {
     text-decoration: none;
 }
 
-#movie-container, #theater-container {
-    background-color: darkslateblue;
-    display: flex;
+#tape-container {
+    margin-top: 20px;
+    background-color: var(--black);
+    color: var(--textColor);
 }
 
-.movie-box, .theater-box {
-    background-color: aquamarine;
-    width: 9%;
+#movie-container, #theater-container {
+
+    background-color: inherit;
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.theater-box {
+    background-color: var(--red);
+    border-radius: 20px;
+    width: 300px;
     padding: 5px;
     margin: 10px;
+    text-wrap: auto;
+}
+
+.movie-box{
+    background-color: var(--black);
+    width: 200px;
+    margin: 10px;
+    text-wrap: auto;
 }
 
 .cover-image {
-    width: 75%;
+    width: 100%;
     height: auto;
     margin: auto;
 }
