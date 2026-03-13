@@ -4,6 +4,7 @@ const BASE_URL = "http://localhost:8080/api";
 
 let categoryData = [];
 let imageData;
+let preview;
 
 async function initApp() {
     categoryData = await fetchCategories();
@@ -13,7 +14,9 @@ async function initApp() {
     console.log(categoryData);
     document.getElementById("submitMovie").addEventListener("click", handleSubmit);
     document.getElementById("poster").addEventListener('change', getImageAsByte64);
+    document.getElementById("update-image").addEventListener('click', updateImage);
     display();
+    preview = document.getElementById("movie-image");
 }
 
 async function fetchCategories() {
@@ -87,12 +90,16 @@ function getImageAsByte64(event) {
 
     const reader = new FileReader();
     reader.onloadend = () => {
-        const base64String = reader.result
+        imageData = reader.result
             .replace('data:', '')
             .replace(/^.+,/, '');
-
-        console.log(base64String);
-        imageData = base64String;
     };
     reader.readAsDataURL(file);
+}
+
+function updateImage() {
+    preview.innerHTML = "";
+    let image = new Image();
+    image.src = `data:image/png;base64,${imageData}`;
+    preview.appendChild(image);
 }

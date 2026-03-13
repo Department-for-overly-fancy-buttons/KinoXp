@@ -27,7 +27,7 @@ async function fetchMovie() {
 
 function displayMovie(movie) {
     let image = new Image();
-    image.src = `data:image/png;base64,${movieData.poster}`;
+    image.src = `data:image/png;base64,${movie.poster}`;
     document.body.appendChild(image);
     console.log(movie);
 }

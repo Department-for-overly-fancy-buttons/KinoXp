@@ -38,6 +38,10 @@ async function handleGetMovie(event) {
 }
 
 function displayMovies(movies) {
-
+    for(let i = 0 ; i < movies.length;i++){
+        let image = new Image();
+        image.src = `data:image/png;base64,${movies[i].poster}`;
+        document.body.appendChild(image);
+    }
     console.log(movies);
 }
