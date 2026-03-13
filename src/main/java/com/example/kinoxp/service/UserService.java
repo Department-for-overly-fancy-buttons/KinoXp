@@ -46,12 +46,12 @@ public class UserService {
     public User updateUserLogin(Long id, User user) {
         User newUser = getUserById(id);
         newUser.setUsername(user.getUsername());
-        newUser.setPasswords(user.getPasswords());
+        newUser.setPassword(user.getPassword());
         return userRepository.save(newUser);
     }
 
     public User logIn(String username,String password){
-        return userRepository.findByUsernameAndPasswords(username, password);
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
 }

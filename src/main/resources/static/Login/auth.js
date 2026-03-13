@@ -44,12 +44,12 @@ function requireAdmin() {
     const user = getLoggedInUser();
     if (!user || user.role !== "ADMIN") {
         alert("You must be an admin to access this page!");
-        location.href = "index.html";
+        location.href = "../Login/LoginForm.html";
     }
 }
 function requireEmployee() {
     const user = getLoggedInUser();
     if (!user || user.role !== "Employee" || user.role !== "ADMIN");
     alert("You must be an admin and or employee to access this page!");
-    location.href = "index.html";
+    location.href = "../Login/LoginForm.html";
 }
