@@ -22,10 +22,11 @@ public class DBInitData implements CommandLineRunner {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
     private final TicketTypeRepository ticketTypeRepository;
+    private final FeeTypeRepository feeTypeRepository;
 
     private final ReservationService reservationService;
 
-    public DBInitData(MovieRepository movieRepository, ReservationRepository reservationRepository, ShowingRepository showingRepository, TheaterRepository theaterRepository, TicketRepository ticketRepository, UserRepository userRepository, CategoryRepository categoryRepository, TicketTypeRepository ticketTypeRepository, ReservationService reservationService) {
+    public DBInitData(MovieRepository movieRepository, ReservationRepository reservationRepository, ShowingRepository showingRepository, TheaterRepository theaterRepository, TicketRepository ticketRepository, UserRepository userRepository, CategoryRepository categoryRepository, TicketTypeRepository ticketTypeRepository, FeeTypeRepository feeTypeRepository, ReservationService reservationService) {
         this.movieRepository = movieRepository;
         this.reservationRepository = reservationRepository;
         this.showingRepository = showingRepository;
@@ -34,11 +35,20 @@ public class DBInitData implements CommandLineRunner {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.ticketTypeRepository = ticketTypeRepository;
+        this.feeTypeRepository = feeTypeRepository;
         this.reservationService = reservationService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        FeeType threeDimensionFee = new FeeType("3d", 80);
+        FeeType longMovieFee = new FeeType("hel_aften_film", 60);
+        FeeType reservationFee = new FeeType("reservationsgebyr", 50);
+
+        feeTypeRepository.save(threeDimensionFee);
+        feeTypeRepository.save(longMovieFee);
+        feeTypeRepository.save(reservationFee);
+
         User user = new User("Olivertest", "123", Role.ADMIN);
         User user1 = new User("Olivertest", "123", Role.EMPLOYEE);
         User user2 = new User("Oliver", "123", Role.EMPLOYEE);
@@ -46,7 +56,26 @@ public class DBInitData implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
 
-        List<Category> fullCategoryList = List.of(new Category("Horror"), new Category("Comedy"), new Category("Scifi"));
+        List<Category> fullCategoryList = List.of(
+                new Category("Horror"),
+                new Category("Comedy"),
+                new Category("Scifi"),
+                new Category("Action"),
+                new Category("Drama"),
+                new Category("Thriller"),
+                new Category("Romance"),
+                new Category("Animation"),
+                new Category("Documentary"),
+                new Category("Fantasy"),
+                new Category("Crime"),
+                new Category("Adventure"),
+                new Category("Mystery"),
+                new Category("Musical"),
+                new Category("Family"),
+                new Category("History"),
+                new Category("War"),
+                new Category("Western")
+        );
         categoryRepository.saveAll(fullCategoryList);
         List<Category> categoryList1 = List.of(fullCategoryList.get(0));
 
@@ -130,15 +159,36 @@ public class DBInitData implements CommandLineRunner {
         Reservation reservation2 = new Reservation(showing3OfMovie1, "JuliaGillison@emailo.com", "+45 22222222", "Julia", "Gillieson");
         reservation2.setTimeOfPurchase(LocalDateTime.now().plusHours(30));
 
-        Ticket ticket1 = new Ticket(reservation1, 4, 16, basicTicketType); //første film
-        Ticket ticket2 = new Ticket(reservation1, 4, 15, basicTicketType); // anden film
-        Ticket ticket3 = new Ticket(reservation2, 25, 15, luxuryTicketType); // tredje film
-        Ticket ticket4 = new Ticket(reservation3, 4, 2, basicTicketType); // fjerde film
-        Ticket ticket5 = new Ticket(reservation5, 6, 6, basicTicketType); // femte film
-        Ticket ticket6 = new Ticket(reservation4, 4, 1, basicTicketType); // ingen
+        Ticket ticket1 = new Ticket(reservation1, 4, 16, basicTicketType);
+        Ticket ticket2 = new Ticket(reservation1, 4, 15, basicTicketType);
+        Ticket ticket3 = new Ticket(reservation2, 25, 15, luxuryTicketType);
+        Ticket ticket4 = new Ticket(reservation3, 4, 2, basicTicketType);
+        Ticket ticket5 = new Ticket(reservation5, 6, 6, basicTicketType);
+        Ticket ticket6 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket7 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket8 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket9 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket10 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket11 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket12 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket13 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket14 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket15 = new Ticket(reservation1, 4, 1, basicTicketType);
+        Ticket ticket16 = new Ticket(reservation1, 4, 1, basicTicketType);
+
 
         reservation1.addTicket(ticket1);
-        reservation1.addTicket(ticket2);
+        reservation1.addTicket(ticket7);
+        reservation1.addTicket(ticket8);
+        reservation1.addTicket(ticket9);
+        reservation1.addTicket(ticket10);
+        reservation1.addTicket(ticket11);
+        reservation1.addTicket(ticket12);
+        reservation1.addTicket(ticket13);
+        reservation1.addTicket(ticket14);
+        reservation1.addTicket(ticket15);
+        reservation1.addTicket(ticket16);
+
         reservation2.addTicket(ticket3);
         reservation5.addTicket(ticket5);
         reservation3.addTicket(ticket4);
