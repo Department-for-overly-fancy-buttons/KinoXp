@@ -50,7 +50,7 @@ public class UserController {
 
     @PostMapping("/log_in")
     public ResponseEntity<User> logIn(@RequestBody User user) {
-        User loggedInUser = userService.logIn(user.getUsername(), user.getPasswords());
+        User loggedInUser = userService.logIn(user.getUsername(), user.getPassword());
         if (loggedInUser != null) {
             return ResponseEntity.ok(loggedInUser);
         }
