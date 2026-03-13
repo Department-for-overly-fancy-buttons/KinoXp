@@ -7,6 +7,7 @@ let movieData;
 
 async function initApp() {
     movieData = await fetchMovie();
+    console.log(movieData);
     displayMovie(movieData);
 }
 
@@ -24,6 +25,9 @@ async function fetchMovie() {
 
 }
 
-function displayMovie(movie){
+function displayMovie(movie) {
+    let image = new Image();
+    image.src = `data:image/png;base64,${movieData.poster}`;
+    document.body.appendChild(image);
     console.log(movie);
 }

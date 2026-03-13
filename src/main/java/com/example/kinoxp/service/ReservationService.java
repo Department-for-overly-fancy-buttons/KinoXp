@@ -26,7 +26,6 @@ public class ReservationService {
     }
 
     public Reservation createReservation(Reservation reservation) {
-
         reservation.setTotalPrice(priceCalculationTotal(reservation));
         return reservationRepository.save(reservation);
     }
