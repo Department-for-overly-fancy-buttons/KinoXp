@@ -23,9 +23,22 @@ export function displayAllShowingReel(showings){
         //svgCoverImageElement.width = 100;
 
 
-        let coverImageElement = createHtmlElement({tagName: "img", htmlClass: "cover-image", htmlAttributes: {alt: "Missing cover image", src: "/images/Missing_Cover_Image.png"}});
-        movieBoxEl.appendChild(coverImageElement);
-
+        if(showing.movie.poster !== null) {
+            let coverImageElement = createHtmlElement({
+                tagName: "img",
+                htmlClass: "cover-image",
+                htmlAttributes: {alt: "Missing cover image", src: `data:image/png;base64,${showing.movie.poster}`}
+            });
+            movieBoxEl.appendChild(coverImageElement);
+            console.log(showing.movie.poster);
+        } else{
+            let coverImageElement = createHtmlElement({
+                tagName: "img",
+                htmlClass: "cover-image",
+                htmlAttributes: {alt: "Missing cover image", src: "/images/Missing_Cover_Image.png"}
+            });
+            movieBoxEl.appendChild(coverImageElement);
+        }
         let infoBarElement = createHtmlElement({tagName: "h4", htmlAttributes: {textContent: `${showing.movie.duration} min, PG: ${showing.movie.pgRating}, Start Time: ${showing.startTime}`}});
         movieBoxEl.appendChild(infoBarElement);
 
