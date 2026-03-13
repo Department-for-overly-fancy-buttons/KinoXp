@@ -8,6 +8,7 @@ async function initApp() {
     roleData = await fetchRoles();
     requireLogIn();
     requireAdmin();
+    await display()
 
     const form = document.getElementById("addUserForm");
     if (form) {
@@ -87,40 +88,25 @@ function display() {
 
 async function handleDeleteUser(event) {
     event.preventDefault();
-
     const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const role = document.getElementById("role").value;
-
-    const user = {
-        username: username,
-        password: password,
-        role: role
-    };
-
     try {
-        const newUser = await fetchAddUser(user);
-        console.log("User created:", newUser);
-
+        await fetchDeleteUser(username);
+        console.log("User deleted");
         display();
-        event.target.reset();
+
     } catch (error) {
         console.error(error);
-        alert("Could not create user");
+        alert("Could not delete user");
     }
 }
 
-async function fetchAddUser(user) {
-    const response = await fetch(`${BASE_URL}/users`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
+async function fetchDeleteUser(user) {
+    const response = await fetch(`${BASE_URL}/users/${user.id}`, {
+        method: "DELETE",
     });
 
     if (!response.ok) {
-        throw new Error("Failed to add user");
+        throw new Error("Failed to delete user user");
     }
 
     return await response.json();
