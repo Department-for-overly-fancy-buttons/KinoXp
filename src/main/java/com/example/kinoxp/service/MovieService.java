@@ -1,5 +1,6 @@
 package com.example.kinoxp.service;
 
+import com.example.kinoxp.dto.CreateMovieRequest;
 import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.Category;
 import com.example.kinoxp.model.Movie;
@@ -8,6 +9,10 @@ import com.example.kinoxp.repository.MovieRepository;
 import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -33,7 +38,9 @@ public class MovieService {
         return movieRepository.findById(id).orElseThrow(() -> new NotFoundException("Movie not found with id: " + id));
     }
 
-    public Movie createMovie(Movie movie) {
+    public Movie createMovie(CreateMovieRequest request) {
+        Movie movie = new Movie(request.title(), request.description(), request.pgRating(), request.duration(), request.categories());
+        movie.setPoster(request.posterData());
         return movieRepository.save(movie);
     }
 

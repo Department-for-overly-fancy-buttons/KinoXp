@@ -2,6 +2,7 @@ package com.example.kinoxp.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "categoryId")
     )
     private List<Category> categories = new ArrayList<>();
+    @Lob
+    private String poster;
 
 
     public Movie(String title, String description, int pgRating, double duration, List<Category> categories) {
@@ -37,6 +40,14 @@ public class Movie {
     }
 
     public Movie() {
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public long getId() {

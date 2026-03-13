@@ -1,5 +1,6 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.dto.CreateMovieRequest;
 import com.example.kinoxp.model.Category;
 import com.example.kinoxp.model.Movie;
 import com.example.kinoxp.service.MovieService;
@@ -32,8 +33,8 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-        return ResponseEntity.ok(movieService.createMovie(movie));
+    public ResponseEntity<Movie> addMovie(@RequestBody CreateMovieRequest request) {
+        return ResponseEntity.ok(movieService.createMovie(request));
     }
 
     @DeleteMapping("/{id}")

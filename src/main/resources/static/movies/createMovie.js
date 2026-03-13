@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', initApp);
 const BASE_URL = "http://localhost:8080/api";
 
 let categoryData = [];
+let imageData;
 
 async function initApp() {
     categoryData = await fetchCategories();
@@ -11,6 +12,7 @@ async function initApp() {
 
     console.log(categoryData);
     document.getElementById("submitMovie").addEventListener("click", handleSubmit);
+    document.getElementById("poster").addEventListener('change', getImageAsByte64);
     display();
 }
 
@@ -40,7 +42,8 @@ async function handleSubmit(event) {
         description: formData.get("description"),
         pgRating: formData.get("pgRating"),
         duration: formData.get("duration"),
-        categories: checkedCategories
+        categories: checkedCategories,
+        posterData: imageData
     }
 
     const response = await fetch(`${BASE_URL}/movies`, {
@@ -63,7 +66,6 @@ function getCheckedCategories() {
     })
     console.log(checkedCategories);
     return checkedCategories;
-
 }
 
 function display() {
@@ -78,4 +80,19 @@ function display() {
         label.appendChild(checkBox);
         container.appendChild(label);
     }
+}
+
+function getImageAsByte64(event) {
+    const file = event.target.files[0];
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+        const base64String = reader.result
+            .replace('data:', '')
+            .replace(/^.+,/, '');
+
+        console.log(base64String);
+        imageData = base64String;
+    };
+    reader.readAsDataURL(file);
 }

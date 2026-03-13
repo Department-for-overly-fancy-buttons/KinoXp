@@ -38,5 +38,6 @@ async function handleGetMovie(event) {
 }
 
 function displayMovies(movies) {
+
     console.log(movies);
 }
