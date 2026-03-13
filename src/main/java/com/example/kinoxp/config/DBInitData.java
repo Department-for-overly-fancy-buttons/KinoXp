@@ -50,8 +50,9 @@ public class DBInitData implements CommandLineRunner {
         feeTypeRepository.save(reservationFee);
 
         User user = new User("Olivertest", "123", Role.ADMIN);
-        User user1 = new User("Olivertest", "123", Role.EMPLOYEE);
+        User user1 = new User("Olivertest1", "123", Role.COSTUMER);
         User user2 = new User("Oliver", "123", Role.EMPLOYEE);
+
         userRepository.save(user);
         userRepository.save(user1);
         userRepository.save(user2);
