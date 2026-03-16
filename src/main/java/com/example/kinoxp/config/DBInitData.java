@@ -120,21 +120,20 @@ public class DBInitData implements CommandLineRunner {
         ticketTypeRepository.save(luxuryTicketType);
 
         List<Theater> theaterList = List.of(
-        new Theater("Hall_Alpha", 20, 12,"Danmark"),
-        new Theater("Hall_Beta", 25, 16,"Jylland"),
-        new Theater("Hall_Gamma", 30, 14, "Sjælland"),
-        new Theater("Hall_Delta", 18, 10, "Fyn")
+                new Theater("Hall_Alpha", 20, 12, "Danmark"),
+                new Theater("Hall_Beta", 25, 16, "Jylland"),
+                new Theater("Hall_Gamma", 30, 14, "Sjælland"),
+                new Theater("Hall_Delta", 18, 10, "Fyn")
         );
 
-        for(Theater theater : theaterList){
-            for(int i = 1; i <= theater.getNumberOfRows();i++){
-                if(i<=2){
-                    theater.addTheaterRow(new TheaterRow(i,theater,cowboyTicketType));
-                } else if (i>theater.getNumberOfRows()-2) {
-                    theater.addTheaterRow(new TheaterRow(i,theater,luxuryTicketType));
-                }
-                else{
-                    theater.addTheaterRow(new TheaterRow(i,theater,basicTicketType));
+        for (Theater theater : theaterList) {
+            for (int i = 1; i <= theater.getNumberOfRows(); i++) {
+                if (i <= 2) {
+                    theater.addTheaterRow(new TheaterRow(i, theater, cowboyTicketType));
+                } else if (i > theater.getNumberOfRows() - 2) {
+                    theater.addTheaterRow(new TheaterRow(i, theater, luxuryTicketType));
+                } else {
+                    theater.addTheaterRow(new TheaterRow(i, theater, basicTicketType));
                 }
             }
         }
@@ -142,6 +141,7 @@ public class DBInitData implements CommandLineRunner {
         theaterRepository.saveAll(theaterList);
 
         List<Showing> showingList = List.of(
+                new Showing(movieList.get(0), theaterList.get(0), LocalDateTime.now().minusWeeks(1), true),
                 new Showing(movieList.get(0), theaterList.get(0), LocalDateTime.now(), true),
                 new Showing(movieList.get(1), theaterList.get(1), LocalDateTime.now().plusWeeks(1), true),
                 new Showing(movieList.get(0), theaterList.get(1), LocalDateTime.now().plusWeeks(1), false),
@@ -194,7 +194,7 @@ public class DBInitData implements CommandLineRunner {
 
 
         Random rng = new Random();
-        for(Reservation reservation: reservationList) {
+        for (Reservation reservation : reservationList) {
             reservation.setTimeOfPurchase(LocalDateTime.now().minusHours(rng.nextInt(10, 8000)));
         }
 
@@ -267,7 +267,7 @@ public class DBInitData implements CommandLineRunner {
                 new Ticket(reservationList.get(14), 3, 4, basicTicketType),
                 new Ticket(reservationList.get(14), 3, 5, basicTicketType),
                 new Ticket(reservationList.get(14), 3, 6, basicTicketType)
-                );
+        );
         reservationList.get(14).setTickets(ticketList);
         ticketList = List.of(
                 // Tour Group (9 tickets)
@@ -280,7 +280,7 @@ public class DBInitData implements CommandLineRunner {
                 new Ticket(reservationList.get(15), 4, 7, basicTicketType),
                 new Ticket(reservationList.get(15), 4, 8, basicTicketType),
                 new Ticket(reservationList.get(15), 4, 9, basicTicketType)
-                );
+        );
         reservationList.get(15).setTickets(ticketList);
         ticketList = List.of(
                 // Family Reunion (10 tickets)

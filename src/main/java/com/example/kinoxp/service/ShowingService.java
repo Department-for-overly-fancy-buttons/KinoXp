@@ -11,6 +11,7 @@ import com.example.kinoxp.repository.TheaterRepository;
 import org.springframework.boot.actuate.endpoint.Show;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,7 @@ public class ShowingService {
     }
 
     public List<Showing> getShowings() {
-        return showingRepository.findAll();
+        return showingRepository.findAllByStartTimeGreaterThanEqualOrderByStartTime(LocalDateTime.now());
     }
 
     public Showing getShowingById(Long id) {
