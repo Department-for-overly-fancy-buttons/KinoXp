@@ -50,7 +50,7 @@ public class UserRepositoryTest {
 
         assertNotNull(foundUser);
         assertEquals(testUser.getUsername(), foundUser.getUsername());
-        assertEquals(testUser.getPasswords(), foundUser.getPasswords());
+        assertEquals(testUser.getPassword(), foundUser.getPassword());
         assertEquals(testUser.getRole(), foundUser.getRole());
     }
 
