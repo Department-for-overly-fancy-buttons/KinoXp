@@ -13,5 +13,5 @@ public interface ShowingRepository extends JpaRepository<Showing, Long> {
 
     List<Showing> findByMovie_Id(long movieId);
 
-    List<Showing> findAllByStartTimeGreaterThanEqualOrderByStartTime(LocalDateTime time);
+    List<Showing> findAllByStartTimeAfterOrderByStartTime(LocalDateTime time);
 }

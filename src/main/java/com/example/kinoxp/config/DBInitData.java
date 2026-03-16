@@ -142,7 +142,7 @@ public class DBInitData implements CommandLineRunner {
 
         List<Showing> showingList = List.of(
                 new Showing(movieList.get(0), theaterList.get(0), LocalDateTime.now().minusWeeks(1), true),
-                new Showing(movieList.get(0), theaterList.get(0), LocalDateTime.now(), true),
+                new Showing(movieList.get(0), theaterList.get(0), LocalDateTime.now().plusMinutes(1), true),
                 new Showing(movieList.get(1), theaterList.get(1), LocalDateTime.now().plusWeeks(1), true),
                 new Showing(movieList.get(0), theaterList.get(1), LocalDateTime.now().plusWeeks(1), false),
                 new Showing(movieList.get(0), theaterList.get(0), LocalDateTime.now().minusMinutes(40), false),

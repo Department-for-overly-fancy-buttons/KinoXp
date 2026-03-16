@@ -44,7 +44,7 @@ public class ShowingService {
     }
 
     public List<Showing> getShowings() {
-        return showingRepository.findAllByStartTimeGreaterThanEqualOrderByStartTime(LocalDateTime.now());
+        return showingRepository.findAllByStartTimeAfterOrderByStartTime(LocalDateTime.now());
     }
 
     public Showing getShowingById(Long id) {
