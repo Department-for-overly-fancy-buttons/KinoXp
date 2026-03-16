@@ -1,9 +1,6 @@
-import {displayNavigationBar} from "../navigationBars.js";
-
 const BASE_URL = "http://localhost:8080/api/users"
 
 document.addEventListener('DOMContentLoaded', () => {
-    displayNavigationBar();
     const loginForm = document.getElementById("loginForm");
     if (!loginForm) return;
 
