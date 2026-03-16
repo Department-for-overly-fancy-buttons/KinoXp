@@ -1,6 +1,6 @@
 import {createHtmlElement, createSvgElement} from "./htmlTagFactory.js";
 
-export function displayAllShowingReel(showings){
+export function displayAllShowingReel(showings) {
     let tapeContainerEl = document.querySelector("#tape-container");
     let movieContainerEl = createHtmlElement({tagName: "div", htmlAttributes: {id: "movie-container"}});
     movieContainerEl.innerHTML = "";
@@ -14,7 +14,11 @@ export function displayAllShowingReel(showings){
         let movieBoxEl = createHtmlElement({tagName: "div", htmlClass: "movie-box"})
         movieBoxEl.setAttribute("data-showingID", showing.id);
 
-        let titleElement = createHtmlElement({tagName: "h2", htmlClass: "movie-title", htmlAttributes: {textContent: `${showing.movie.title}`, title: `${showing.movie.title}`}});
+        let titleElement = createHtmlElement({
+            tagName: "h2",
+            htmlClass: "movie-title",
+            htmlAttributes: {textContent: `${showing.movie.title}`, title: `${showing.movie.title}`}
+        });
         movieBoxEl.appendChild(titleElement);
 
 
@@ -23,7 +27,7 @@ export function displayAllShowingReel(showings){
         //svgCoverImageElement.width = 100;
 
 
-        if(showing.movie.poster !== null) {
+        if (showing.movie.poster !== null) {
             let coverImageElement = createHtmlElement({
                 tagName: "img",
                 htmlClass: "cover-image",
@@ -31,7 +35,7 @@ export function displayAllShowingReel(showings){
             });
             movieBoxEl.appendChild(coverImageElement);
             console.log(showing.movie.poster);
-        } else{
+        } else {
             let coverImageElement = createHtmlElement({
                 tagName: "img",
                 htmlClass: "cover-image",
@@ -40,9 +44,14 @@ export function displayAllShowingReel(showings){
             movieBoxEl.appendChild(coverImageElement);
         }
 
-        const monthNames = ["Jan", "Feb", "Mar", "Apr","May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let showingDate = Temporal.PlainDateTime.from(showing.startTime);
-        let infoBarElement = createHtmlElement({tagName: "h4", htmlClass: "movie-date", htmlAttributes: {textContent: `${monthNames[showingDate.month - 1]}: ${showingDate.day}`}});
+        let infoBarElement = createHtmlElement({
+            tagName: "h4",
+            htmlClass: "movie-date",
+            htmlAttributes: {textContent: `${monthNames[showingDate.month - 1]}: ${showingDate.day} \n ${showingDate.hour}:${showingDate.minute}`}
+        });
+        infoBarElement.setAttribute('style', 'white-space: pre;');
         movieBoxEl.appendChild(infoBarElement);
 
         /*let categorySentencce = ``;
@@ -60,7 +69,11 @@ export function displayAllShowingReel(showings){
         movieBoxEl.appendChild(descriptionElement);
          */
 
-        let getTicketButton = createHtmlElement({tagName: "button", htmlClass: "get-tickets-button", htmlAttributes: {textContent: "Get tickets!"}});
+        let getTicketButton = createHtmlElement({
+            tagName: "button",
+            htmlClass: "get-tickets-button",
+            htmlAttributes: {textContent: "Get tickets!"}
+        });
         movieBoxEl.appendChild(getTicketButton);
 
         movieContainerEl.addEventListener("click", handleGetTickets);
@@ -85,7 +98,7 @@ async function handleGetTickets(event) {
     }
 }
 
-function createTapeHoles(){
+function createTapeHoles() {
     let tapeHoleHeight = 15;
     let verticalOffset = 20;
     let svgHeight = tapeHoleHeight + 2 * verticalOffset;
@@ -94,14 +107,38 @@ function createTapeHoles(){
     let defsEl = createSvgElement({tagName: "defs"});
     tapeHolesSVGEl.appendChild(defsEl);
     //holes pattern (blueprint)
-    let patternEl = createSvgElement({tagName: "pattern", svgAttributes: {id: "tapeTopHoles", x: "0", y: "0", width: "40", height: `${svgHeight}`, patternUnits: "userSpaceOnUse"}});
+    let patternEl = createSvgElement({
+        tagName: "pattern",
+        svgAttributes: {
+            id: "tapeTopHoles",
+            x: "0",
+            y: "0",
+            width: "40",
+            height: `${svgHeight}`,
+            patternUnits: "userSpaceOnUse"
+        }
+    });
     defsEl.appendChild(patternEl);
 
-    let tapeHoleRectEl = createSvgElement({tagName: "rect", svgAttributes: {width: "25", height: `${tapeHoleHeight}`, x: "10", y: `${verticalOffset}`, rx: "2", ry: "2", fill: `${getComputedStyle(document.documentElement).getPropertyValue("--bgColor")}`}});
+    let tapeHoleRectEl = createSvgElement({
+        tagName: "rect",
+        svgAttributes: {
+            width: "25",
+            height: `${tapeHoleHeight}`,
+            x: "10",
+            y: `${verticalOffset}`,
+            rx: "2",
+            ry: "2",
+            fill: `${getComputedStyle(document.documentElement).getPropertyValue("--bgColor")}`
+        }
+    });
 
     patternEl.appendChild(tapeHoleRectEl);
 
-    let svgContainerEl = createSvgElement({tagName: "rect", svgAttributes: {width: "100%", height: `${svgHeight}`, x: "0", y: "0",  fill: "url(#tapeTopHoles)"}});
+    let svgContainerEl = createSvgElement({
+        tagName: "rect",
+        svgAttributes: {width: "100%", height: `${svgHeight}`, x: "0", y: "0", fill: "url(#tapeTopHoles)"}
+    });
     tapeHolesSVGEl.appendChild(svgContainerEl);
 
     return tapeHolesSVGEl;
