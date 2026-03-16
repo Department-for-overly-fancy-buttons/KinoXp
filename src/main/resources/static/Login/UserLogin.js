@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Welcome, ${loginData.username}!`);
 
 
-                window.location.href = "index.html";
+                window.location.href = "http://localhost:8080/index.html";
 
             } else {
                 alert("Wrong username or password");
