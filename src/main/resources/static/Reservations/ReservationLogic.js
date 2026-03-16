@@ -23,7 +23,7 @@ async function initApp() {
 
 }
 
-async function handleSubmit (event){
+async function handleSubmit(event) {
     //const reservationId = document.getElementById("reservationId").value;
     //if (!reservationId) return alert("Please create a reservation first!");
     event.preventDefault();
@@ -63,8 +63,8 @@ async function fetchShowing() {
 
 }
 
-async function fetchReservationsForShowing(){
-    try{
+async function fetchReservationsForShowing() {
+    try {
         const response = await fetch(`${BASE_URL}/showings/tickets/${showingId}`);
         if (!response.ok) {
             throw new Error("HTTP error!");
@@ -106,6 +106,12 @@ async function addReservation(reservation) {
 }
 
 function displayTheater() {
+    const title = document.getElementById("reservation-title")
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let showingDate = Temporal.PlainDateTime.from(showingData.startTime);
+    title.textContent = `Reservation for ${showingData.movie.title} \nDate: ${monthNames[showingDate.month - 1]}: ${showingDate.day} \nTime: ${showingDate.hour}:${showingDate.minute}`
+    title.setAttribute('style', 'white-space: pre;');
+
     numberOfRows = showingData.theater.numberOfRows;
     seatsPerRow = showingData.theater.seatsPerRow;
     container = document.getElementById("seatsContainer");

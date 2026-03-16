@@ -50,7 +50,7 @@ export function displayAllShowingReel(showings) {
         let infoBarElement = createHtmlElement({
             tagName: "h4",
             htmlClass: "movie-date",
-            htmlAttributes: {textContent: `${monthNames[showingDate.month - 1]}: ${showingDate.day} \n ${showingDate.hour}:${showingDate.minute}`}
+            htmlAttributes: {textContent: `${monthNames[showingDate.month - 1]}: ${showingDate.day} \n${showingDate.hour}:${showingDate.minute}`}
         });
         infoBarElement.setAttribute('style', 'white-space: pre;');
         movieBoxEl.appendChild(infoBarElement);
