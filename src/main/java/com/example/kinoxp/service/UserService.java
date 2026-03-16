@@ -18,20 +18,23 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(CreateUserRequest userRequest) {
-        Role requestedRole;
-        switch (userRequest.role()){
+    private Role stringToRole(String roleText){
+        switch (roleText){
             case "CUSTOMER":
-                requestedRole = Role.CUSTOMER;
-                break;
+                return Role.CUSTOMER;
             case "EMPLOYEE":
-                requestedRole = Role.EMPLOYEE;
-                break;
+                return Role.EMPLOYEE;
             case "ADMIN":
-                requestedRole = Role.ADMIN;
-                break;
+                return Role.ADMIN;
             default:
                 return null;
+        }
+    }
+
+    public User createUser(CreateUserRequest userRequest) {
+        Role requestedRole = stringToRole(userRequest.role());
+        if(requestedRole == null){
+            return null;
         }
         return userRepository.save(new User(userRequest.username(), userRequest.password(), requestedRole));
     }
@@ -52,21 +55,20 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User updateUserRole(Long id, User user) {
+    public User updateUserLogin(Long id, CreateUserRequest userRequest) {
         User newUser = getUserById(id);
-        newUser.setRole(user.getRole());
-        return userRepository.save(newUser);
-    }
+        newUser.setUsername(userRequest.username());
+        newUser.setPassword(userRequest.password());
+        newUser.setRole(stringToRole(userRequest.role()));
 
-    public User updateUserLogin(Long id, User user) {
-        User newUser = getUserById(id);
-        newUser.setUsername(user.getUsername());
-        newUser.setPassword(user.getPassword());
+        if(newUser.getRole() == null){
+            return null;
+        }
+
         return userRepository.save(newUser);
     }
 
     public User logIn(String username,String password){
         return userRepository.findByUsernameAndPassword(username, password);
     }
-
 }

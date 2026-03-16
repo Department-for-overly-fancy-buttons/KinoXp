@@ -29,10 +29,19 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody CreateUserRequest userRequest) {
         User addedUser = userService.createUser(userRequest);
-        if(addedUser == null){
+        if (addedUser == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         return ResponseEntity.ok(addedUser);
+    }
+
+    @PutMapping({"update/{id}"})
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody CreateUserRequest userRequest) {
+        User updateUser = userService.updateUserLogin(id, userRequest);
+        if (updateUser == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(updateUser);
     }
 
 
@@ -64,7 +73,7 @@ public class UserController {
     }
 
     @GetMapping("/roles")
-    public ResponseEntity<Role[]> getRoles(){
+    public ResponseEntity<Role[]> getRoles() {
         return ResponseEntity.ok(Role.values());
     }
 
