@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(formEl);
         const loginData = {
             username: formData.get("username"),
-            passwords: formData.get("password"),
+            password: formData.get("password"),
 
         };
         try {

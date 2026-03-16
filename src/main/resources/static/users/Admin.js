@@ -75,12 +75,13 @@ async function fetchRoles() {
 function display() {
     container = document.getElementById("userContainer");
     for (let i = 0; i < roleData.length; i++) {
+        console.log(typeof roleData[i])
         const checkBox = document.createElement("input")
         checkBox.setAttribute("type", "checkbox");
-        checkBox.setAttribute("value", roleData[i].genre);
+        checkBox.setAttribute("value", roleData[i]);
         checkBox.setAttribute("name", "role");
         const label = document.createElement("label")
-        label.textContent = `${roleData[i].genre}`;
+        label.textContent = `${roleData[i]}`;
         label.appendChild(checkBox);
         container.appendChild(label);
     }

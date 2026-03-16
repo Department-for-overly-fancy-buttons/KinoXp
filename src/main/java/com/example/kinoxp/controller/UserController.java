@@ -57,4 +57,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    @GetMapping("/roles")
+    public ResponseEntity<Role[]> getRoles(){
+        return ResponseEntity.ok(Role.values());
+    }
+
 }

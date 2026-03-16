@@ -2,10 +2,11 @@
     --black: #0D0C0C;
     --textColor: #F4796B;
     --headerFontSize: 1.50rem;
-    --bgColor: #F7B2A9;
+    --bgColor: #5B1818;
     --red: #751c1c;
+    --highLightedColor: #F44E3F;
     /*https://coolors.co/0d0c0c-751c1c-dd2c2c-f44e3f-f46455-f4796b-f4998d-f5a297-f6aaa0-f7b2a9*/
-
+    /*https://coolors.co/0d0c0c-140d0d-1a0e0e-271010-411414-5b1818-751c1c-a92424-c32828-dd2c2c*/
 }
 
 body {
@@ -64,14 +65,25 @@ nav {
     margin-top: 20px;
     background-color: var(--black);
     color: var(--textColor);
+    overflow: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 #movie-container, #theater-container {
-
     background-color: inherit;
     display: flex;
-    overflow: auto;
-    white-space: nowrap;
+}
+
+.movie-title {
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.movie-date{
+    text-align: center;
+    text-wrap: nowrap;
 }
 
 .theater-box {
@@ -85,13 +97,25 @@ nav {
 
 .movie-box{
     background-color: var(--black);
-    width: 200px;
+    min-width: 180px;
+    width: 180px;
     margin: 10px;
     text-wrap: auto;
+    cursor: pointer;
+}
+
+.get-tickets-button{
+    display: block;
+    margin: 5px auto 0 auto;
+    background-color: var(--highLightedColor);
+    border: 1.5px solid var(--bgColor);
+    border-radius: 5px;
 }
 
 .cover-image {
+    background-color: var(--bgColor);
     width: 100%;
-    height: auto;
+    height: 270px;
     margin: auto;
+    border-radius: 5px;
 }
