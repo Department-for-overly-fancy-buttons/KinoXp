@@ -16,7 +16,7 @@ export function displayAllShowingReel(showings) {
 
 
         let titleElement = createHtmlElement({
-            tagName: "h2",
+            tagName: "h4",
             htmlClass: "movie-title",
             htmlAttributes: {textContent: `${showing.movie.title}`, title: `${showing.movie.title}`}
         });
@@ -47,8 +47,8 @@ export function displayAllShowingReel(showings) {
 
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let showingDate = Temporal.PlainDateTime.from(showing.startTime);
-        let hour = String(showingDate.hour).padStart(2,"0");
-        let minute = String(showingDate.minute).padStart(2,"0");
+        let hour = String(showingDate.hour).padStart(2, "0");
+        let minute = String(showingDate.minute).padStart(2, "0");
         let infoBarElement = createHtmlElement({
             tagName: "h4",
             htmlClass: "movie-date",
@@ -95,7 +95,7 @@ async function handleGetTickets(event) {
     const showingId = movieBox.getAttribute("data-showingId");
     if (showingId !== null) {
         console.log("clicked showing with id = " + showingId);
-        window.location.href = `Reservations/Reservation.html?showingId=${showingId}`;
+        window.location.href = `http://localhost:8080/Reservations/Reservation.html?showingId=${showingId}`;
     } else {
         console.log("box clicked");
     }

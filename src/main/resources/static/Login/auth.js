@@ -16,16 +16,16 @@ function isLoggedIn() {
 
 function requireLogIn() {
     if(!isLoggedIn()) {
-        return location.href = "../Login/LoginForm.html";
+        return location.href = "http://localhost:8080/Login/LoginForm.html";
     }
 }
 function login() {
-    return location.href = "Login/LoginForm.html"
+    return location.href = "http://localhost:8080/Login/LoginForm.html"
 }
 
 function logout() {
     localStorage.removeItem("user")
-    return location.href = "index.html"
+    return location.href = "http://localhost:8080/index.html"
 }
 
 function displayUser() {
@@ -44,12 +44,12 @@ function requireAdmin() {
     const user = getLoggedInUser();
     if (!user || user.role !== "ADMIN") {
         alert("You must be an admin to access this page!");
-        location.href = "../Login/LoginForm.html";
+        location.href = "http://localhost:8080/Login/LoginForm.html";
     }
 }
 function requireEmployee() {
     const user = getLoggedInUser();
     if (!user || user.role !== "Employee" || user.role !== "ADMIN");
     alert("You must be an admin and or employee to access this page!");
-    location.href = "../Login/LoginForm.html";
+    location.href = "http://localhost:8080/Login/LoginForm.html";
 }

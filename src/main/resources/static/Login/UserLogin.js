@@ -1,7 +1,6 @@
 const BASE_URL = "http://localhost:8080/api/users"
 
 document.addEventListener('DOMContentLoaded', () => {
-
     const loginForm = document.getElementById("loginForm");
     if (!loginForm) return;
 
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`${BASE_URL}/log_in`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(loginData)
 
             });
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Welcome, ${loginData.username}!`);
 
 
-                window.location.href = "../index.html";
+                window.location.href = "http://localhost:8080/index.html";
 
             } else {
                 alert("Wrong username or password");

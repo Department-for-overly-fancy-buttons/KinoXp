@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', initApp);
+import {displayNavigationBar} from "../navigationBars.js";
 
 const BASE_URL = "http://localhost:8080/api";
 
@@ -7,6 +8,8 @@ let seatsPerRow;
 let ticketTypeData = [];
 
 async function initApp() {
+    displayNavigationBar();
+    requireLogIn()
     requireAdmin()
     displayUser()
     ticketTypeData = await fetchTicketTypes();

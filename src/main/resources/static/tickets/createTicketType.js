@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', initApp);
+import {displayNavigationBar} from "../navigationBars.js";
 
 const BASE_URL = "http://localhost:8080/api";
 
 async function initApp() {
+    displayNavigationBar();
     requireAdmin()
     document.getElementById("submitTicketType").addEventListener("click", handleSubmit);
 }
