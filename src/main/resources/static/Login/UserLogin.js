@@ -1,4 +1,4 @@
-import {displayNavigationBar} from "./navigationBars.js";
+import {displayNavigationBar} from "../navigationBars.js";
 
 const BASE_URL = "http://localhost:8080/api/users"
 

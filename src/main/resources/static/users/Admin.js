@@ -1,5 +1,5 @@
 import {createHtmlElement} from "../htmlTagFactory.js";
-import {displayNavigationBar} from "./navigationBars.js";
+import {displayNavigationBar} from "../navigationBars.js";
 
 document.addEventListener('DOMContentLoaded', initApp);
 
