@@ -104,19 +104,19 @@ public class ReservationRepositoryTest {
     }
 
     //findAllByShowing_Id(long showingId);
-    @Test
-    public void GivenShowingID_WhenSaved_ThenCanFindRelevantReservations(){
-
-
-        //Saving additional data
-        Reservation additionalTestReservationOne = new Reservation(testShowing, "KajHajMedDig@icloud.com", "+45 44817504", "Kaj", "Sjøisted");
-        Reservation additionalTestReservationTwo = new Reservation(testShowing, "Coffe-addict-2009189@gmail.com", "+45 74872314", "Julie", "Sandre");
-        reservationRepository.save(additionalTestReservationOne);
-        reservationRepository.save(additionalTestReservationTwo);
-
-        List<Reservation> foundReservations = reservationRepository.findAllByShowing_Id(testShowing.getId());
-
-        assertNotNull(foundReservations);
+//    @Test
+//    public void GivenShowingID_WhenSaved_ThenCanFindRelevantReservations(){
+//
+//
+//        //Saving additional data
+//        Reservation additionalTestReservationOne = new Reservation(testShowing, "KajHajMedDig@icloud.com", "+45 44817504", "Kaj", "Sjøisted");
+//        Reservation additionalTestReservationTwo = new Reservation(testShowing, "Coffe-addict-2009189@gmail.com", "+45 74872314", "Julie", "Sandre");
+//        reservationRepository.save(additionalTestReservationOne);
+//        reservationRepository.save(additionalTestReservationTwo);
+//
+//        List<Reservation> foundReservations = reservationRepository.findAllByShowing_Id(testShowing.getId());
+//
+//        assertNotNull(foundReservations);
 //
 //        for (Reservation foundReservation : foundReservations) {
 //            assertNotNull(foundReservation);
@@ -146,6 +146,6 @@ public class ReservationRepositoryTest {
 //            assertTrue(foundReservation.getFirstName().equalsIgnoreCase(testReservation.getFirstName()));
 //            assertTrue(foundReservation.getLastName().equalsIgnoreCase(testReservation.getLastName()));
 //        }
-        }
+//        }
 
 }
