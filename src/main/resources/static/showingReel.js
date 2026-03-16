@@ -14,6 +14,7 @@ export function displayAllShowingReel(showings) {
         let movieBoxEl = createHtmlElement({tagName: "div", htmlClass: "movie-box"})
         movieBoxEl.setAttribute("data-showingID", showing.id);
 
+
         let titleElement = createHtmlElement({
             tagName: "h2",
             htmlClass: "movie-title",

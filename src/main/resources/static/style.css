@@ -76,9 +76,10 @@ nav {
     display: flex;
 }
 
+
 .movie-title {
     text-align: center;
-    text-wrap: nowrap;
+    height: 30px
 }
 
 .movie-date{

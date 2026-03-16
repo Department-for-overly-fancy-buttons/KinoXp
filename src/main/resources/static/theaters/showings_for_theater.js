@@ -1,16 +1,17 @@
+import {displayNavigationBar} from "../navigationBars.js";
+import {displayAllShowingReel} from "../showingReel.js";
+
 document.addEventListener("DOMContentLoaded", initApp);
 
 const BASE_URL = "http://localhost:8080/api";
 const params = new URLSearchParams(window.location.search);
 const theaterId = params.get("theaterId");
-let movieContainerEl = document.querySelector("#movie-container");
 let showingsData = [];
 
 async function initApp() {
+    displayNavigationBar();
     showingsData = await fetchShowings();
-    console.log(showingsData);
-    displayShowings(showingsData);
-    movieContainerEl.addEventListener("click", handleGetTickets);
+    displayAllShowingReel(showingsData);
 }
 
 async function fetchShowings() {
@@ -43,7 +44,7 @@ async function handleGetTickets(event) {
 
 function displayShowings(showings) {
     movieContainerEl.innerHTML = "";
-    if(showings.length < 1){
+    if (showings.length < 1) {
         movieContainerEl.innerHTML = "no movies :(";
     }
     for (let showing of showings) {

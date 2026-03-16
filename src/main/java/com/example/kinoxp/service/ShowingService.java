@@ -33,7 +33,7 @@ public class ShowingService {
         Showing showing = new Showing();
         Optional<Movie> movieOptional = movieRepository.findById(request.movieId());
         Optional<Theater> theaterOptional = theaterRepository.findById(request.theaterId());
-        if (movieOptional.isEmpty()||theaterOptional.isEmpty()) {
+        if (movieOptional.isEmpty() || theaterOptional.isEmpty()) {
             throw new NotFoundException("Theater or movie not found");
         }
         showing.setMovie(movieOptional.get());
@@ -52,7 +52,7 @@ public class ShowingService {
     }
 
     public List<Showing> getShowingsForTheater(Long theaterId) {
-        return showingRepository.findByTheater_IdOrderByStartTimeAsc(theaterId);
+        return showingRepository.findByTheater_IdAndStartTimeAfterOrderByStartTime(theaterId, LocalDateTime.now());
     }
 
     public List<Showing> getShowingsForMovie(Long movieId) {
