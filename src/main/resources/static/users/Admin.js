@@ -1,4 +1,5 @@
 import {createHtmlElement} from "../htmlTagFactory.js";
+import {displayNavigationBar} from "./navigationBars.js";
 
 document.addEventListener('DOMContentLoaded', initApp);
 
@@ -8,6 +9,7 @@ let users = [];
 let roleData = [];
 
 async function initApp() {
+    displayNavigationBar();
     requireLogIn();
     requireAdmin();
     await display();

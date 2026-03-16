@@ -9,7 +9,7 @@ export function displayNavigationBar(){
 
     let listItemTitleEl = createHtmlElement({tagName: "li"});
 
-    let homeLinkEl = createHtmlElement({tagName: "a", htmlClass: "navigationLink", htmlAttributes: {id: "logoTitle", href: "/", textContent: "KinoXP", title: "Home"}});
+    let homeLinkEl = createHtmlElement({tagName: "a", htmlClass: "navigationLink", htmlAttributes: {id: "logoTitle", href: "http://localhost:8080/", textContent: "KinoXP", title: "Home"}});
 
     listItemTitleEl.appendChild(homeLinkEl);
 
@@ -17,7 +17,7 @@ export function displayNavigationBar(){
 
     let listItemTheatersEl = createHtmlElement({tagName: "li", htmlClass: "navigationListItem",htmlAttributes: {id: "navigationListStart"}});
 
-    let theaterLinkEl = createHtmlElement({tagName: "a",htmlClass: "navigationLink", htmlAttributes: {href: "/theaters/theaters.html", title: "Theaters", textContent: "Theaters"}});
+    let theaterLinkEl = createHtmlElement({tagName: "a",htmlClass: "navigationLink", htmlAttributes: {href: "http://localhost:8080/theaters/theaters.html", title: "Theaters", textContent: "Theaters"}});
     listItemTheatersEl.appendChild(theaterLinkEl);
 
     listEl.appendChild(listItemTheatersEl);

@@ -1,3 +1,5 @@
+import {displayNavigationBar} from "./navigationBars.js";
+
 document.addEventListener("DOMContentLoaded", initApp);
 
 const BASE_URL = "http://localhost:8080/api";
@@ -6,6 +8,7 @@ const movieId = params.get("movieId");
 let movieData;
 
 async function initApp() {
+    displayNavigationBar();
     movieData = await fetchMovie();
     console.log(movieData);
     displayMovie(movieData);
