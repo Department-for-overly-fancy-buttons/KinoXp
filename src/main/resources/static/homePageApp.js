@@ -1,5 +1,6 @@
 import {displayNavigationBar} from "./navigationBars.js";
 import {displayAllShowingReel} from "./showingReel.js";
+import {displayAdminMenu} from "./adminMenu.js";
 document.addEventListener("DOMContentLoaded", initApp);
 
 const BASE_URL = "http://localhost:8080/api";
@@ -11,7 +12,9 @@ async function initApp() {
     showingsData = await fetchShowings();
     console.log(showingsData);
     displayAllShowingReel(showingsData);
-
+    if(isLoggedIn() && (getLoggedInUser().role === "EMPLOYEE" || getLoggedInUser().role === "ADMIN")) {
+        displayAdminMenu(getLoggedInUser().role);
+    }
 }
 
 async function fetchShowings() {

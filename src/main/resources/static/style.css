@@ -16,7 +16,9 @@ body {
 nav {
     background-color: var(--black);
     min-height: var(--headerFontSize);
-    color: var(--textColor)
+    color: var(--textColor);
+    position: sticky;
+    top: 0;
 }
 
 #navigationList {
@@ -119,4 +121,13 @@ nav {
     height: 270px;
     margin: auto;
     border-radius: 5px;
+}
+
+#admin-panel {
+    background-color: #cccccc;
+    border-radius: 20px;
+    padding: 30px;
+    position: fixed;
+    top: 50%;
+    right: 0;
 }

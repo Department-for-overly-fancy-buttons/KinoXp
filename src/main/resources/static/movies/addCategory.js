@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', initApp);
 const BASE_URL = "http://localhost:8080/api";
 
 async function initApp() {
-    requireLogIn()
+    requireAdmin();
     displayUser()
     document.getElementById("submitCategory").addEventListener("click", handleSubmit);
 }

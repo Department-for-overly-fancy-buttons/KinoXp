@@ -8,7 +8,7 @@ let preview;
 
 async function initApp() {
     categoryData = await fetchCategories();
-    requireLogIn()
+    requireEmployee();
     displayUser()
 
     console.log(categoryData);

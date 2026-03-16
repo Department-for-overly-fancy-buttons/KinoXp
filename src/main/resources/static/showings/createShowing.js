@@ -6,7 +6,7 @@ let moviesData = [];
 let theatersData = [];
 
 async function initApp() {
-    requireLogIn()
+    requireEmployee();
     displayUser()
 
     moviesData = await fetchMovies();
