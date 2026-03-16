@@ -15,13 +15,10 @@ import java.util.*;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
-    private final TicketTypeRepository ticketTypeRepository;
     private final FeeTypeRepository feeRepository;
-    private Map<String, Double> listOfCalculations = new HashMap<>();
 
-    public ReservationService(ReservationRepository reservationRepository, TicketTypeRepository ticketTypeRepository, FeeTypeRepository feeTypeRepository) {
+    public ReservationService(ReservationRepository reservationRepository, FeeTypeRepository feeTypeRepository) {
         this.reservationRepository = reservationRepository;
-        this.ticketTypeRepository = ticketTypeRepository;
         this.feeRepository = feeTypeRepository;
     }
 

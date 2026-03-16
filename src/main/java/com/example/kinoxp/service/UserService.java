@@ -1,5 +1,6 @@
 package com.example.kinoxp.service;
 
+import com.example.kinoxp.dto.CreateUserRequest;
 import com.example.kinoxp.exceptions.NotFoundException;
 import com.example.kinoxp.model.User;
 import com.example.kinoxp.model.Role;
@@ -17,8 +18,22 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public User createUser(CreateUserRequest userRequest) {
+        Role requestedRole;
+        switch (userRequest.role()){
+            case "CUSTOMER":
+                requestedRole = Role.CUSTOMER;
+                break;
+            case "EMPLOYEE":
+                requestedRole = Role.EMPLOYEE;
+                break;
+            case "ADMIN":
+                requestedRole = Role.ADMIN;
+                break;
+            default:
+                return null;
+        }
+        return userRepository.save(new User(userRequest.username(), userRequest.password(), requestedRole));
     }
 
     public List<User> getAllUsers() {

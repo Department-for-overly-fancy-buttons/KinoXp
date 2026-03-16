@@ -22,7 +22,7 @@ async function DisplayUsers() {
     const users = await fetchUsers()
     console.log(users)
 
-    const container = document.getElementById("usersContainer")
+    const container = document.getElementById("userContainer")
     container.innerHTML = "";
     if (users.length < 1) {
         container.innerHTML = "no users!"
@@ -40,7 +40,7 @@ async function DisplayUsers() {
         let deleteButton = document.createElement("button")
         deleteButton.textContent = `Delete`;
         deleteButton.type = "button";
-        deleteButton.addEventListener("click",() => handleDeleteUser(user.id))
+        deleteButton.addEventListener("click",() => handleDeleteUser(userId))
 
         userEl.appendChild(deleteButton)
         container.appendChild(userEl)

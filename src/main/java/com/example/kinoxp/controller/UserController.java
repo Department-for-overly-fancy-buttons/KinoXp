@@ -1,5 +1,6 @@
 package com.example.kinoxp.controller;
 
+import com.example.kinoxp.dto.CreateUserRequest;
 import com.example.kinoxp.model.Role;
 import com.example.kinoxp.model.User;
 import com.example.kinoxp.service.UserService;
@@ -26,16 +27,21 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user));
+    public ResponseEntity<User> addUser(@RequestBody CreateUserRequest userRequest) {
+        User addedUser = userService.createUser(userRequest);
+        if(addedUser == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(addedUser);
     }
+
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    //Skal nok laves om
+
     @GetMapping("/role/{role}")
     public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role) {
         return ResponseEntity.ok(userService.getAllUsersByRole(role));
