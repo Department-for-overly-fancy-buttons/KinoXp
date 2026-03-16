@@ -47,10 +47,12 @@ export function displayAllShowingReel(showings) {
 
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let showingDate = Temporal.PlainDateTime.from(showing.startTime);
+        let hour = String(showingDate.hour).padStart(2,"0");
+        let minute = String(showingDate.minute).padStart(2,"0");
         let infoBarElement = createHtmlElement({
             tagName: "h4",
             htmlClass: "movie-date",
-            htmlAttributes: {textContent: `${monthNames[showingDate.month - 1]}: ${showingDate.day} \n${showingDate.hour}:${showingDate.minute}`}
+            htmlAttributes: {textContent: `${monthNames[showingDate.month - 1]}: ${showingDate.day} \n${hour}:${minute}`}
         });
         infoBarElement.setAttribute('style', 'white-space: pre;');
         movieBoxEl.appendChild(infoBarElement);
