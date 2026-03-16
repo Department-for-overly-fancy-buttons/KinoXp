@@ -1,4 +1,4 @@
-:root{
+:root {
     --black: #0D0C0C;
     --textColor: #F4796B;
     --headerFontSize: 1.50rem;
@@ -76,13 +76,12 @@ nav {
     display: flex;
 }
 
-
 .movie-title {
     text-align: center;
-    height: 33px
+    height: 25px
 }
 
-.movie-date{
+.movie-date {
     text-align: center;
     text-wrap: nowrap;
 }
@@ -96,7 +95,7 @@ nav {
     text-wrap: auto;
 }
 
-.movie-box{
+.movie-box {
     background-color: var(--black);
     min-width: 180px;
     width: 180px;
@@ -105,7 +104,7 @@ nav {
     cursor: pointer;
 }
 
-.get-tickets-button{
+.get-tickets-button {
     display: block;
     margin: 5px auto 0 auto;
     background-color: var(--highLightedColor);
