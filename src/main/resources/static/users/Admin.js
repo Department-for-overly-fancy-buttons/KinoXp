@@ -11,12 +11,6 @@ async function initApp() {
     requireLogIn();
     requireAdmin();
     await display();
-
-    /*const form = document.getElementById("userForm");
-    if (form) {
-        console.log("added event listener")
-        form.addEventListener("submit", handleAddUser);
-    }*/
 }
 
 async function fetchUsers() {
@@ -29,7 +23,7 @@ async function fetchUsers() {
 
 async function handleAddUser(event) {
     event.preventDefault();
-
+    requireAdmin();
     console.log("adding user")
     const formEl = event.target.closest("form");
     const formData = new FormData(formEl);
@@ -213,6 +207,7 @@ async function display() {
 
 async function handleDeleteUser(event) {
     event.preventDefault();
+    requireAdmin();
     const userEl = event.target.closest("tr");
     const userId = userEl.getAttribute("data-userID");
     console.log("tets: " + typeof userId);
@@ -245,7 +240,7 @@ async function fetchDeleteUser(userId) {
 
 async function handleUpdateUser(event) {
     event.preventDefault()
-
+    requireAdmin();
     const userEl = event.target.closest("tr");
     const userId = Number(userEl.getAttribute("data-userID"));
     const password = userEl.getAttribute("data-userPassword");
