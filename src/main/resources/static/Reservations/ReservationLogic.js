@@ -18,7 +18,7 @@ async function initApp() {
     console.log(reservedSeats);
     console.log("showings:");
     console.log(showingData);
-    displayTheater();
+    await displayTheater();
     document.getElementById("submitSeats").addEventListener("click", handleSubmit);
 
 }
@@ -47,6 +47,8 @@ async function handleSubmit(event) {
     const result = await response.json();
     console.log("Seats added:", result);
     alert("Seats successfully added! and sent to your Email or Number");
+    selectedSeats = [];
+    await initApp();
 }
 
 async function fetchShowing() {
@@ -76,36 +78,7 @@ async function fetchReservationsForShowing() {
     }
 }
 
-document.getElementById("ReservationForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-
-    const reservation = {
-        firstName: formData.get("firstName"),
-        lastName: formData.get("lastName"),
-        email: formData.get("email"),
-        phoneNumber: formData.get("phoneNumber")
-    };
-
-    const createdReservation = await addReservation(reservation);
-    console.log("Created Reservation:", createdReservation);
-
-    document.getElementById("reservationId").value = createdReservation.id;
-
-    alert("Reservation created! Now select your seats.");
-    event.target.reset();
-});
-
-async function addReservation(reservation) {
-    const response = await fetch(`${BASE_URL}/reservations`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(reservation)
-    });
-    return await response.json();
-}
-
-function displayTheater() {
+async function displayTheater() {
     const title = document.getElementById("reservation-title")
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let showingDate = Temporal.PlainDateTime.from(showingData.startTime);
@@ -115,6 +88,7 @@ function displayTheater() {
     numberOfRows = showingData.theater.numberOfRows;
     seatsPerRow = showingData.theater.seatsPerRow;
     container = document.getElementById("seatsContainer");
+    container.innerHTML = "";
     const theaterRowTypes = showingData.theater.theaterRows;
     console.log(theaterRowTypes)
 
