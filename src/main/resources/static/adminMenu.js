@@ -2,7 +2,9 @@ import {createHtmlElement} from "./htmlTagFactory.js";
 
 export function displayAdminMenu(role){
 
-    const panelEl = document.querySelector("#admin-panel");
+    const bodyEL = document.body;
+
+    const panelEl = createHtmlElement({tagName: "div", htmlAttributes: {id: "admin-panel"}})
 
     const listEl = createHtmlElement({tagName: "ul"});
     if(role === "ADMIN") {
@@ -85,5 +87,7 @@ export function displayAdminMenu(role){
     listEl.appendChild(listItemCreateReservationEl);*/
 
     panelEl.appendChild(listEl);
+
+    bodyEL.appendChild(panelEl);
 
 }

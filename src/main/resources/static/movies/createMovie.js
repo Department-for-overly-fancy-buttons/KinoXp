@@ -75,7 +75,7 @@ function getCheckedCategories() {
 }
 
 function display() {
-    container = document.getElementById("categoryContainer");
+    let container = document.getElementById("categoryContainer");
     for (let i = 0; i < categoryData.length; i++) {
         const checkBox = document.createElement("input")
         checkBox.setAttribute("type", "checkbox");
