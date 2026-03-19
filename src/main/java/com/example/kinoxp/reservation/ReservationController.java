@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api/reservations")
-public class ReservationController {
+class ReservationController {
 
     private final ReservationService reservationService;
     private final TheaterService theaterService;
@@ -21,7 +21,7 @@ public class ReservationController {
     private final ShowingService showingService;
 
 
-    public ReservationController(ReservationService reservationService, TheaterService theaterService, TicketService ticketService, ShowingService showingService){
+    public ReservationController(ReservationService reservationService, TheaterService theaterService, TicketService ticketService, ShowingService showingService) {
         this.reservationService = reservationService;
         this.theaterService = theaterService;
         this.ticketService = ticketService;

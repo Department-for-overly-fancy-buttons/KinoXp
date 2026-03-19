@@ -3,7 +3,7 @@ package com.example.kinoxp.theater;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TheaterMapper {
+class TheaterMapper {
 
     public static Theater toTheater(CreateTheaterRequest request) {
         Theater newTheater = new Theater(request.theaterName(), request.numberOfRows(), request.seatsPerRow(), request.location());

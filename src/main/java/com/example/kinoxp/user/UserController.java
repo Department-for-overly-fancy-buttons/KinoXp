@@ -9,7 +9,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api/users")
 @RestController
-public class UserController {
+class UserController {
 
     private final UserService userService;
 

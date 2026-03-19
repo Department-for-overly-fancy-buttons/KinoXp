@@ -10,7 +10,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api/showings")
 @RestController
-public class ShowingController {
+class ShowingController {
 
     private ShowingService showingService;
     private ReservationService reservationService;

@@ -1,4 +1,5 @@
 import {displayNavigationBar} from "../navigationBars.js";
+
 document.addEventListener('DOMContentLoaded', initApp);
 
 const BASE_URL = "http://localhost:8080/api";
@@ -50,6 +51,7 @@ async function handleSubmit(event) {
     console.log("Seats added:", result);
     alert("Seats successfully added! and sent to your Email or Number");
     selectedSeats = [];
+    document.querySelector("nav").innerHTML = "";
     await initApp();
 }
 

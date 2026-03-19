@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationMapper {
+class ReservationMapper {
 
     public static Reservation toReservation(CreateReservationRequest request, Showing showing){
 

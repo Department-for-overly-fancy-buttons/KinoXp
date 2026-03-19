@@ -8,7 +8,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api/movies")
-public class MovieController {
+class MovieController {
 
     private final MovieService movieService;
 
@@ -45,7 +45,7 @@ public class MovieController {
     }
 
     @PostMapping("/category")
-    public ResponseEntity<Category> addCategory(@RequestBody Category category){
+    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         return ResponseEntity.ok(movieService.createCategory(category));
     }
 
