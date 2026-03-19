@@ -15,10 +15,11 @@ function isLoggedIn() {
 }
 
 function requireLogIn() {
-    if(!isLoggedIn()) {
+    if (!isLoggedIn()) {
         return location.href = "http://localhost:8080/Login/LoginForm.html";
     }
 }
+
 function login() {
     return location.href = "http://localhost:8080/Login/LoginForm.html"
 }
@@ -40,6 +41,7 @@ function displayUser() {
         }
     }
 }
+
 function requireAdmin() {
     const user = getLoggedInUser();
     if (!user || user.role !== "ADMIN") {
@@ -47,9 +49,18 @@ function requireAdmin() {
         location.href = "http://localhost:8080/Login/LoginForm.html";
     }
 }
+
 function requireEmployee() {
     const user = getLoggedInUser();
-    if (!user || user.role !== "Employee" || user.role !== "ADMIN");
+    if (!user)
+    {
+        alert("You must be an admin and or employee to access this page!");
+        location.href = "http://localhost:8080/Login/LoginForm.html";
+    }
+    if(user.role === "EMPLOYEE" || user.role === "ADMIN")
+    {
+        return;
+    }
     alert("You must be an admin and or employee to access this page!");
     location.href = "http://localhost:8080/Login/LoginForm.html";
 }
