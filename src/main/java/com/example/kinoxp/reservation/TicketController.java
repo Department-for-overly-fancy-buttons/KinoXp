@@ -1,0 +1,40 @@
+package com.example.kinoxp.reservation;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:8080")
+@RequestMapping("/api/tickets")
+@RestController
+public class TicketController {
+
+    private TicketService ticketService;
+
+    public TicketController(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Ticket>> getTicket() {
+
+        return ResponseEntity.ok(ticketService.getAllTickets());
+    }
+
+    @GetMapping("/types")
+    public ResponseEntity<List<TicketType>> getTicketTypes() {
+        return ResponseEntity.ok(ticketService.getAllTicketTypes());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.getTicketById(id));
+    }
+
+    @PostMapping("/new/type")
+    public ResponseEntity<TicketType> addTicketType(@RequestBody TicketType ticketType) {
+        return ResponseEntity.ok(ticketService.createTicketType(ticketType));
+    }
+
+}

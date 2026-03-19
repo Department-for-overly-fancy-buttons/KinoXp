@@ -1,17 +1,19 @@
 package com.example.kinoxp.repository;
 
-import com.example.kinoxp.KinoXpApplication;
-import com.example.kinoxp.model.*;
+import com.example.kinoxp.movie.Category;
+import com.example.kinoxp.movie.Movie;
+import com.example.kinoxp.reservation.Reservation;
+import com.example.kinoxp.reservation.Ticket;
+import com.example.kinoxp.reservation.TicketRepository;
+import com.example.kinoxp.reservation.TicketType;
+import com.example.kinoxp.showing.Showing;
+import com.example.kinoxp.theater.Theater;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.List;

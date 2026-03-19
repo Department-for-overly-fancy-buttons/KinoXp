@@ -1,6 +1,5 @@
 package com.example.kinoxp;
 
-import com.example.kinoxp.model.Role;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

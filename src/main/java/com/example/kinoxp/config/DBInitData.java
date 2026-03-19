@@ -1,8 +1,18 @@
 package com.example.kinoxp.config;
 
-import com.example.kinoxp.model.*;
-import com.example.kinoxp.repository.*;
-import com.example.kinoxp.service.ReservationService;
+import com.example.kinoxp.movie.Category;
+import com.example.kinoxp.movie.CategoryRepository;
+import com.example.kinoxp.movie.Movie;
+import com.example.kinoxp.movie.MovieRepository;
+import com.example.kinoxp.reservation.*;
+import com.example.kinoxp.showing.Showing;
+import com.example.kinoxp.showing.ShowingRepository;
+import com.example.kinoxp.theater.Theater;
+import com.example.kinoxp.theater.TheaterRepository;
+import com.example.kinoxp.theater.TheaterRow;
+import com.example.kinoxp.user.Role;
+import com.example.kinoxp.user.User;
+import com.example.kinoxp.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,15 @@
 package com.example.kinoxp.repository;
 
 import com.example.kinoxp.KinoXpApplication;
-import com.example.kinoxp.model.Role;
-import com.example.kinoxp.model.User;
+import com.example.kinoxp.user.Role;
+import com.example.kinoxp.user.User;
+import com.example.kinoxp.movie.CategoryRepository;
+import com.example.kinoxp.movie.MovieRepository;
+import com.example.kinoxp.reservation.ReservationRepository;
+import com.example.kinoxp.reservation.TicketRepository;
+import com.example.kinoxp.showing.ShowingRepository;
+import com.example.kinoxp.theater.TheaterRepository;
+import com.example.kinoxp.user.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
