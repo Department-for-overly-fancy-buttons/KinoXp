@@ -1,10 +1,10 @@
 //package com.example.kinoxp.repository;
 //
 //import com.example.kinoxp.KinoXpApplication;
-//import com.example.kinoxp.model.Category;
-//import com.example.kinoxp.model.Movie;
-//import com.example.kinoxp.model.Showing;
-//import com.example.kinoxp.model.Theater;
+//import com.example.kinoxp.movie.Category;
+//import com.example.kinoxp.movie.Movie;
+//import com.example.kinoxp.showing.Showing;
+//import com.example.kinoxp.theater.Theater;
 //import org.junit.jupiter.api.AfterEach;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
