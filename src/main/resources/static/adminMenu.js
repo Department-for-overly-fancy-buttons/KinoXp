@@ -13,7 +13,7 @@ export function displayAdminMenu(role){
         let showUserLinkEl = createHtmlElement({
             tagName: "a",
             htmlClass: "navigationLink",
-            htmlAttributes: {href: "http://localhost:8080/users/ShowUsers.html", textContent: "User operations", title: "Edit users"}
+            htmlAttributes: {href: "http://localhost:8090/users/ShowUsers.html", textContent: "User operations", title: "Edit users"}
         });
 
         listItemUsersEl.appendChild(showUserLinkEl);
@@ -24,7 +24,7 @@ export function displayAdminMenu(role){
         let createTicketLinkEl = createHtmlElement({
             tagName: "a",
             htmlClass: "navigationLink",
-            htmlAttributes: {href: "http://localhost:8080/tickets/add_ticket_type.html", textContent: "Ticket operations", title: "Edit users"}
+            htmlAttributes: {href: "http://localhost:8090/tickets/add_ticket_type.html", textContent: "Ticket operations", title: "Edit users"}
         });
 
         listItemTicketEl.appendChild(createTicketLinkEl);
@@ -35,7 +35,7 @@ export function displayAdminMenu(role){
         let createTeaterLinkEl = createHtmlElement({
             tagName: "a",
             htmlClass: "navigationLink",
-            htmlAttributes: {href: "http://localhost:8080/theaters/theater_create_form.html", textContent: "Theater operations", title: "Edit theaters"}
+            htmlAttributes: {href: "http://localhost:8090/theaters/theater_create_form.html", textContent: "Theater operations", title: "Edit theaters"}
         });
 
         listItemTheaterEl.appendChild(createTeaterLinkEl);
@@ -46,7 +46,7 @@ export function displayAdminMenu(role){
         let createCategoryLinkEl = createHtmlElement({
             tagName: "a",
             htmlClass: "navigationLink",
-            htmlAttributes: {href: "http://localhost:8080/movies/add_category.html", textContent: "create a category", title: "Add category"}
+            htmlAttributes: {href: "http://localhost:8090/movies/add_category.html", textContent: "create a category", title: "Add category"}
         });
 
         listItemCategoryEl.appendChild(createCategoryLinkEl);
@@ -58,7 +58,7 @@ export function displayAdminMenu(role){
     let createShowingLinkEl = createHtmlElement({
         tagName: "a",
         htmlClass: "navigationLink",
-        htmlAttributes: {href: "http://localhost:8080/showings/showing_create_form.html", textContent: "create a showing", title: "Add showing"}
+        htmlAttributes: {href: "http://localhost:8090/showings/showing_create_form.html", textContent: "create a showing", title: "Add showing"}
     });
 
     listItemShowingsEl.appendChild(createShowingLinkEl);
@@ -69,7 +69,7 @@ export function displayAdminMenu(role){
     let createMovieLinkEl = createHtmlElement({
         tagName: "a",
         htmlClass: "navigationLink",
-        htmlAttributes: {href: "http://localhost:8080/movies/movie_create_form.html", textContent: "create a movie", title: "Add movie"}
+        htmlAttributes: {href: "http://localhost:8090/movies/movie_create_form.html", textContent: "create a movie", title: "Add movie"}
     });
 
     listItemMoviesEl.appendChild(createMovieLinkEl);
@@ -80,7 +80,7 @@ export function displayAdminMenu(role){
     let createReservationLinkEl = createHtmlElement({
         tagName: "a",
         htmlClass: "navigationLink",
-        htmlAttributes: {href: "http://localhost:8080/Reservations/Reservations.html", textContent: "create a reservation", title: "Add reservation"}
+        htmlAttributes: {href: "http://localhost:8090/Reservations/Reservations.html", textContent: "create a reservation", title: "Add reservation"}
     });
 
     listItemCreateReservationEl.appendChild(createReservationLinkEl);

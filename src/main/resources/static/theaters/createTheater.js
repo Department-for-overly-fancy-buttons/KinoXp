@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', initApp);
 import {displayNavigationBar} from "../navigationBars.js";
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:8090/api";
 
 let numberOfRows;
 let seatsPerRow;
@@ -79,7 +79,7 @@ function getSelectedTicketTypes() {
 function displayTheater() {
     numberOfRows = document.getElementById("rows").value;
     seatsPerRow = document.getElementById("seats").value;
-    container = document.getElementById("rowContainer");
+    let container = document.getElementById("rowContainer");
     container.innerHTML = "";
     for (let row = 1; row <= numberOfRows; row++) {
         const rowDiv = document.createElement("div");

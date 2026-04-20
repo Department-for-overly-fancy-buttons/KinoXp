@@ -3,7 +3,7 @@ import {displayNavigationBar} from "../navigationBars.js";
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:8090/api";
 
 let users = [];
 let roleData = [];

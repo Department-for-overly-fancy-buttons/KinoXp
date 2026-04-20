@@ -3,7 +3,7 @@ import {displayAllShowingReel} from "./showingReel.js";
 import {displayAdminMenu} from "./adminMenu.js";
 document.addEventListener("DOMContentLoaded", initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:8090/api";
 let showingsData = [];
 
 

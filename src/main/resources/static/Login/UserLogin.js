@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/users"
+const BASE_URL = "http://localhost:8090/api/users"
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById("loginForm");
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Welcome, ${loginData.username}!`);
 
 
-                window.location.href = "http://localhost:8080/index.html";
+                window.location.href = "http://localhost:8090/index.html";
 
             } else {
                 alert("Wrong username or password");
