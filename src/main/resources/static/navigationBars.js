@@ -4,6 +4,8 @@ export function displayNavigationBar(){
 
     const navEl = document.querySelector("nav");
 
+    navEl.textContent = "";
+
     const listEl = createHtmlElement({tagName: "ul",htmlAttributes: {id: "navigationList"}});
 
     let listItemTitleEl = createHtmlElement({tagName: "li"});
