@@ -79,7 +79,7 @@ function getSelectedTicketTypes() {
 function displayTheater() {
     numberOfRows = document.getElementById("rows").value;
     seatsPerRow = document.getElementById("seats").value;
-    container = document.getElementById("rowContainer");
+    let container = document.getElementById("rowContainer");
     container.innerHTML = "";
     for (let row = 1; row <= numberOfRows; row++) {
         const rowDiv = document.createElement("div");

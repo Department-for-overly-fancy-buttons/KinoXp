@@ -14,10 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
             password: formData.get("password"),
 
         };
+
         try {
             const response = await fetch(`${BASE_URL}/log_in`, {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {"Content-Type": "application/json", "X-XSRF-TOKEN": csrfToken},
                 body: JSON.stringify(loginData)
 
             });
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Welcome, ${loginData.username}!`);
 
 
-                window.location.href = "http://localhost:8080/index.html";
+                window.location.href = "../index.html";
 
             } else {
                 alert("Wrong username or password");
