@@ -3,7 +3,7 @@ import {displayAllShowingReel} from "../showingReel.js";
 
 document.addEventListener("DOMContentLoaded", initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 const params = new URLSearchParams(window.location.search);
 const theaterId = params.get("theaterId");
 let showingsData = [];

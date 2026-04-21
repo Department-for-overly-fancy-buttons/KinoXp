@@ -3,6 +3,7 @@ package com.example.kinoxp.security;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
@@ -18,16 +19,19 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::spa)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
-                        .requestMatchers("/Login/LoginForm.html").permitAll()
-                        .requestMatchers("/api/showings").permitAll()
-                        .requestMatchers("/api/showings/**").permitAll()
+                        //.requestMatchers("/Login/LoginForm.html").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/showings").permitAll()
+                        .requestMatchers("/api/users/log_in").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/showings/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/theaters/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/Login/LoginForm.html")
+                        //.loginPage("/Login/LoginForm.html")
                         .loginProcessingUrl("/api/users/log_in")
-                        .successForwardUrl("/index.html")
+                        //.successForwardUrl("/index.html")
+                        .successHandler((_, res, _) -> res.setStatus(HttpServletResponse.SC_NO_CONTENT))
                         .failureHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_UNAUTHORIZED))
 
                 )

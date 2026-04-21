@@ -35,7 +35,7 @@ export function displayAllShowingReel(showings) {
                 htmlAttributes: {alt: "Missing cover image", src: `data:image/png;base64,${showing.movie.poster}`}
             });
             movieBoxEl.appendChild(coverImageElement);
-            console.log(showing.movie.poster);
+            //console.log(showing.movie.poster);
         } else {
             let coverImageElement = createHtmlElement({
                 tagName: "img",
@@ -94,7 +94,7 @@ async function handleGetTickets(event) {
     const movieBox = event.target.closest("div");
     const showingId = movieBox.getAttribute("data-showingId");
     if (showingId !== null) {
-        window.location.href = `Reservations/Reservation.html?showingId=${showingId}`;
+        window.location.href = `/Reservations/Reservation.html?showingId=${showingId}`;
     } else {
         //console.log("box clicked");
     }

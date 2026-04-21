@@ -1,7 +1,7 @@
 import {displayNavigationBar} from "../navigationBars.js";
 document.addEventListener("DOMContentLoaded", initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 let theaterContainerEl = document.querySelector("#theater-container");
 let theaterData = [];
 
@@ -34,7 +34,7 @@ async function handleGetTheater(event) {
     const theaterId = theaterBox.getAttribute("data-theaterId");
     if (theaterId !== null) {
         console.log("clicked theater with id = " + theaterId);
-        window.location.href = `showings_for_theater.html`;
+        window.location.pathname = `theaters/showings_for_theater.html?theaterId=${theaterId}`
     } else {
         console.log("box clicked");
     }

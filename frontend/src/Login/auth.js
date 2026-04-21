@@ -16,12 +16,12 @@ function isLoggedIn() {
 
 function requireLogIn() {
     if (!isLoggedIn()) {
-        return location.href = "LoginForm.html";
+        return location.href = "/Login/LoginForm.html";
     }
 }
 
 function login() {
-    return location.href = "LoginForm.html"
+    return location.href = "/Login/LoginForm.html"
 }
 
 function logout() {
