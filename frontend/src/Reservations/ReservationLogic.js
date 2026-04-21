@@ -55,6 +55,7 @@ async function handleSubmit(event) {
 
 async function fetchShowing() {
     try {
+        console.log(showingId)
         const response = await fetch(`${BASE_URL}/showings/${showingId}`);
         if (!response.ok) {
             throw new Error("HTTP error!");
