@@ -4,12 +4,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-interface UserRepository extends JpaRepository<User,Long> {
+interface UserRepository extends JpaRepository<KinoUser,Long> {
 
-    List<User> findByRole(String role);
+    List<KinoUser> findByRole(String role);
 
-    User findByUsernameAndPassword(String username, String password);
+    KinoUser findByUsernameAndPassword(String username, String password);
+
+    Optional<KinoUser> findByUsername(String username);
 
 }

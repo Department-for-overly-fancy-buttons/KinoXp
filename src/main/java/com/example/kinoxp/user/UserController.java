@@ -2,11 +2,14 @@ package com.example.kinoxp.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost")
 @RequestMapping("/api/users")
 @RestController
 class UserController {
@@ -18,13 +21,22 @@ class UserController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<User> getUserById(@PathVariable Long id) {
+    ResponseEntity<KinoUser> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
+    @GetMapping("/user")
+    UserResponse getUser(Authentication authentication) {
+        String username = authentication.getName();
+        List<String> roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        return new UserResponse(username, roles);
+    }
+
     @PostMapping
-    ResponseEntity<User> addUser(@RequestBody CreateUserRequest userRequest) {
-        User addedUser = userService.createUser(userRequest);
+    ResponseEntity<KinoUser> addUser(@RequestBody CreateUserRequest userRequest) {
+        KinoUser addedUser = userService.createUser(userRequest);
         if (addedUser == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
@@ -32,8 +44,8 @@ class UserController {
     }
 
     @PutMapping({"update/{id}"})
-    ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody CreateUserRequest userRequest) {
-        User updateUser = userService.updateUserLogin(id, userRequest);
+    ResponseEntity<KinoUser> updateUser(@PathVariable Long id, @RequestBody CreateUserRequest userRequest) {
+        KinoUser updateUser = userService.updateUserLogin(id, userRequest);
         if (updateUser == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
@@ -42,13 +54,13 @@ class UserController {
 
 
     @GetMapping
-    ResponseEntity<List<User>> getAllUsers() {
+    ResponseEntity<List<KinoUser>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
 
     @GetMapping("/role/{role}")
-    ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role) {
+    ResponseEntity<List<KinoUser>> getAllUsersByRole(@PathVariable Role role) {
         return ResponseEntity.ok(userService.getAllUsersByRole(role));
     }
 
@@ -60,8 +72,8 @@ class UserController {
     }
 
     @PostMapping("/log_in")
-    ResponseEntity<User> logIn(@RequestBody User user) {
-        User loggedInUser = userService.logIn(user.getUsername(), user.getPassword());
+    ResponseEntity<KinoUser> logIn(@RequestBody KinoUser user) {
+        KinoUser loggedInUser = userService.logIn(user.getUsername(), user.getPassword());
         if (loggedInUser != null) {
             return ResponseEntity.ok(loggedInUser);
         }

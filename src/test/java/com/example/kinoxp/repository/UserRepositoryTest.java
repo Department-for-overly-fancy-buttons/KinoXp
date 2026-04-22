@@ -4,7 +4,7 @@
 //import com.example.kinoxp.movie.CategoryRepository;
 //import com.example.kinoxp.movie.MovieRepository;
 //import com.example.kinoxp.user.Role;
-//import com.example.kinoxp.user.User;
+//import com.example.kinoxp.user.KinoUser;
 //import com.example.kinoxp.reservation.ReservationRepository;
 //import com.example.kinoxp.showing.ShowingRepository;
 //import com.example.kinoxp.theater.TheaterRepository;
@@ -37,11 +37,11 @@
 //    @Autowired
 //    private UserRepository userRepository;
 //
-//    private User testUser;
+//    private KinoUser testUser;
 //
 //    @BeforeEach
 //    public void setup(){
-//        testUser = new User("John Johnson", "Jonny123", Role.EMPLOYEE);
+//        testUser = new KinoUser("John Johnson", "Jonny123", Role.EMPLOYEE);
 //        userRepository.save(testUser);
 //    }
 //
@@ -53,7 +53,7 @@
 //    @Test
 //    public void givenUser_whenSaved_thenCanBeFoundById(){
 //
-//        User foundUser = userRepository.findById(testUser.getId()).orElse(null);
+//        KinoUser foundUser = userRepository.findById(testUser.getId()).orElse(null);
 //
 //        assertNotNull(foundUser);
 //        assertEquals(testUser.getUsername(), foundUser.getUsername());
@@ -64,7 +64,7 @@
 //    @Test
 //    public void givenUser_whenUpdated_thenCanBeFoundWithUpdatedData(){
 //        testUser.setUsername("Joel Johnson");
-//        User foundUser = userRepository.findById(testUser.getId()).orElse(null);
+//        KinoUser foundUser = userRepository.findById(testUser.getId()).orElse(null);
 //
 //        assertNotNull(foundUser);
 //        assertEquals(testUser.getUsername(), foundUser.getUsername());
@@ -73,7 +73,7 @@
 //    @Test
 //    public void givenUserId_whenDeleted_thenCannotBeFoundById(){
 //        userRepository.deleteById(testUser.getId());
-//        User foundUser = userRepository.findById(testUser.getId()).orElse(null);
+//        KinoUser foundUser = userRepository.findById(testUser.getId()).orElse(null);
 //        assertNull(foundUser);
 //    }
 //

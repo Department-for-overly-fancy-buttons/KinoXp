@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation & Seat Selection</title>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="Seat%20styles.css">
+</head>
+<body>
+<nav></nav>
+<h1 id="reservation-title">Reservation</h1>
+<form id="ReservationForm">
+    <input type="hidden" id="reservationId" name="id">
+    <input type="text" name="firstName" placeholder="First Name" required>
+    <input type="text" name="lastName" placeholder="Last Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phoneNumber" placeholder="Phone Number" required>
+<!--    <button type="submit">Create Reservation</button>-->
+
+
+    <h2>Select Seats</h2>
+    <div id="seatsContainer"></div>
+    <button type="submit" id="submitSeats">Submit Seats</button>
+</form>
+
+<script type="module" src="ReservationLogic.js"></script>
+<script src="../Login/auth.js"></script>
+</body>
+
+</html>
