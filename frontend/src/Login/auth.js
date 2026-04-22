@@ -64,14 +64,14 @@ function requireEmployee() {
     if (!user)
     {
         alert("You must be an admin and or employee to access this page!");
-        location.href = "/Login/LoginForm.html";
+        //location.href = "/Login/LoginForm.html";
     }
     if(user.roles.includes("ROLE_EMPLOYEE") || user.roles.includes("ROLE_ADMIN"))
     {
         return;
     }
     alert("You must be an admin and or employee to access this page!");
-    location.href = "LoginForm.html";
+    //location.href = "LoginForm.html";
 }
 
 function getCsrfToken() {

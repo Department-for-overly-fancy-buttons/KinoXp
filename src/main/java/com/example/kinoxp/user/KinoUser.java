@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class KinoUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false, name = "\"password\"")
     private String password;
@@ -18,13 +18,13 @@ public class User {
     private Role role;
 
 
-    public User(String username, String password, Role role) {
+    public KinoUser(String username, String password, Role role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public User() {
+    public KinoUser() {
     }
 
     public long getId() {

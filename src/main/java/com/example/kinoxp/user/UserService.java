@@ -27,32 +27,32 @@ public class UserService {
         }
     }
 
-    public User createUser(CreateUserRequest userRequest) {
+    public KinoUser createUser(CreateUserRequest userRequest) {
         Role requestedRole = stringToRole(userRequest.role());
         if(requestedRole == null){
             return null;
         }
-        return userRepository.save(new User(userRequest.username(), userRequest.password(), requestedRole));
+        return userRepository.save(new KinoUser(userRequest.username(), userRequest.password(), requestedRole));
     }
 
-    List<User> getAllUsers() {
+    List<KinoUser> getAllUsers() {
         return userRepository.findAll();
     }
 
-    List<User> getAllUsersByRole(Role role) {
+    List<KinoUser> getAllUsersByRole(Role role) {
           return userRepository.findByRole(role.toString());
     }
 
-    User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found with id: " + id));
+    KinoUser getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("KinoUser not found with id: " + id));
     }
 
     void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 
-    User updateUserLogin(Long id, CreateUserRequest userRequest) {
-        User newUser = getUserById(id);
+    KinoUser updateUserLogin(Long id, CreateUserRequest userRequest) {
+        KinoUser newUser = getUserById(id);
         newUser.setUsername(userRequest.username());
         newUser.setPassword(userRequest.password());
         newUser.setRole(stringToRole(userRequest.role()));
@@ -64,7 +64,7 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    User logIn(String username,String password){
+    KinoUser logIn(String username, String password){
         return userRepository.findByUsernameAndPassword(username, password);
     }
 }

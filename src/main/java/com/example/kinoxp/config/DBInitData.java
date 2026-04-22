@@ -13,6 +13,7 @@ import com.example.kinoxp.ticket.*;
 import com.example.kinoxp.user.CreateUserRequest;
 import com.example.kinoxp.user.UserService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -28,10 +29,10 @@ public class DBInitData implements CommandLineRunner {
     private final UserService userService;
     private final TicketServiceInterface ticketService;
     private final FeeTypeServiceInterface feeTypeService;
-
     private final ReservationService reservationService;
+    private final PasswordEncoder passwordEncoder;
 
-    public DBInitData(TicketService ticketService, MovieService movieService, ShowingService showingService, TheaterService theaterService, UserService userService, FeeTypeService feeTypeService, ReservationService reservationService) {
+    public DBInitData(TicketService ticketService, MovieService movieService, ShowingService showingService, TheaterService theaterService, UserService userService, FeeTypeService feeTypeService, ReservationService reservationService, PasswordEncoder passwordEncoder) {
         this.movieService = movieService;
         this.showingService = showingService;
         this.theaterService = theaterService;
@@ -39,6 +40,7 @@ public class DBInitData implements CommandLineRunner {
         this.feeTypeService = feeTypeService;
         this.reservationService = reservationService;
         this.ticketService = ticketService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -51,9 +53,9 @@ public class DBInitData implements CommandLineRunner {
         feeTypeService.createFeeType(longMovieFee);
         feeTypeService.createFeeType(reservationFee);
 
-        CreateUserRequest user = new CreateUserRequest("Olivertest", "123", "ADMIN");
-        CreateUserRequest user1 = new CreateUserRequest("Olivertest1", "123", "CUSTOMER");
-        CreateUserRequest user2 = new CreateUserRequest("Oliver", "123", "EMPLOYEE");
+        CreateUserRequest user = new CreateUserRequest("Olivertest", passwordEncoder.encode("123"), "ADMIN");
+        CreateUserRequest user1 = new CreateUserRequest("Olivertest1", passwordEncoder.encode("123"), "CUSTOMER");
+        CreateUserRequest user2 = new CreateUserRequest("Oliver", passwordEncoder.encode("123"), "EMPLOYEE");
 
         userService.createUser(user);
         userService.createUser(user1);
