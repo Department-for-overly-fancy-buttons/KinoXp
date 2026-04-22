@@ -33,9 +33,29 @@ function login() {
     return location.href = "/Login/LoginForm.html"
 }
 
-function logout() {
-    localStorage.removeItem("user")
-    return location.href = "../index.html"
+async function logout() {
+    try {
+        const csrfToken = getCsrfToken();
+
+        const response = await fetch(`/api/logout`, {
+            method: "POST",
+            headers: {
+                "X-XSRF-TOKEN": csrfToken || ""
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Logout failed.");
+        }
+
+        // Remove user info from local storage
+        localStorage.removeItem("user")
+        await setLoggedInUser();
+        return location.href = "../index.html"
+
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
 function displayUser() {

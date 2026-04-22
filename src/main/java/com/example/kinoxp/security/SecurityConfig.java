@@ -24,13 +24,16 @@ public class SecurityConfig {
         http
                 .csrf(CsrfConfigurer::spa)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/").permitAll()
+                        //.requestMatchers("/").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/reservations").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/showings").permitAll()
-                        .requestMatchers("/api/users/log_in").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/users/log_in").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/user").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/showings/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/theaters/**").permitAll()
-                        .requestMatchers("/api/**").authenticated()
-                        .anyRequest().authenticated()
+                        .requestMatchers(HttpMethod.POST,"/api/showings").hasAuthority("ROLE_EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST,"/api/movies").hasAuthority("ROLE_EMPLOYEE")
+                        .anyRequest().hasAuthority("ROLE_ADMIN")
                 )
                 .formLogin(form -> form
                         .loginProcessingUrl("/api/users/log_in")
@@ -38,6 +41,14 @@ public class SecurityConfig {
                         .failureHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_UNAUTHORIZED))
 
                 )
+                .logout(logout -> logout
+                        .logoutUrl("/api/logout") // Endpoint for logout requests
+                        .logoutSuccessHandler((req, res, auth) -> res.setStatus(HttpServletResponse.SC_NO_CONTENT)) // 204 on success
+                )
+                // Return 401 instead of redirecting to /login
+                .exceptionHandling(eh -> eh
+                        .authenticationEntryPoint((req, res, ex) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                );
         ;
 
         return http.build();
