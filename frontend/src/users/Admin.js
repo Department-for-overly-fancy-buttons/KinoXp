@@ -3,7 +3,7 @@ import {displayNavigationBar} from "../navigationBars.js";
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 
 let users = [];
 let roleData = [];
@@ -68,10 +68,11 @@ console.log(typeof formData.get("userId"))
 }
 
 async function fetchAddUser(user) {
+    const csrfToken = getCsrfToken()
     const response = await fetch(`${BASE_URL}/users`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json", "X-XSRF-TOKEN": csrfToken
         },
         body: JSON.stringify(user)
     });
@@ -231,6 +232,7 @@ async function handleDeleteUser(event) {
 async function fetchDeleteUser(userId) {
     const response = await fetch(`${BASE_URL}/users/${userId}`, {
         method: "DELETE",
+        headers: {"X-XSRF-TOKEN": getCsrfToken()}
     });
 
     if (!response.ok) {
@@ -269,7 +271,8 @@ async function fetchUpdateUser(userId, user) {
         const response = await fetch(`${BASE_URL}/users/update/${userId}`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "X-XSRF-TOKEN": getCsrfToken()
             },
             body: JSON.stringify(user)
         });

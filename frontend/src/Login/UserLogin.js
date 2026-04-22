@@ -9,28 +9,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formEl = event.target.closest("form");
         const formData = new FormData(formEl);
-        const loginData = {
-            username: formData.get("username"),
-            password: formData.get("password"),
-
-        };
+        const username = formData.get("username");
+        const password = formData.get("password");
 
         let csrfToken = getCsrfToken();
         try {
             const response = await fetch(`${BASE_URL}/log_in`, {
                 method: "POST",
                 headers: {"Content-Type": "application/x-www-form-urlencoded", "X-XSRF-TOKEN": csrfToken},
-                body: new URLSearchParams(loginData)
+                body: new URLSearchParams({ username, password })
 
             });
 
             if (response.ok) {
-                //const user = await response.json();
 
+                await setLoggedInUser();
 
-                //localStorage.setItem("user", JSON.stringify(user));
-
-                //alert(`Welcome, ${loginData.username}!`);
+                alert(`Welcome, ${getLoggedInUser.username}!`);
 
 
                 window.location.href = "/index.html";
@@ -44,10 +39,5 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Something went wrong with login.");
         }
     });
-
-    function getCsrfToken() {
-        const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
-        return match ? decodeURIComponent(match[1]) : null;
-    }
 
 });

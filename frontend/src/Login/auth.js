@@ -1,8 +1,17 @@
 const user = getLoggedInUser();
 
-//if (user) {
-//    document.getElementById("welcomeUser").textContent = `Welcome ${user.username}`;
-//}
+async function setLoggedInUser() {
+    try{
+    const response = await fetch(`/api/users/user`);
+    if (!response.ok) {
+        throw new Error("HTTP error!");
+    }
+    const authentication = await response.json();
+    localStorage.setItem("user", JSON.stringify(authentication));
+    } catch (error) {
+        console.log("An error occurred:   " + error)
+    }
+}
 
 function getLoggedInUser() {
     const user = localStorage.getItem("user");
@@ -44,9 +53,9 @@ function displayUser() {
 
 function requireAdmin() {
     const user = getLoggedInUser();
-    if (!user || user.role !== "ADMIN") {
+    if (!user || !user.roles.includes("ROLE_ADMIN")) {
         alert("You must be an admin to access this page!");
-        location.href = "LoginForm.html";
+        //location.href = "/Login/LoginForm.html";
     }
 }
 
@@ -55,12 +64,17 @@ function requireEmployee() {
     if (!user)
     {
         alert("You must be an admin and or employee to access this page!");
-        location.href = "LoginForm.html";
+        location.href = "/Login/LoginForm.html";
     }
-    if(user.role === "EMPLOYEE" || user.role === "ADMIN")
+    if(user.roles.includes("ROLE_EMPLOYEE") || user.roles.includes("ROLE_ADMIN"))
     {
         return;
     }
     alert("You must be an admin and or employee to access this page!");
     location.href = "LoginForm.html";
+}
+
+function getCsrfToken() {
+    const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+    return match ? decodeURIComponent(match[1]) : null;
 }

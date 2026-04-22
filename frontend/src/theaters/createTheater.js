@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', initApp);
 import {displayNavigationBar} from "../navigationBars.js";
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 
 let numberOfRows;
 let seatsPerRow;
@@ -51,7 +51,7 @@ async function handleSubmit(event) {
 
     const response = await fetch(`${BASE_URL}/theaters`, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json", "X-XSRF-TOKEN": getCsrfToken()},
         body: JSON.stringify(theater)
     });
 

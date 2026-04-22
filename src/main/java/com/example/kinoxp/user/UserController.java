@@ -2,9 +2,13 @@ package com.example.kinoxp.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
+import com.example.kinoxp.user.UserResponse;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost")
 @RequestMapping("/api/users")
@@ -20,6 +24,15 @@ class UserController {
     @GetMapping("/{id}")
     ResponseEntity<User> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @GetMapping("/user")
+    UserResponse getUser(Authentication authentication) {
+        String username = authentication.getName();
+        List<String> roles = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        return new UserResponse(username, roles);
     }
 
     @PostMapping

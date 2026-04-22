@@ -2,7 +2,7 @@ import {displayNavigationBar} from "../navigationBars.js";
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 
 async function initApp() {
     displayNavigationBar();
@@ -22,7 +22,7 @@ async function handleSubmit(event) {
 
     const response = await fetch(`${BASE_URL}/movies/category`, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json", "X-XSRF-TOKEN": getCsrfToken()},
         body: JSON.stringify(category)
     });
 

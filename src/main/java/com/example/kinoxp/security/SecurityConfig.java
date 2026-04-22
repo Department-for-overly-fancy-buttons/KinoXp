@@ -7,8 +7,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 public class SecurityConfig {
@@ -19,7 +24,6 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::spa)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
-                        //.requestMatchers("/Login/LoginForm.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/showings").permitAll()
                         .requestMatchers("/api/users/log_in").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/showings/**").permitAll()
@@ -28,9 +32,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        //.loginPage("/Login/LoginForm.html")
                         .loginProcessingUrl("/api/users/log_in")
-                        //.successForwardUrl("/index.html")
                         .successHandler((_, res, _) -> res.setStatus(HttpServletResponse.SC_NO_CONTENT))
                         .failureHandler((req, res, ex) -> res.setStatus(HttpServletResponse.SC_UNAUTHORIZED))
 
@@ -38,6 +40,26 @@ public class SecurityConfig {
         ;
 
         return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+        // TEST USERS
+        UserDetails user = User.builder()
+                .username("user")
+                .password(passwordEncoder.encode("pw"))
+                .roles("USER")
+                .build();
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("pw"))
+                .roles("USER", "ADMIN")
+                .build();
+        return new InMemoryUserDetailsManager(user, admin);
     }
 
 }

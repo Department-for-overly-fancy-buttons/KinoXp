@@ -2,7 +2,7 @@ import {displayNavigationBar} from "../navigationBars.js";
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "/api";
 
 let categoryData = [];
 let imageData;
@@ -54,7 +54,7 @@ async function handleSubmit(event) {
 
     const response = await fetch(`${BASE_URL}/movies`, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json", "X-XSRF-TOKEN": getCsrfToken()},
         body: JSON.stringify(movie)
     });
 

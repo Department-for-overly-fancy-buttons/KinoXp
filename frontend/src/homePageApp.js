@@ -12,9 +12,10 @@ async function initApp() {
     showingsData = await fetchShowings();
     console.log(showingsData);
     displayAllShowingReel(showingsData);
-    if(isLoggedIn() && (getLoggedInUser().role === "EMPLOYEE" || getLoggedInUser().role === "ADMIN")) {
-        displayAdminMenu(getLoggedInUser().role);
+    if(isLoggedIn() && (getLoggedInUser().roles.includes("ROLE_EMPLOYEE") || getLoggedInUser().roles.includes("ROLE_ADMIN"))) {
+        displayAdminMenu(getLoggedInUser().roles);
     }
+    console.log(getLoggedInUser());
 }
 
 async function fetchShowings() {
