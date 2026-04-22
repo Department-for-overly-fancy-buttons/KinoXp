@@ -34,7 +34,7 @@ async function handleGetTheater(event) {
     const theaterId = theaterBox.getAttribute("data-theaterId");
     if (theaterId !== null) {
         console.log("clicked theater with id = " + theaterId);
-        window.location.pathname = `theaters/showings_for_theater.html?theaterId=${theaterId}`
+        window.location.href = `/theaters/showings_for_theater.html?theaterId=${theaterId}`
     } else {
         console.log("box clicked");
     }
