@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
 
                 await setLoggedInUser();
-                alert(`Welcome, ${getLoggedInUser.username}!`);
                 loginForm.reset();
                 window.location.href = "/index.html";
 
